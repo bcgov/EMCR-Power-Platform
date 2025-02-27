@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/EMCR-Power-Platform/CopilotIndices/17.13.431.34963
+/.vs/EMCR-Power-Platform/FileContentIndex
+/.vs/slnx.sqlite
+/.vs

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "osID2c2g1Mk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\EricW\\source\\repos\\bcgov\\EMCR-Power-Platform\\EEW\\EEWWebApiApp\\EEWWebApiApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\EricW\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.2\\microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet\\5.0.1.1416\\mqttnet.5.0.1.1416.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet.aspnetcore\\5.0.1.1416\\mqttnet.aspnetcore.5.0.1.1416.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet.extensions.managedclient\\4.3.7.1207\\mqttnet.extensions.managedclient.4.3.7.1207.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet.extensions.rpc\\5.0.1.1416\\mqttnet.extensions.rpc.5.0.1.1416.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet.extensions.topictemplate\\5.0.1.1416\\mqttnet.extensions.topictemplate.5.0.1.1416.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\mqttnet.server\\5.0.1.1416\\mqttnet.server.5.0.1.1416.nupkg.sha512",
+    "C:\\Users\\EricW\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

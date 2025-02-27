@@ -1,0 +1,189 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "EEWWebApiApp/1.0.0": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416",
+          "MQTTnet.AspNetCore": "5.0.1.1416",
+          "MQTTnet.Extensions.ManagedClient": "4.3.7.1207",
+          "MQTTnet.Extensions.Rpc": "5.0.1.1416",
+          "MQTTnet.Extensions.TopicTemplate": "5.0.1.1416",
+          "MQTTnet.Server": "5.0.1.1416",
+          "Microsoft.AspNetCore.OpenApi": "9.0.2",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.21.0"
+        },
+        "runtime": {
+          "EEWWebApiApp.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.OpenApi/9.0.2": {
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "assemblyVersion": "9.0.2.0",
+            "fileVersion": "9.0.225.6704"
+          }
+        }
+      },
+      "Microsoft.OpenApi/1.6.17": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "1.6.17.0",
+            "fileVersion": "1.6.17.0"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {},
+      "MQTTnet/5.0.1.1416": {
+        "runtime": {
+          "lib/net8.0/MQTTnet.dll": {
+            "assemblyVersion": "5.0.1.1416",
+            "fileVersion": "5.0.1.1416"
+          }
+        }
+      },
+      "MQTTnet.AspNetCore/5.0.1.1416": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416",
+          "MQTTnet.Server": "5.0.1.1416"
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.AspNetCore.dll": {
+            "assemblyVersion": "5.0.1.1416",
+            "fileVersion": "5.0.1.1416"
+          }
+        }
+      },
+      "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416"
+        },
+        "runtime": {
+          "lib/net7.0/MQTTnet.Extensions.ManagedClient.dll": {
+            "assemblyVersion": "4.3.7.1207",
+            "fileVersion": "4.3.7.1207"
+          }
+        }
+      },
+      "MQTTnet.Extensions.Rpc/5.0.1.1416": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416"
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Extensions.Rpc.dll": {
+            "assemblyVersion": "5.0.1.1416",
+            "fileVersion": "5.0.1.1416"
+          }
+        }
+      },
+      "MQTTnet.Extensions.TopicTemplate/5.0.1.1416": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416",
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Extensions.TopicTemplate.dll": {
+            "assemblyVersion": "5.0.1.1416",
+            "fileVersion": "5.0.1.1416"
+          }
+        }
+      },
+      "MQTTnet.Server/5.0.1.1416": {
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416"
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Server.dll": {
+            "assemblyVersion": "5.0.1.1416",
+            "fileVersion": "5.0.1.1416"
+          }
+        }
+      },
+      "System.ValueTuple/4.5.0": {}
+    }
+  },
+  "libraries": {
+    "EEWWebApiApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.OpenApi/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JUndpjRNdG8GvzBLH/J4hen4ehWaPcshtiQ6+sUs1Bcj3a7dOsmWpDloDlpPeMOVSlhHwUJ3Xld0ClZjsFLgFQ==",
+      "path": "microsoft.aspnetcore.openapi/9.0.2",
+      "hashPath": "microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512"
+    },
+    "Microsoft.OpenApi/1.6.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "path": "microsoft.openapi/1.6.17",
+      "hashPath": "microsoft.openapi.1.6.17.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8NudeHOE56YsY59HYY89akRMup8Ho+7Y3cADTGjajjWroXVU9RQai2nA6PfteB8AuzmRHZ5NZQB2BnWhQEul5g==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.21.0",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+    },
+    "MQTTnet/5.0.1.1416": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ONYieEMaHiIei5dAtHXywnfJGhmrd5Av5sNJSQERp6AtZdPk3xxjCR6Cv0C5RUr/XbLeHO4/HQ0Rc2bQ5NF5Mw==",
+      "path": "mqttnet/5.0.1.1416",
+      "hashPath": "mqttnet.5.0.1.1416.nupkg.sha512"
+    },
+    "MQTTnet.AspNetCore/5.0.1.1416": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ku7XJqk9XqumqCoNVXIpW6TMhNj6FjJSWy4x8kqMSSK31G1YOjsnkKkNI+dhZMC/FH46UxwTZv2fy3IpBct6vw==",
+      "path": "mqttnet.aspnetcore/5.0.1.1416",
+      "hashPath": "mqttnet.aspnetcore.5.0.1.1416.nupkg.sha512"
+    },
+    "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i7T+4dsBqy3VVvuDuh9mmTbeZwF7eYP+8rHir4rdriM+k2dGwDNuXrScpz6xI3mEBfJZTVno8zy8+r0zzmFQuQ==",
+      "path": "mqttnet.extensions.managedclient/4.3.7.1207",
+      "hashPath": "mqttnet.extensions.managedclient.4.3.7.1207.nupkg.sha512"
+    },
+    "MQTTnet.Extensions.Rpc/5.0.1.1416": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q1NFADng1rS7eARgwVXv5VqltGM712P1c53B/bgAtIgmDSlOOYFMxY6FE/Ualr6tANgIvOh8jvtHIzOBOzyDFg==",
+      "path": "mqttnet.extensions.rpc/5.0.1.1416",
+      "hashPath": "mqttnet.extensions.rpc.5.0.1.1416.nupkg.sha512"
+    },
+    "MQTTnet.Extensions.TopicTemplate/5.0.1.1416": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Al87wTx0LIu0YZMKEcoqa8IM+dNjNO4eNx6195LxdLqHK7O7SsMLt5LIfgiuTMMkZjjHtgqxltUgymNHbSIquw==",
+      "path": "mqttnet.extensions.topictemplate/5.0.1.1416",
+      "hashPath": "mqttnet.extensions.topictemplate.5.0.1.1416.nupkg.sha512"
+    },
+    "MQTTnet.Server/5.0.1.1416": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-S17xbTitOKXEp+KMpIJgsLCRYVOqH+b8IF21+fqERI0zdiF5AqOfgXhI2Fmr4Ev8ftKoAUDfEEn8ckwo478i5Q==",
+      "path": "mqttnet.server/5.0.1.1416",
+      "hashPath": "mqttnet.server.5.0.1.1416.nupkg.sha512"
+    },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    }
+  }
+}

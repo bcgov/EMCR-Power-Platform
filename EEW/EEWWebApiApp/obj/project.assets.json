@@ -1,0 +1,535 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "Microsoft.AspNetCore.OpenApi/9.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.OpenApi/1.6.17": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
+        }
+      },
+      "MQTTnet/5.0.1.1416": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/MQTTnet.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MQTTnet.AspNetCore/5.0.1.1416": {
+        "type": "package",
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416",
+          "MQTTnet.Server": "5.0.1.1416"
+        },
+        "compile": {
+          "lib/net8.0/MQTTnet.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+        "type": "package",
+        "dependencies": {
+          "MQTTnet": "4.3.7.1207"
+        },
+        "compile": {
+          "lib/net7.0/MQTTnet.Extensions.ManagedClient.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/MQTTnet.Extensions.ManagedClient.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MQTTnet.Extensions.Rpc/5.0.1.1416": {
+        "type": "package",
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416"
+        },
+        "compile": {
+          "lib/net8.0/MQTTnet.Extensions.Rpc.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Extensions.Rpc.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MQTTnet.Extensions.TopicTemplate/5.0.1.1416": {
+        "type": "package",
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416",
+          "System.ValueTuple": "4.5.0"
+        },
+        "compile": {
+          "lib/net8.0/MQTTnet.Extensions.TopicTemplate.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Extensions.TopicTemplate.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MQTTnet.Server/5.0.1.1416": {
+        "type": "package",
+        "dependencies": {
+          "MQTTnet": "5.0.1.1416"
+        },
+        "compile": {
+          "lib/net8.0/MQTTnet.Server.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MQTTnet.Server.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.ValueTuple/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.AspNetCore.OpenApi/9.0.2": {
+      "sha512": "JUndpjRNdG8GvzBLH/J4hen4ehWaPcshtiQ6+sUs1Bcj3a7dOsmWpDloDlpPeMOVSlhHwUJ3Xld0ClZjsFLgFQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.openapi/9.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
+        "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
+        "microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.nuspec"
+      ]
+    },
+    "Microsoft.OpenApi/1.6.17": {
+      "sha512": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
+      "type": "package",
+      "path": "microsoft.openapi/1.6.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Microsoft.OpenApi.dll",
+        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
+        "lib/netstandard2.0/Microsoft.OpenApi.xml",
+        "microsoft.openapi.1.6.17.nupkg.sha512",
+        "microsoft.openapi.nuspec"
+      ]
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
+      "sha512": "8NudeHOE56YsY59HYY89akRMup8Ho+7Y3cADTGjajjWroXVU9RQai2nA6PfteB8AuzmRHZ5NZQB2BnWhQEul5g==",
+      "type": "package",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.21.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "EULA.md",
+        "ThirdPartyNotices.txt",
+        "build/Container.props",
+        "build/Container.targets",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets",
+        "build/Rules/GeneralBrowseObject.xaml",
+        "build/Rules/cs-CZ/GeneralBrowseObject.xaml",
+        "build/Rules/de-DE/GeneralBrowseObject.xaml",
+        "build/Rules/es-ES/GeneralBrowseObject.xaml",
+        "build/Rules/fr-FR/GeneralBrowseObject.xaml",
+        "build/Rules/it-IT/GeneralBrowseObject.xaml",
+        "build/Rules/ja-JP/GeneralBrowseObject.xaml",
+        "build/Rules/ko-KR/GeneralBrowseObject.xaml",
+        "build/Rules/pl-PL/GeneralBrowseObject.xaml",
+        "build/Rules/pt-BR/GeneralBrowseObject.xaml",
+        "build/Rules/ru-RU/GeneralBrowseObject.xaml",
+        "build/Rules/tr-TR/GeneralBrowseObject.xaml",
+        "build/Rules/zh-CN/GeneralBrowseObject.xaml",
+        "build/Rules/zh-TW/GeneralBrowseObject.xaml",
+        "build/ToolsTarget.props",
+        "build/ToolsTarget.targets",
+        "icon.png",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Tasks.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/System.Security.Principal.Windows.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
+      ]
+    },
+    "MQTTnet/5.0.1.1416": {
+      "sha512": "ONYieEMaHiIei5dAtHXywnfJGhmrd5Av5sNJSQERp6AtZdPk3xxjCR6Cv0C5RUr/XbLeHO4/HQ0Rc2bQ5NF5Mw==",
+      "type": "package",
+      "path": "mqttnet/5.0.1.1416",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/MQTTnet.dll",
+        "lib/net8.0/MQTTnet.xml",
+        "mqttnet.5.0.1.1416.nupkg.sha512",
+        "mqttnet.nuspec",
+        "nuget.png"
+      ]
+    },
+    "MQTTnet.AspNetCore/5.0.1.1416": {
+      "sha512": "ku7XJqk9XqumqCoNVXIpW6TMhNj6FjJSWy4x8kqMSSK31G1YOjsnkKkNI+dhZMC/FH46UxwTZv2fy3IpBct6vw==",
+      "type": "package",
+      "path": "mqttnet.aspnetcore/5.0.1.1416",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/MQTTnet.AspNetCore.dll",
+        "lib/net8.0/MQTTnet.AspNetCore.xml",
+        "mqttnet.aspnetcore.5.0.1.1416.nupkg.sha512",
+        "mqttnet.aspnetcore.nuspec",
+        "nuget.png"
+      ]
+    },
+    "MQTTnet.Extensions.ManagedClient/4.3.7.1207": {
+      "sha512": "i7T+4dsBqy3VVvuDuh9mmTbeZwF7eYP+8rHir4rdriM+k2dGwDNuXrScpz6xI3mEBfJZTVno8zy8+r0zzmFQuQ==",
+      "type": "package",
+      "path": "mqttnet.extensions.managedclient/4.3.7.1207",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net452/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/net461/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net461/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/net48/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net48/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/net5.0/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net5.0/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/net6.0/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net6.0/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/net7.0/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/net7.0/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/netcoreapp3.1/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/netcoreapp3.1/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/netstandard1.3/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/netstandard1.3/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/netstandard2.0/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/netstandard2.0/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/netstandard2.1/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/netstandard2.1/MQTTnet.Extensions.ManagedClient.xml",
+        "lib/uap10.0.10240/MQTTnet.Extensions.ManagedClient.dll",
+        "lib/uap10.0.10240/MQTTnet.Extensions.ManagedClient.pri",
+        "lib/uap10.0.10240/MQTTnet.Extensions.ManagedClient.xml",
+        "mqttnet.extensions.managedclient.4.3.7.1207.nupkg.sha512",
+        "mqttnet.extensions.managedclient.nuspec",
+        "nuget.png"
+      ]
+    },
+    "MQTTnet.Extensions.Rpc/5.0.1.1416": {
+      "sha512": "q1NFADng1rS7eARgwVXv5VqltGM712P1c53B/bgAtIgmDSlOOYFMxY6FE/Ualr6tANgIvOh8jvtHIzOBOzyDFg==",
+      "type": "package",
+      "path": "mqttnet.extensions.rpc/5.0.1.1416",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/MQTTnet.Extensions.Rpc.dll",
+        "lib/net8.0/MQTTnet.Extensions.Rpc.xml",
+        "mqttnet.extensions.rpc.5.0.1.1416.nupkg.sha512",
+        "mqttnet.extensions.rpc.nuspec",
+        "nuget.png"
+      ]
+    },
+    "MQTTnet.Extensions.TopicTemplate/5.0.1.1416": {
+      "sha512": "Al87wTx0LIu0YZMKEcoqa8IM+dNjNO4eNx6195LxdLqHK7O7SsMLt5LIfgiuTMMkZjjHtgqxltUgymNHbSIquw==",
+      "type": "package",
+      "path": "mqttnet.extensions.topictemplate/5.0.1.1416",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net8.0/MQTTnet.Extensions.TopicTemplate.dll",
+        "lib/net8.0/MQTTnet.Extensions.TopicTemplate.xml",
+        "mqttnet.extensions.topictemplate.5.0.1.1416.nupkg.sha512",
+        "mqttnet.extensions.topictemplate.nuspec",
+        "nuget.png"
+      ]
+    },
+    "MQTTnet.Server/5.0.1.1416": {
+      "sha512": "S17xbTitOKXEp+KMpIJgsLCRYVOqH+b8IF21+fqERI0zdiF5AqOfgXhI2Fmr4Ev8ftKoAUDfEEn8ckwo478i5Q==",
+      "type": "package",
+      "path": "mqttnet.server/5.0.1.1416",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/MQTTnet.Server.dll",
+        "lib/net8.0/MQTTnet.Server.xml",
+        "mqttnet.server.5.0.1.1416.nupkg.sha512",
+        "mqttnet.server.nuspec",
+        "nuget.png"
+      ]
+    },
+    "System.ValueTuple/4.5.0": {
+      "sha512": "okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "type": "package",
+      "path": "system.valuetuple/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net461/System.ValueTuple.dll",
+        "lib/net461/System.ValueTuple.xml",
+        "lib/net47/System.ValueTuple.dll",
+        "lib/net47/System.ValueTuple.xml",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.0/System.ValueTuple.dll",
+        "lib/netstandard1.0/System.ValueTuple.xml",
+        "lib/netstandard2.0/_._",
+        "lib/portable-net40+sl4+win8+wp8/System.ValueTuple.dll",
+        "lib/portable-net40+sl4+win8+wp8/System.ValueTuple.xml",
+        "lib/uap10.0.16299/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net461/System.ValueTuple.dll",
+        "ref/net47/System.ValueTuple.dll",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard2.0/_._",
+        "ref/portable-net40+sl4+win8+wp8/System.ValueTuple.dll",
+        "ref/uap10.0.16299/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.valuetuple.4.5.0.nupkg.sha512",
+        "system.valuetuple.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "MQTTnet >= 5.0.1.1416",
+      "MQTTnet.AspNetCore >= 5.0.1.1416",
+      "MQTTnet.Extensions.ManagedClient >= 4.3.7.1207",
+      "MQTTnet.Extensions.Rpc >= 5.0.1.1416",
+      "MQTTnet.Extensions.TopicTemplate >= 5.0.1.1416",
+      "MQTTnet.Server >= 5.0.1.1416",
+      "Microsoft.AspNetCore.OpenApi >= 9.0.2",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.21.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\EricW\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\EricW\\source\\repos\\bcgov\\EMCR-Power-Platform\\EEW\\EEWWebApiApp\\EEWWebApiApp.csproj",
+      "projectName": "EEWWebApiApp",
+      "projectPath": "C:\\Users\\EricW\\source\\repos\\bcgov\\EMCR-Power-Platform\\EEW\\EEWWebApiApp\\EEWWebApiApp.csproj",
+      "packagesPath": "C:\\Users\\EricW\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EricW\\source\\repos\\bcgov\\EMCR-Power-Platform\\EEW\\EEWWebApiApp\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\EricW\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "dependencies": {
+          "MQTTnet": {
+            "target": "Package",
+            "version": "[5.0.1.1416, )"
+          },
+          "MQTTnet.AspNetCore": {
+            "target": "Package",
+            "version": "[5.0.1.1416, )"
+          },
+          "MQTTnet.Extensions.ManagedClient": {
+            "target": "Package",
+            "version": "[4.3.7.1207, )"
+          },
+          "MQTTnet.Extensions.Rpc": {
+            "target": "Package",
+            "version": "[5.0.1.1416, )"
+          },
+          "MQTTnet.Extensions.TopicTemplate": {
+            "target": "Package",
+            "version": "[5.0.1.1416, )"
+          },
+          "MQTTnet.Server": {
+            "target": "Package",
+            "version": "[5.0.1.1416, )"
+          },
+          "Microsoft.AspNetCore.OpenApi": {
+            "target": "Package",
+            "version": "[9.0.2, )"
+          },
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "target": "Package",
+            "version": "[1.21.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

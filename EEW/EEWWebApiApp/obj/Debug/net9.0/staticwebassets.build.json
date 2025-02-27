@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "QSKmqacyx0xjTWr7dZPV230rw6yC60xAfE9HK1wQrXQ=",
+  "Source": "EEWWebApiApp",
+  "BasePath": "_content/EEWWebApiApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
