@@ -8,6 +8,7 @@ using MQTTnet.Packets;
 using MQTTnet.Protocol;
 
 using System.Text.Json;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace EEWWebApiApp.Services
 {
@@ -15,152 +16,166 @@ namespace EEWWebApiApp.Services
     {
         private readonly IMqttClient _mqttClient;
         private readonly MqttClientFactory _mqttFactory = new MqttClientFactory();
-        private static readonly MqttClientOptions _mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("localhost").Build();
+        private static readonly MqttClientOptions _mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("test.mosquitto.org").Build();
         static readonly MqttTopicTemplate sampleTemplate = new("mqttnet/samples/topic/{id}");
+        private readonly IHostApplicationLifetime _applicationLifetime;
+        private readonly object _connectionLock = new object(); // Lock object for synchronization
 
-        public NrCanMqttBackGroundService()
+        public NrCanMqttBackGroundService(IHostApplicationLifetime applicationLifetime)
         {
             _mqttClient = _mqttFactory.CreateMqttClient();
+            _applicationLifetime = applicationLifetime;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await ConnectToNrCan();
-
-            while (!stoppingToken.IsCancellationRequested)
+            try
             {
-                await Task.Delay(1000, stoppingToken);
-            }
+                // Start the MQTT client and pass the cancellation token
+                var connectTask = ConnectToNrCan(stoppingToken);
 
+                // Wait for the connection to be established
+                while (!_mqttClient.IsConnected && !stoppingToken.IsCancellationRequested)
+                {
+                    Console.WriteLine("Waiting for MQTT connection...");
+                    await Task.Delay(1000, stoppingToken);
+                }
+
+                if (_mqttClient.IsConnected)
+                {
+                    // Publish a test message
+                    await PublishMessageAsync("test/topic", "Hello, MQTT!", stoppingToken);
+                }
+                else
+                {
+                    Console.WriteLine("MQTT connection failed.");
+                }
+
+                // Wait for the cancellation token to be triggered or handle the graceful stop
+                var timeToShutdown = DateTime.Now.Date.AddDays(1);  // set to tomorrow midnight
+                while (!stoppingToken.IsCancellationRequested)
+                {
+                    if (DateTime.Now >= timeToShutdown)
+                    {
+                        Console.WriteLine("Triggering graceful shutdown at: " + DateTime.Now);
+
+                        // Trigger the graceful shutdown of the application
+                        _applicationLifetime.StopApplication();  // Graceful stop
+
+                        return;
+                    }
+
+                    // Regular delay to monitor the message queue
+                    await Task.Delay(1000, stoppingToken);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                // Handle cancellation (e.g., log or cleanup)
+                Console.WriteLine("Operation was canceled.");
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                // Perform cleanup if needed
+                Console.WriteLine("ExecuteAsync has stopped.");
+            }
         }
 
-        public async Task ConnectToNrCan()
+
+        public async Task ConnectToNrCan(CancellationToken cancellationToken)
         {
-            /*
-             * This sample shows how to reconnect when the connection was dropped.
-             * This approach uses a custom Task/Thread which will monitor the connection status.
-             * This is the recommended way but requires more custom code!
-             */
-
-            
-
-            await Task.Run(
-                async () =>
+            await Task.Run(async () =>
+            {
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    // User proper cancellation and no while(true).
-                    while (true)
+                    bool isSubscribed = false;
+
+                    try
                     {
-                        bool isSubscribed = false;
-
-                        try
+                        // Use a lock to ensure only one connection attempt at a time
+                        lock (_connectionLock)
                         {
-                            // Setup message handling before connecting so that queued messages
-                            // are also handled properly. When there is no event handler attached all
-                            // received messages get lost.
+
+                            // Attach the event handler for incoming messages
                             _mqttClient.ApplicationMessageReceivedAsync += e =>
+                                {
+                                    Console.WriteLine($"[{DateTime.UtcNow}] Received application message.");
+                                    Console.WriteLine($"Topic: {e.ApplicationMessage.Topic}");
+                                    Console.WriteLine($"Payload: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)}");
+                                    Console.WriteLine($"QoS: {e.ApplicationMessage.QualityOfServiceLevel}");
+                                    Console.WriteLine($"Retain: {e.ApplicationMessage.Retain}");
+
+                                    // Handle specific topics
+                                    if (e.ApplicationMessage.Topic == "sensors/temperature")
+                                    {
+                                        Console.WriteLine("Processing temperature data...");
+                                        // Add your logic here
+                                    }
+                                    else if (e.ApplicationMessage.Topic == "sensors/humidity")
+                                    {
+                                        Console.WriteLine("Processing humidity data...");
+                                        // Add your logic here
+                                    }
+
+                                    return Task.CompletedTask;
+                                };
+
+                            // Check connection and reconnect if necessary
+                            if (!_mqttClient.TryPingAsync().Result)
                             {
-                                Console.WriteLine("Received application message.");
-                                Console.WriteLine(e.ApplicationMessage?.Topic);
-
-                                return Task.CompletedTask;
-                            };
-
-                            // This code will also do the very first connect! So no call to _ConnectAsync_ is required in the first place.
-                            if (!await _mqttClient.TryPingAsync())
-                            {
-                                await _mqttClient.ConnectAsync(_mqttClientOptions, CancellationToken.None);
-
-                                // Subscribe to topics when session is clean etc.
+                                Console.WriteLine("Ping failed. Attempting to reconnect...");
+                                _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
                                 Console.WriteLine("The MQTT client is connected.");
 
+                                // Subscribe to all topics using the # wildcard
                                 if (!isSubscribed)
                                 {
-                                    var mqttSubscribeOptions = _mqttFactory.CreateSubscribeOptionsBuilder().WithTopicTemplate(sampleTemplate.WithParameter("id", "1")).Build();
+                                    var topicFilter = new MqttTopicFilterBuilder()
+                                        .WithTopic("#")
+                                        .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                                        .Build();
 
-                                    var response = await _mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-                                    Console.WriteLine("MQTT client subscribed to topic.");
+                                    var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
+                                    Console.WriteLine("MQTT client subscribed to topic: #");
 
                                     var jsonResponse = JsonSerializer.Serialize(response);
-                                    Console.WriteLine(jsonResponse);
+                                    Console.WriteLine($"Subscription response: {jsonResponse}");
 
                                     isSubscribed = true;
                                 }
                             }
                         }
-                        catch
-                        {
-                            // Handle the exception properly (logging etc.).
-                        }
-                        finally
-                        {
-                            // Check the connection state every 5 seconds and perform a reconnect if required.
-                            await Task.Delay(TimeSpan.FromSeconds(5));
-                        }
                     }
-                });
+                    catch (Exception ex)
+                    {
+                        // Log the exception
+                        Console.WriteLine($"An error occurred: {ex.Message}");
+                        isSubscribed = false; // Reset subscription flag on error
+                    }
+                    finally
+                    {
+                        // Wait for 5 seconds before checking the connection again
+                        await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                    }
+                }
+            }, cancellationToken);
         }
 
-        public async Task ListTopics()
+        public async Task PublishMessageAsync(string topic, string payload, CancellationToken cancellationToken)
         {
-            /*
-             * This sample shows how to list all topics that are currently subscribed.
-             */
-            await _mqttClient.ConnectAsync(_mqttClientOptions, CancellationToken.None);
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic(topic)
+                .WithPayload(payload)
+                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
+                .Build();
 
-            // Subscribe to topics when session is clean etc.
-            Console.WriteLine("The MQTT client is connected.");
-            _mqttClient.ConnectedAsync += async e =>
-            {
-                Console.WriteLine("Connected to broker.");
-
-                // Subscribe to all topics
-                await _mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic("#").Build());
-                Console.WriteLine("Subscribed to all topics.");
-            };
-
-            _mqttClient.ApplicationMessageReceivedAsync += e =>
-            {
-                var topic = e.ApplicationMessage.Topic;
-                Console.WriteLine($"Received message from topic: {topic}");
-                return Task.CompletedTask;
-            };
-        }
-
-        public static async Task Handle_Received_Application_Message()
-        {
-            /*
-             * This sample subscribes to a topic and processes the received message.
-             */
-
-            var mqttFactory = new MqttClientFactory();
-
-            using (var mqttClient = mqttFactory.CreateMqttClient())
-            {
-                var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("test.mosquitto.org").Build();
-
-                // Setup message handling before connecting so that queued messages
-                // are also handled properly. When there is no event handler attached all
-                // received messages get lost.
-                mqttClient.ApplicationMessageReceivedAsync += e =>
-                {
-                    Console.WriteLine("Received application message.");
-                    Console.WriteLine(e.ApplicationMessage?.Topic);
-
-                    return Task.CompletedTask;
-                };
-
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-                var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder().WithTopicTemplate(sampleTemplate.WithParameter("id", "2")).Build();
-
-                await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-                Console.WriteLine("MQTT client subscribed to topic.");
-
-                Console.WriteLine("Press enter to exit.");
-                Console.ReadLine();
-            }
+            await _mqttClient.PublishAsync(message, cancellationToken);
+            Console.WriteLine($"Published message to topic: {topic}");
         }
 
         public static async Task Send_Responses()
@@ -228,33 +243,6 @@ namespace EEWWebApiApp.Services
                 var response = await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
 
                 Console.WriteLine("MQTT client subscribed to topics.");
-
-                var jsonResponse = JsonSerializer.Serialize(response);
-                Console.WriteLine(jsonResponse);
-            }
-        }
-
-        public static async Task Subscribe_Topic()
-        {
-            /*
-             * This sample subscribes to a topic.
-             */
-
-            var mqttFactory = new MqttClientFactory();
-
-            using (var mqttClient = mqttFactory.CreateMqttClient())
-            {
-                var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("broker.hivemq.com").Build();
-
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-                var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder().WithTopicTemplate(sampleTemplate.WithParameter("id", "1")).Build();
-
-                var response = await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-                Console.WriteLine("MQTT client subscribed to topic.");
-
-                // The response contains additional data sent by the server after subscribing.
 
                 var jsonResponse = JsonSerializer.Serialize(response);
                 Console.WriteLine(jsonResponse);
