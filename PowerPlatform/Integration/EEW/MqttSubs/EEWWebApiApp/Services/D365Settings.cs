@@ -1,0 +1,26 @@
+﻿namespace EEWWebApiApp.Services
+{
+    public class D365Settings
+    {
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
+        public string TenantId { get; set; }
+        public string CrmBaseUrl { get; set; }
+    }
+
+
+    public class MQTTSettings
+    {
+        public string BrokerDNS1 { get; set; }
+        public string BrokerDNS2 { get; set; }
+        public string Username { get; set; }
+        public int Port { get; set; }
+        public string Password { get; set; }
+        public string Certificate { get; set; }
+        public string CoreXmlTipic { get; set; }
+        public string GroundMotionPolygonTopic { get; set; }
+        public string GroundMotionPointsTopic { get; set; }
+        public string EEWOverallHealth { get; set; }
+    }
+
+}
