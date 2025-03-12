@@ -1,18 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
+[XmlRoot("event_message")]
 public class EventMessage
 {
+    [XmlAttribute("version")]
     public string version { get; set; }
+
+    [XmlAttribute("orig_sys")]
     public string orig_sys { get; set; }
+
+    [XmlAttribute("message_type")]
     public string message_type { get; set; }
-    public DateTime timestamp { get; set; }
+
+    [XmlAttribute("timestamp")]
+    public string timestamp { get; set; }
+
+    [XmlAttribute("category")]
     public string category { get; set; }
+
+    [XmlAttribute("alg_vers")]
     public string alg_vers { get; set; }
+
+    [XmlAttribute("instance")]
     public string instance { get; set; }
+
+    [XmlAttribute("ref_id")]
     public string ref_id { get; set; }
+
+    [XmlAttribute("ref_src")]
     public string ref_src { get; set; }
+
+    [XmlElement("core_info")]
     public CoreInfo core_info { get; set; }
     public Contributors contributors { get; set; }
     public FaultInfo fault_info { get; set; }
@@ -61,6 +82,8 @@ public class FiniteFault
     public bool atten_geom { get; set; }
     public int segment_number { get; set; }
     public string segment_shape { get; set; }
+
+    [XmlElement("segment")]
     public List<Segment> segment { get; set; }
 }
 
@@ -84,6 +107,7 @@ public class GmInfo
 
 public class GmcontourPred
 {
+    [XmlElement("contour")] 
     public List<Contour> contour { get; set; }
 }
 
@@ -119,17 +143,19 @@ public class PgaObs
     public DateTime time { get; set; }
 }
 
-public class SampleDataGenerator
+public static class SampleDataGenerator
 {
     private static Random _random = new Random();
 
     // Method to generate sample data based on user input
-    public EventMessage GenerateSampleData(decimal magnitude, decimal centerLat, decimal centerLon)
+    public static EventMessage GenerateSampleData(decimal magnitude, decimal centerLat, decimal centerLon)
     {
-        // Generate the core information based on the magnitude and center coordinates
+        Random rand = new Random();
+
+        // Generate core information based on magnitude and center coordinates
         var coreInfo = new CoreInfo
         {
-            id = "MaRiver" + magnitude,
+            id = "StoneRiver" + magnitude,
             mag = magnitude,
             mag_uncer = 0.5m,  // Example uncertainty for magnitude
             lat = centerLat,
@@ -144,16 +170,30 @@ public class SampleDataGenerator
             num_stations = 7
         };
 
-        // Generate the polygon dynamically based on the center coordinates and magnitude
-        var polygon = GeneratePolygon(centerLat, centerLon, magnitude);
+        // Generate contours dynamically for MMI 2.0 to 8.0
+        var contours = new List<Contour>();
+        for (decimal mmi = 2.0m; mmi <= 8.0m; mmi += 1.0m)
+        {
+            decimal pga = (decimal)(rand.NextDouble() * (300 - 0.5) + 0.5); // Simulated PGA values
+            decimal pgv = (decimal)(rand.NextDouble() * (30 - 0.1) + 0.1);  // Simulated PGV values
+            string polygon = GeneratePolygon(centerLat, centerLon, magnitude, mmi);
 
-        // Generate the event message
+            contours.Add(new Contour
+            {
+                MMI = mmi,
+                PGA = pga,
+                PGV = pgv,
+                polygon = polygon
+            });
+        }
+
+        // Generate the event message with the correct XML structure
         return new EventMessage
         {
             version = "0",
             orig_sys = "eqinfo2gm",
             message_type = "update",
-            timestamp = DateTime.UtcNow,
+            timestamp = DateTime.UtcNow.ToString(),
             category = "live",
             alg_vers = "1.2.4 2024-01-14",
             instance = "eqinfo2gm-contour@eew-qw-int1",
@@ -180,74 +220,117 @@ public class SampleDataGenerator
                     segment_number = 1,
                     segment_shape = "line",
                     segment = new List<Segment>
+                {
+                    new Segment
                     {
-                        new Segment
+                        vertices = new List<Vertex>
                         {
-                            vertices = new List<Vertex>
-                            {
-                                new Vertex { lat = 48.405m, lon = -123.412m, depth = 0.0m },
-                                new Vertex { lat = 48.502m, lon = -123.917m, depth = 0.0m }
-                            }
+                            new Vertex { lat = 48.405m, lon = -123.412m, depth = 0.0m },
+                            new Vertex { lat = 48.502m, lon = -123.917m, depth = 0.0m }
                         }
                     }
+                }
                 }
             },
             gm_info = new GmInfo
             {
                 gmcontour_pred = new GmcontourPred
                 {
-                    contour = new List<Contour>
-                    {
-                        new Contour { MMI = 2.0m, PGA = 0.7926m, PGV = 0.0365m, polygon = polygon },
-                        new Contour { MMI = 3.0m, PGA = 2.9142m, PGV = 0.1347m, polygon = polygon }
-                    }
+                    contour = contours // ✅ Now correctly places contour elements directly inside <gmcontour_pred>
                 },
                 gmpoint_obs = new GmpointObs
                 {
                     pgv_obs = new List<PgvObs>
+                {
+                    new PgvObs
                     {
-                        new PgvObs
-                        {
-                            SNCL = "QC01.QW.HHZ.--",
-                            value = 0,
-                            lat = 0,
-                            lon = 0,
-                            time = DateTime.UtcNow
-                        }
-                    },
-                    pga_obs = new List<PgaObs>
-                    {
-                        new PgaObs
-                        {
-                            SNCL = "QC01.QW.HHZ.--",
-                            value = 0,
-                            lat = 0,
-                            lon = 0,
-                            time = DateTime.UtcNow
-                        }
+                        SNCL = "QC01.QW.HHZ.--",
+                        value = 0,
+                        lat = 0,
+                        lon = 0,
+                        time = DateTime.UtcNow
                     }
+                },
+                    pga_obs = new List<PgaObs>
+                {
+                    new PgaObs
+                    {
+                        SNCL = "QC01.QW.HHZ.--",
+                        value = 0,
+                        lat = 0,
+                        lon = 0,
+                        time = DateTime.UtcNow
+                    }
+                }
                 }
             }
         };
     }
 
-    // Method to generate a polygon around the center with dynamic size based on magnitude
-    private string GeneratePolygon(decimal centerLat, decimal centerLon, decimal magnitude)
-    {
-        // Adjust the size of the polygon based on magnitude (larger magnitude means a larger polygon)
-        decimal delta = magnitude / 10m;
 
-        // Generate polygon coordinates around the center
-        var coordinates = new List<string>
+
+    // Method to generate a polygon around the center with dynamic size based on magnitude
+    private static string GeneratePolygon(decimal centerLat, decimal centerLon, decimal magnitude, decimal mmi)
+    {
+        // Adjust size of the polygon based on magnitude and MMI
+        decimal delta = (magnitude / 10m) * (1 + mmi / 10m);
+
+        var coordinates = new List<string>();
+        for (int i = 0; i < 8; i++)
         {
-            $"{centerLat + delta},{centerLon - delta}",
-            $"{centerLat + delta},{centerLon + delta}",
-            $"{centerLat - delta},{centerLon + delta}",
-            $"{centerLat - delta},{centerLon - delta}"
-        };
+            double angle = (Math.PI / 4) * i; // Dividing 360 degrees into 8 sections
+            decimal lat = centerLat + delta * (decimal)Math.Sin(angle);
+            decimal lon = centerLon + delta * (decimal)Math.Cos(angle);
+            coordinates.Add($"{lat},{lon}");
+        }
+
+        // Ensure the polygon is closed by repeating the first point at the end
+        coordinates.Add(coordinates[0]);
 
         return string.Join(" ", coordinates);
     }
+
+
+    private static List<Contour> GenerateContours(decimal centerLat, decimal centerLon, decimal magnitude)
+    {
+        var contours = new List<Contour>();
+        Random rand = new Random();
+
+        for (decimal mmi = 2.0m; mmi <= 8.0m; mmi += 1.0m)
+        {
+            decimal pga = (decimal)(rand.NextDouble() * (300 - 0.5) + 0.5); // Simulated PGA values
+            decimal pgv = (decimal)(rand.NextDouble() * (30 - 0.1) + 0.1); // Simulated PGV values
+
+            string polygon = GeneratePolygon(centerLat, centerLon, magnitude, mmi);
+
+            contours.Add(new Contour
+            {
+                MMI = mmi,
+                PGA = pga,
+                PGV = pgv,
+                polygon = polygon
+            });
+        }
+
+        return contours;
+    }
+    public static (decimal, decimal) GenerateRandomBCCoordinate()
+    {
+        Random random = new Random();
+
+        // Approximate boundaries for BC, Canada
+        decimal minLat = 48.3m;  // Southernmost point
+        decimal maxLat = 60.0m;  // Northernmost point
+        decimal minLon = -139.0m; // Westernmost point
+        decimal maxLon = -114.0m; // Easternmost point
+
+        // Generate a random latitude and longitude within the BC boundaries
+        decimal latitude = minLat + (decimal)random.NextDouble() * (maxLat - minLat);
+        decimal longitude = minLon + (decimal)random.NextDouble() * (maxLon - minLon);
+
+        return (latitude, longitude);
+    }
+
 
     public static List<(double lat, double lon)> GeneratePolygon(double centerLat, double centerLon, double magnitude)
     {

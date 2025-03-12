@@ -111,6 +111,17 @@ namespace EEWWebApiApp.Services
                         //Generate fake data
                         string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
 
+                        EventMessage myevent = new EventMessage();
+                        (decimal latitude, decimal longitude) coordinates = SampleDataGenerator.GenerateRandomBCCoordinate();
+                        myevent = SampleDataGenerator.GenerateSampleData(XmlHelper.GetRandomDecimal(), coordinates.latitude, coordinates.longitude);
+
+                        //string tmp = XmlHelper.SerializeToXml(myevent);
+                        //JObject jNRCan = new JObject()
+                        //{
+                        //    ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
+                        //    ["payload"] = tmp
+                        //};
+
                         string pemContent = File.ReadAllText(dataPath);
                         JObject jNRCan = new JObject()
                         {
@@ -118,8 +129,8 @@ namespace EEWWebApiApp.Services
                             ["payload"] = pemContent
                         };
 
-                        _ = CreateNrCanAlertRecord(jNRCan);
-                        await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
+                        //_ = CreateNrCanAlertRecord(jNRCan);
+                        //await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
 
                         // Use a lock to ensure only one connection attempt at a time
                         lock (_connectionLock)
@@ -157,11 +168,29 @@ namespace EEWWebApiApp.Services
                                 // Configure MQTT client options with authentication and encryption
                                 _mqttClientOptions = new MqttClientOptionsBuilder()
                                     .WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
-                                    .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port) 
-                                    //.WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
-                                    .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
-                                    //.WithCleanSession() // Start with a clean session
+                                    .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port)
+                                    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
                                     .Build();
+
+                                //_mqttClientOptions = new MqttClientOptionsBuilder()
+                                //    .WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
+                                //    .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port) 
+                                //    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
+                                //    .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
+                                //    .WithCleanSession() // Start with a clean session
+                                //    .Build();
+
+                                //var mqttClientOptions = new MqttClientOptionsBuilder()
+                                //    .WithTcpServer("your-broker-address", 8883) // Use TLS port (e.g., 8883)
+                                //    .WithCredentials("your-username", "your-password") // Username and password
+                                //    .WithTls(new MqttClientOptionsBuilderTlsParameters
+                                //    {
+                                //        UseTls = true, // Enable TLS
+                                //        AllowUntrustedCertificates = true, // Allow self-signed certificates (if applicable)
+                                //        IgnoreCertificateChainErrors = true, // Ignore certificate chain errors
+                                //        IgnoreCertificateRevocationErrors = true // Ignore certificate revocation errors
+                                //    })
+                                //    .Build();
 
                                 _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
                                 Console.WriteLine("The MQTT client is connected.");
@@ -226,9 +255,7 @@ namespace EEWWebApiApp.Services
 
             //return caChain;
 
-            string certificatePath = "partners.pem"; // Path to your PEM file
-
-            string pemContent = File.ReadAllText(certificatePath);
+            string pemContent = File.ReadAllText(certPath);
 
             X509Certificate2Collection certs = new X509Certificate2Collection();
             certs.ImportFromPem(pemContent);
