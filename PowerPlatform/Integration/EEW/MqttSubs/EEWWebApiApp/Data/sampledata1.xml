@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event_message version="0" orig_sys="eqinfo2gm" message_type="update" timestamp="2023-11-14T15:53:22.728Z" category="live" alg_vers="1.2.4 2021-01-14" instance="eqinfo2gm-contour@eew-qw-int1" ref_id="8" ref_src="">
+	<core_info id="MaRiverM6.9">
+		<mag units="Mw">6.9</mag>
+		<mag_uncer units="Mw">0.5</mag_uncer>
+		<lat units="deg">48.44</lat>
+		<lat_uncer units="deg">0.25</lat_uncer>
+		<lon units="deg">-123.577</lon>
+		<lon_uncer units="deg">0.25</lon_uncer>
+		<depth units="km">10.0</depth>
+		<depth_uncer units="km">5.0</depth_uncer>
+		<orig_time units="UTC">2023-11-14T16:14:26.000Z</orig_time>
+		<orig_time_uncer units="sec">5.0</orig_time_uncer>
+		<likelihood>0.7866</likelihood>
+		<num_stations>7</num_stations>
+	</core_info>
+	<contributors>
+		<contributor alg_instance="finder@localhost" alg_name="finder" alg_version="finder-3.1.1_2022-07-14/finder-3.2.2_2022-09-28" category="live" event_id="1" version="1"/>
+	</contributors>
+	<fault_info>
+		<finite_fault atten_geom="true" segment_number="1" segment_shape="line">
+			<segment>
+				<vertices>
+					<vertex>
+						<lat units="deg">48.405</lat>
+						<lon units="deg">-123.412</lon>
+						<depth units="km">0.0</depth>
+					</vertex>
+					<vertex>
+						<lat units="deg">48.502</lat>
+						<lon units="deg">-123.917</lon>
+						<depth units="km">0.0</depth>
+					</vertex>
+				</vertices>
+			</segment>
+		</finite_fault>
+	</fault_info>
+	<gm_info>
+		<gmcontour_pred number="7">
+			<contour>
+				<MMI units="">2.0</MMI>
+				<PGA units="cm/s/s">0.7926</PGA>
+				<PGV units="cm/s">0.0365</PGV>
+				<polygon number="8">55.1996,-123.5770 52.9657,-115.6340 47.9927,-113.4471 43.4598,-116.9928 41.6804,-123.5770 43.4598,-130.1612 47.9927,-133.7069 52.9657,-131.5200 55.1996,-123.5770</polygon>
+			</contour>
+			<contour>
+				<MMI units="">3.0</MMI>
+				<PGA units="cm/s/s">2.9142</PGA>
+				<PGV units="cm/s">0.1347</PGV>
+				<polygon number="8">53.1415,-123.5770 51.6461,-118.2176 48.2230,-116.5102 45.0152,-118.8743 43.7385,-123.5770 45.0152,-128.2797 48.2230,-130.6438 51.6461,-128.9364 53.1415,-123.5770</polygon>
+			</contour>
+			<contour>
+				<MMI units="">4.0</MMI>
+				<PGA units="cm/s/s">12.8729</PGA>
+				<PGV units="cm/s">0.6449</PGV>
+				<polygon number="8">50.8748,-123.5770 50.1312,-120.8910 48.3817,-119.9096 46.6904,-121.0670 46.0052,-123.5770 46.6904,-126.0870 48.3817,-127.2444 50.1312,-126.2630 50.8748,-123.5770</polygon>
+			</contour>
+			<contour>
+				<MMI units="">5.0</MMI>
+				<PGA units="cm/s/s">44.5296</PGA>
+				<PGV units="cm/s">3.0888</PGV>
+				<polygon number="8">48.7738,-122.3774 47.7218,-122.8570 47.6827,-123.8622 47.7312,-124.1150 48.1241,-124.9384 49.1824,-124.4882 49.2234,-123.4568 49.1749,-123.2047 48.7738,-122.3774</polygon>
+			</contour>
+			<contour>
+				<MMI units="">6.0</MMI>
+				<PGA units="cm/s/s">82.9696</PGA>
+				<PGV units="cm/s">6.6981</PGV>
+				<polygon number="8">48.5927,-122.8906 48.0598,-123.1294 48.0517,-123.7033 48.1002,-123.9559 48.3120,-124.4355 48.8465,-124.2040 48.8550,-123.6231 48.8065,-123.3708 48.5927,-122.8906</polygon>
+			</contour>
+			<contour>
+				<MMI units="">7.0</MMI>
+				<PGA units="cm/s/s">154.593</PGA>
+				<PGV units="cm/s">13.8805</PGV>
+				<polygon number="8">48.5039,-123.1385 48.2237,-123.2631 48.2309,-123.6253 48.2794,-123.8778 48.4025,-124.1899 48.6831,-124.0673 48.6760,-123.7030 48.6275,-123.4506 48.5039,-123.1385</polygon>
+			</contour>
+			<contour>
+				<MMI units="">8.0</MMI>
+				<PGA units="cm/s/s">288.044</PGA>
+				<PGV units="cm/s">28.7648</PGV>
+				<polygon number="8">48.4514,-123.2840 48.3201,-123.3421 48.3363,-123.5791 48.3848,-123.8316 48.4554,-124.0450 48.5869,-123.9873 48.5707,-123.7497 48.5222,-123.4972 48.4514,-123.2840</polygon>
+			</contour>
+		</gmcontour_pred>
+		<gmpoint_obs>
+			<pgv_obs number="1">
+				<obs assoc="true" orig_sys="epic">
+					<SNCL>QC01.QW.HHZ.--</SNCL>
+					<value units="cm/s">0</value>
+					<lat units="deg">0</lat>
+					<lon units="deg">0</lon>
+					<time units="UTC">2022-11-26T03:49:59.580Z</time>
+				</obs>
+			</pgv_obs>
+			<pga_obs number="1">
+				<obs assoc="true" orig_sys="epic">
+					<SNCL>QC01.QW.HHZ.--</SNCL>
+					<value units="cm/s/s">0</value>
+					<lat units="deg">0</lat>
+					<lon units="deg">0</lon>
+					<time units="UTC">2022-11-26T03:49:59.580Z</time>
+				</obs>
+			</pga_obs>
+		</gmpoint_obs>
+	</gm_info>
+</event_message>

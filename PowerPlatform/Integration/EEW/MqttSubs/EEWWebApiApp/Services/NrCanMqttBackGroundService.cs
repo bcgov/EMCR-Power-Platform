@@ -6,11 +6,12 @@ using MQTTnet.Extensions.TopicTemplate;
 using MQTTnet.Formatter;
 using MQTTnet.Packets;
 using MQTTnet.Protocol;
-
 using System.Text.Json;
 using Microsoft.Extensions.Hosting.Internal;
 using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
+using Microsoft.Xrm.Sdk;
 
 namespace EEWWebApiApp.Services
 {
@@ -107,6 +108,19 @@ namespace EEWWebApiApp.Services
 
                     try
                     {
+                        //Generate fake data
+                        string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
+
+                        string pemContent = File.ReadAllText(dataPath);
+                        JObject jNRCan = new JObject()
+                        {
+                            ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
+                            ["payload"] = pemContent
+                        };
+
+                        _ = CreateNrCanAlertRecord(jNRCan);
+                        await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
+
                         // Use a lock to ensure only one connection attempt at a time
                         lock (_connectionLock)
                         {
@@ -137,33 +151,16 @@ namespace EEWWebApiApp.Services
 
                                 var caChain = new X509Certificate2Collection();
 
-                                // Read the entire PEM file
-                                //string certificatePath = "partners.pem"; // Path to your PEM file
-
-                                //string pemContent = File.ReadAllText(certificatePath);
-
-                                //// Split and Load Multiple Certificates
-                                //foreach (var cert in LoadCertificatesFromPem(pemContent))
-                                //{
-                                //    caChain.Add(cert);
-                                //}
+                                //Read the entire PEM file
+                                string certificatePath = "partners.pem"; // Path to your PEM file
 
                                 // Configure MQTT client options with authentication and encryption
                                 _mqttClientOptions = new MqttClientOptionsBuilder()
                                     .WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
                                     .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port) 
-                                    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
-                                    .WithTlsOptions(new MqttClientTlsOptions
-                                    {
-                                        //TrustChain = caChain, // Add the CA certificate chain
-                                        TrustChain = LoadCertificatesFromPem("partners.pem"),
-                                        UseTls = true, // Enable TLS
-                                        AllowUntrustedCertificates = true, // Allow self-signed certificates (for testing)
-                                        IgnoreCertificateChainErrors = true, // Ignore certificate chain errors (for testing)
-                                        IgnoreCertificateRevocationErrors = true, // Ignore certificate revocation errors (for testing)
-                                        SslProtocol = System.Security.Authentication.SslProtocols.Tls12 // Use TLS 1.2
-                                    })
-                                    .WithCleanSession() // Start with a clean session
+                                    //.WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
+                                    .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
+                                    //.WithCleanSession() // Start with a clean session
                                     .Build();
 
                                 _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
@@ -215,12 +212,27 @@ namespace EEWWebApiApp.Services
             var caChain = new X509Certificate2Collection();
             var pemData = File.ReadAllText(certPath);
 
-            var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(certPath);
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromSignedFile(certPath);
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromEncryptedPemFile(certPath);
-            caChain.Add(certs);
+            //this function needs certificate and private key in the pem file
+            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(certPath);
+            //this function just needs certificate in the pem file but only load the first
+            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPem(certPath);
 
-            return caChain;
+
+            //this function is obsolete and generate X509Certificate instead of X509Certificate2
+            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromSignedFile(certPath);
+            //this function gets certificate from encrypted pem file(with password protected)
+            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromEncryptedPemFile(certPath);
+            //caChain.Add(certs);
+
+            //return caChain;
+
+            string certificatePath = "partners.pem"; // Path to your PEM file
+
+            string pemContent = File.ReadAllText(certificatePath);
+
+            X509Certificate2Collection certs = new X509Certificate2Collection();
+            certs.ImportFromPem(pemContent);
+            return certs;
         }
         private static X509Certificate2Collection LoadCertificate(string certPath)
         {
@@ -228,44 +240,44 @@ namespace EEWWebApiApp.Services
             caChain.Add(new X509Certificate2(certPath)); // Load the CA certificate
             return caChain;
         }
-        //static X509Certificate2Collection LoadCertificatesFromPem(string pemContent)
-        //{
-        //    var collection = new X509Certificate2Collection();
-        //    using (StringReader reader = new StringReader(pemContent))
-        //    {
-        //        string line;
-        //        string certContent = "";
+        static X509Certificate2Collection LoadEachCertificatesFromPem(string pemContent)
+        {
+            var collection = new X509Certificate2Collection();
+            using (StringReader reader = new StringReader(pemContent))
+            {
+                string line;
+                string certContent = "";
 
-        //        while ((line = reader.ReadLine()) != null)
-        //        {
-        //            if (line.Contains("-----BEGIN CERTIFICATE-----"))
-        //            {
-        //                certContent = "";
-        //            }
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains("-----BEGIN CERTIFICATE-----"))
+                    {
+                        certContent = "";
+                    }
 
-        //            certContent += line + "\n";
+                    certContent += line + "\n";
 
-        //            if (line.Contains("-----END CERTIFICATE-----"))
-        //            {
-        //                try
-        //                {
-        //                    byte[] certBytes = Convert.FromBase64String(
-        //                        certContent.Replace("-----BEGIN CERTIFICATE-----", "")
-        //                                   .Replace("-----END CERTIFICATE-----", "")
-        //                                   .Replace("\n", "")
-        //                                   .Replace("\r", "")
-        //                    );
-        //                    collection.Add(new X509Certificate2(certBytes));
-        //                }
-        //                catch (Exception e)
-        //                {
-        //                    Console.WriteLine($"⚠️ Skipping invalid certificate: {e.Message}");
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return collection;
-        //}
+                    if (line.Contains("-----END CERTIFICATE-----"))
+                    {
+                        try
+                        {
+                            byte[] certBytes = Convert.FromBase64String(
+                                certContent.Replace("-----BEGIN CERTIFICATE-----", "")
+                                           .Replace("-----END CERTIFICATE-----", "")
+                                           .Replace("\n", "")
+                                           .Replace("\r", "")
+                            );
+                            collection.Add(new X509Certificate2(certBytes));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine($"⚠️ Skipping invalid certificate: {e.Message}");
+                        }
+                    }
+                }
+            }
+            return collection;
+        }
 
         public async Task CreateNrCanEventRecord(JObject jNRCan)
         {
@@ -279,6 +291,26 @@ namespace EEWWebApiApp.Services
 
 
                 var result = await _crmHelper.CreateRecordAsync("emcr_nrcanadanotifications", newNRCan);
+                //_logger.Log(LogLevel.Information, "Record created successfully: " + result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public async Task CreateNrCanAlertRecord(JObject jNRCan)
+        {
+            try
+            {
+                var newNRCan = new JObject
+                {
+                    ["emcr_source"] = 717350000,
+                    ["emcr_message"] = jNRCan["payload"]
+                };
+
+
+                var result = await _crmHelper.CreateRecordAsync("emcr_alerts", newNRCan);
                 //_logger.Log(LogLevel.Information, "Record created successfully: " + result);
             }
             catch (Exception ex)
