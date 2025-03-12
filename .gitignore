@@ -3,3 +3,7 @@
 PowerPlatform/Integration/EEW/MqttSubs/.vs/
 PowerPlatform/Integration/EEW/MqttSubs/EEWWebApiApp/obj/
 PowerPlatform/Integration/EEW/MqttSubs/EEWWebApiApp/EEWWebApiApp.csproj.user
+/.vs/
+*.vsidx
+*.wsuo
+/PowerPlatform/Integration/EEW/MqttSubs/EEWWebApiApp/bin/Debug/net9.0/appsettings.json
