@@ -215,8 +215,8 @@ namespace EEWWebApiApp.Services
             var caChain = new X509Certificate2Collection();
             var pemData = File.ReadAllText(certPath);
 
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(certPath);
-            var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromSignedFile(certPath);
+            var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(certPath);
+            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromSignedFile(certPath);
             //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromEncryptedPemFile(certPath);
             caChain.Add(certs);
 
