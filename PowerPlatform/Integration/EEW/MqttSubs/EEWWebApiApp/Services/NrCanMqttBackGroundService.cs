@@ -43,9 +43,9 @@ namespace EEWWebApiApp.Services
             try
             {
                 // Start the MQTT client and pass the cancellation token
-                //var connectTask = ConnectToNrCan(stoppingToken);
+                var connectTask = ConnectToNrCan(stoppingToken, false);
 
-                var connectTask = ConnectToTestMqtt(stoppingToken);
+                //var connectTask = ConnectToTestMqtt(stoppingToken);
 
                 // Wait for the connection to be established
                 while (!_mqttClient.IsConnected && !stoppingToken.IsCancellationRequested)
@@ -100,7 +100,7 @@ namespace EEWWebApiApp.Services
         }
 
 
-        public async Task ConnectToNrCan(CancellationToken cancellationToken)
+        public async Task ConnectToNrCan(CancellationToken cancellationToken, bool testMode = false)
         {
             await Task.Run(async () =>
             {
@@ -111,11 +111,11 @@ namespace EEWWebApiApp.Services
                     try
                     {
                         //Generate fake data
-                        string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
+                        //string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
 
-                        EventMessage myevent = new EventMessage();
-                        (decimal latitude, decimal longitude) coordinates = SampleDataGenerator.GenerateRandomBCCoordinate();
-                        myevent = SampleDataGenerator.GenerateSampleData(XmlHelper.GetRandomDecimal(), coordinates.latitude, coordinates.longitude);
+                        //EventMessage myevent = new EventMessage();
+                        //(decimal latitude, decimal longitude) coordinates = SampleDataGenerator.GenerateRandomBCCoordinate();
+                        //myevent = SampleDataGenerator.GenerateSampleData(XmlHelper.GetRandomDecimal(), coordinates.latitude, coordinates.longitude);
 
                         //string tmp = XmlHelper.SerializeToXml(myevent);
                         //JObject jNRCan = new JObject()
@@ -124,18 +124,18 @@ namespace EEWWebApiApp.Services
                         //    ["payload"] = tmp
                         //};
 
-                        string pemContent = File.ReadAllText(dataPath);
-                        JObject jNRCan = new JObject()
-                        {
-                            ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
-                            ["payload"] = pemContent
-                        };
+                        //string pemContent = File.ReadAllText(dataPath);
+                        //JObject jNRCan = new JObject()
+                        //{
+                        //    ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
+                        //    ["payload"] = pemContent
+                        //};
 
                         //_ = CreateNrCanAlertRecord(jNRCan);
                         //await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
 
                         // Use a lock to ensure only one connection attempt at a time
-                        lock (_connectionLock)
+                        //lock (_connectionLock)
                         {
                             // Attach the event handler for incoming messages
                             _mqttClient.ApplicationMessageReceivedAsync += e =>
@@ -166,52 +166,61 @@ namespace EEWWebApiApp.Services
 
                                 //Read the entire PEM file
                                 string certificatePath = "partners.pem"; // Path to your PEM file
+                                if (testMode) certificatePath = "./data/test.pem";
 
                                 // Configure MQTT client options with authentication and encryption
-                                _mqttClientOptions = new MqttClientOptionsBuilder()
-                                    .WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
-                                    .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port)
-                                    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
-                                    .Build();
-
-                                //_mqttClientOptions = new MqttClientOptionsBuilder()
-                                //    .WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
-                                //    .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port) 
-                                //    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
-                                //    .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
-                                //    .WithCleanSession() // Start with a clean session
-                                //    .Build();
-
-                                //var mqttClientOptions = new MqttClientOptionsBuilder()
-                                //    .WithTcpServer("your-broker-address", 8883) // Use TLS port (e.g., 8883)
-                                //    .WithCredentials("your-username", "your-password") // Username and password
-                                //    .WithTls(new MqttClientOptionsBuilderTlsParameters
-                                //    {
-                                //        UseTls = true, // Enable TLS
-                                //        AllowUntrustedCertificates = true, // Allow self-signed certificates (if applicable)
-                                //        IgnoreCertificateChainErrors = true, // Ignore certificate chain errors
-                                //        IgnoreCertificateRevocationErrors = true // Ignore certificate revocation errors
-                                //    })
-                                //    .Build();
-
-                                _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
-                                Console.WriteLine("The MQTT client is connected.");
-
-                                // Subscribe to all topics using the # wildcard
-                                if (!isSubscribed)
+                                if (!testMode)
                                 {
-                                    var topicFilter = new MqttTopicFilterBuilder()
-                                        .WithTopic(_mqttSettings.GroundMotionPolygonTopic)
-                                        .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtMostOnce)
+                                    //var mqttClientOptions = new MqttClientOptionsBuilder()
+                                    //    .WithTcpServer("your-broker-address", 8883) // Use TLS port (e.g., 8883)
+                                    //    .WithCredentials("your-username", "your-password") // Username and password
+                                    //    .WithTls(new MqttClientOptionsBuilderTlsParameters
+                                    //    {
+                                    //        UseTls = true, // Enable TLS
+                                    //        AllowUntrustedCertificates = true, // Allow self-signed certificates (if applicable)
+                                    //        IgnoreCertificateChainErrors = true, // Ignore certificate chain errors
+                                    //        IgnoreCertificateRevocationErrors = true // Ignore certificate revocation errors
+                                    //    })
+                                    //    .Build();
+                                    //_mqttClientOptions = new MqttClientOptionsBuilder()
+                                    //.WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
+                                    //.WithTcpServer(_mqttSettings.BrokerDNS2, _mqttSettings.Port)
+                                    //.WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
+                                    //.Build();
+
+                                    _mqttClientOptions = new MqttClientOptionsBuilder()
+                                        .WithTcpServer(_mqttSettings.BrokerDNS1, 8883)
+                                        .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
                                         .Build();
+                                }
+                                else
+                                {
+                                    _mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("test.mosquitto.org", 8883)
+                                        .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
+                                        .Build();
+                                }
 
-                                    var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
-                                    Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
+                                //_mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
+                                var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions);
 
-                                    var jsonResponse = JsonSerializer.Serialize(response);
-                                    Console.WriteLine($"Subscription response: {jsonResponse}");
+                                if (connAck.ResultCode == MqttClientConnectResultCode.Success)
+                                {
+                                    Console.WriteLine("The MQTT client is connected.");
 
-                                    isSubscribed = true;
+                                    // Subscribe to all topics using the # wildcard
+                                    if (!isSubscribed)
+                                    {
+                                        var topicFilter = new MqttTopicFilterBuilder().WithTopic("#")
+                                            .Build();
+
+                                        var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
+                                        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
+
+                                        var jsonResponse = JsonSerializer.Serialize(response);
+                                        Console.WriteLine($"Subscription response: {jsonResponse}");
+
+                                        isSubscribed = true;
+                                    }
                                 }
                             }
                         }
