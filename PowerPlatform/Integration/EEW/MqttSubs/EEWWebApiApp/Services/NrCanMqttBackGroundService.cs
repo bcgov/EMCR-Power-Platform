@@ -43,9 +43,7 @@ namespace EEWWebApiApp.Services
             try
             {
                 // Start the MQTT client and pass the cancellation token
-                var connectTask = ConnectToNrCan(stoppingToken, false);
-
-                //var connectTask = ConnectToTestMqtt(stoppingToken);
+                var connectTask = ConnectToTestMqtt(stoppingToken);
 
                 // Wait for the connection to be established
                 while (!_mqttClient.IsConnected && !stoppingToken.IsCancellationRequested)
@@ -110,32 +108,11 @@ namespace EEWWebApiApp.Services
 
                     try
                     {
-                        //Generate fake data
-                        //string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
-
-                        //EventMessage myevent = new EventMessage();
-                        //(decimal latitude, decimal longitude) coordinates = SampleDataGenerator.GenerateRandomBCCoordinate();
-                        //myevent = SampleDataGenerator.GenerateSampleData(XmlHelper.GetRandomDecimal(), coordinates.latitude, coordinates.longitude);
-
-                        //string tmp = XmlHelper.SerializeToXml(myevent);
-                        //JObject jNRCan = new JObject()
-                        //{
-                        //    ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
-                        //    ["payload"] = tmp
-                        //};
-
-                        //string pemContent = File.ReadAllText(dataPath);
-                        //JObject jNRCan = new JObject()
-                        //{
-                        //    ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
-                        //    ["payload"] = pemContent
-                        //};
-
-                        //_ = CreateNrCanAlertRecord(jNRCan);
-                        //await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
-
-                        // Use a lock to ensure only one connection attempt at a time
-                        //lock (_connectionLock)
+                        if (testMode)
+                        {
+                            await UsingStaticSampleData(cancellationToken);
+                        }
+                        else
                         {
                             // Attach the event handler for incoming messages
                             _mqttClient.ApplicationMessageReceivedAsync += e =>
@@ -152,7 +129,7 @@ namespace EEWWebApiApp.Services
                                     ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
                                 };
 
-                                _ = CreateNrCanEventRecord(jNRCan);
+                                _ = CreateNrCanAlertRecord(jNRCan);
 
                                 return Task.CompletedTask;
                             };
@@ -189,8 +166,10 @@ namespace EEWWebApiApp.Services
                                     //.Build();
 
                                     _mqttClientOptions = new MqttClientOptionsBuilder()
-                                        .WithTcpServer(_mqttSettings.BrokerDNS1, 8883)
+                                        .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port)
+                                        .WithCredentials(_mqttSettings.Username, _mqttSettings.Password)
                                         .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
+                                        .WithProtocolVersion(MqttProtocolVersion.V311)
                                         .Build();
                                 }
                                 else
@@ -201,27 +180,27 @@ namespace EEWWebApiApp.Services
                                 }
 
                                 //_mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
-                                var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions);
+                                //var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions);
 
-                                if (connAck.ResultCode == MqttClientConnectResultCode.Success)
-                                {
-                                    Console.WriteLine("The MQTT client is connected.");
+                                //if (connAck.ResultCode == MqttClientConnectResultCode.Success)
+                                //{
+                                //    Console.WriteLine("The MQTT client is connected.");
 
-                                    // Subscribe to all topics using the # wildcard
-                                    if (!isSubscribed)
-                                    {
-                                        var topicFilter = new MqttTopicFilterBuilder().WithTopic("#")
-                                            .Build();
+                                //    // Subscribe to all topics using the # wildcard
+                                //    if (!isSubscribed)
+                                //    {
+                                //        var topicFilter = new MqttTopicFilterBuilder().WithTopic(_mqttSettings.CoreXmlTipic)
+                                //            .Build();
 
-                                        var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
-                                        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
+                                //        var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
+                                //        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
 
-                                        var jsonResponse = JsonSerializer.Serialize(response);
-                                        Console.WriteLine($"Subscription response: {jsonResponse}");
+                                //        var jsonResponse = JsonSerializer.Serialize(response);
+                                //        Console.WriteLine($"Subscription response: {jsonResponse}");
 
-                                        isSubscribed = true;
-                                    }
-                                }
+                                //        isSubscribed = true;
+                                //    }
+                                //}
                             }
                         }
                     }
@@ -245,6 +224,33 @@ namespace EEWWebApiApp.Services
                     }
                 }
             }, cancellationToken);
+        }
+
+        private async Task UsingStaticSampleData(CancellationToken cancellationToken)
+        {
+            //Generate fake data
+            string dataPath = "./data/sampledata1.xml"; // Path to your PEM file
+
+            //EventMessage myevent = new EventMessage();
+            //(decimal latitude, decimal longitude) coordinates = SampleDataGenerator.GenerateRandomBCCoordinate();
+            //myevent = SampleDataGenerator.GenerateSampleData(XmlHelper.GetRandomDecimal(), coordinates.latitude, coordinates.longitude);
+
+            //string tmp = XmlHelper.SerializeToXml(myevent);
+            //JObject jNRCan = new JObject()
+            //{
+            //    ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
+            //    ["payload"] = tmp
+            //};
+
+            string pemContent = File.ReadAllText(dataPath);
+            JObject jNRCan = new JObject()
+            {
+                ["topic"] = "Stone River: " + DateTime.UtcNow.ToString(),
+                ["payload"] = pemContent
+            };
+
+            _ = CreateNrCanAlertRecord(jNRCan);
+            await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
         }
 
         public async Task ConnectToTestMqtt(CancellationToken cancellationToken)
@@ -322,89 +328,11 @@ namespace EEWWebApiApp.Services
             var caChain = new X509Certificate2Collection();
             var pemData = File.ReadAllText(certPath);
 
-            //this function needs certificate and private key in the pem file
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(certPath);
-            //this function just needs certificate in the pem file but only load the first
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPem(certPath);
-
-
-            //this function is obsolete and generate X509Certificate instead of X509Certificate2
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromSignedFile(certPath);
-            //this function gets certificate from encrypted pem file(with password protected)
-            //var certs = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromEncryptedPemFile(certPath);
-            //caChain.Add(certs);
-
-            //return caChain;
-
             string pemContent = File.ReadAllText(certPath);
 
             X509Certificate2Collection certs = new X509Certificate2Collection();
             certs.ImportFromPem(pemContent);
             return certs;
-        }
-        private static X509Certificate2Collection LoadCertificate(string certPath)
-        {
-            var caChain = new X509Certificate2Collection();
-            caChain.Add(new X509Certificate2(certPath)); // Load the CA certificate
-            return caChain;
-        }
-        static X509Certificate2Collection LoadEachCertificatesFromPem(string pemContent)
-        {
-            var collection = new X509Certificate2Collection();
-            using (StringReader reader = new StringReader(pemContent))
-            {
-                string line;
-                string certContent = "";
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.Contains("-----BEGIN CERTIFICATE-----"))
-                    {
-                        certContent = "";
-                    }
-
-                    certContent += line + "\n";
-
-                    if (line.Contains("-----END CERTIFICATE-----"))
-                    {
-                        try
-                        {
-                            byte[] certBytes = Convert.FromBase64String(
-                                certContent.Replace("-----BEGIN CERTIFICATE-----", "")
-                                           .Replace("-----END CERTIFICATE-----", "")
-                                           .Replace("\n", "")
-                                           .Replace("\r", "")
-                            );
-                            collection.Add(new X509Certificate2(certBytes));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine($"⚠️ Skipping invalid certificate: {e.Message}");
-                        }
-                    }
-                }
-            }
-            return collection;
-        }
-
-        public async Task CreateNrCanEventRecord(JObject jNRCan)
-        {
-            try
-            {
-                var newNRCan = new JObject
-                {
-                    ["emcr_topic"] = jNRCan["topic"],
-                    ["emcr_messagepayload"] = jNRCan["payload"]
-                };
-
-
-                var result = await _crmHelper.CreateRecordAsync("emcr_nrcanadanotifications", newNRCan);
-                //_logger.Log(LogLevel.Information, "Record created successfully: " + result);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
         }
 
         public async Task CreateNrCanAlertRecord(JObject jNRCan)
