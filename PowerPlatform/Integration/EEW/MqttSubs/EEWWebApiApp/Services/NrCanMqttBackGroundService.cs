@@ -115,7 +115,7 @@ namespace EEWWebApiApp.Services
                         else
                         {
                             // Attach the event handler for incoming messages
-                            _mqttClient.ApplicationMessageReceivedAsync += e =>
+                            _mqttClient.ApplicationMessageReceivedAsync += async e =>
                             {
                                 Console.WriteLine($"[{DateTime.UtcNow}] Received application message.");
                                 Console.WriteLine($"Topic: {e.ApplicationMessage.Topic}");
@@ -123,84 +123,59 @@ namespace EEWWebApiApp.Services
                                 Console.WriteLine($"QoS: {e.ApplicationMessage.QualityOfServiceLevel}");
                                 Console.WriteLine($"Retain: {e.ApplicationMessage.Retain}");
 
+                                // Process the message asynchronously
                                 JObject jNRCan = new JObject()
                                 {
                                     ["topic"] = e.ApplicationMessage.Topic,
                                     ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
                                 };
 
-                                _ = CreateNrCanAlertRecord(jNRCan);
-
-                                return Task.CompletedTask;
+                                await CreateNrCanAlertRecord(jNRCan); // Ensure this method is async
                             };
 
                             // Check connection and reconnect if necessary
-                            if (!_mqttClient.TryPingAsync().Result)
+                            if (!await _mqttClient.TryPingAsync())
                             {
                                 Console.WriteLine("Ping failed. Attempting to reconnect...");
 
-                                var caChain = new X509Certificate2Collection();
-
-                                //Read the entire PEM file
-                                string certificatePath = "partners.pem"; // Path to your PEM file
-                                if (testMode) certificatePath = "./data/test.pem";
+                                string certificatePath = testMode ? "./data/test.pem" : "partners.pem";
 
                                 // Configure MQTT client options with authentication and encryption
-                                if (!testMode)
-                                {
-                                    //var mqttClientOptions = new MqttClientOptionsBuilder()
-                                    //    .WithTcpServer("your-broker-address", 8883) // Use TLS port (e.g., 8883)
-                                    //    .WithCredentials("your-username", "your-password") // Username and password
-                                    //    .WithTls(new MqttClientOptionsBuilderTlsParameters
-                                    //    {
-                                    //        UseTls = true, // Enable TLS
-                                    //        AllowUntrustedCertificates = true, // Allow self-signed certificates (if applicable)
-                                    //        IgnoreCertificateChainErrors = true, // Ignore certificate chain errors
-                                    //        IgnoreCertificateRevocationErrors = true // Ignore certificate revocation errors
-                                    //    })
-                                    //    .Build();
-                                    //_mqttClientOptions = new MqttClientOptionsBuilder()
-                                    //.WithClientId(Guid.NewGuid().ToString()) // Set a unique Client ID
-                                    //.WithTcpServer(_mqttSettings.BrokerDNS2, _mqttSettings.Port)
-                                    //.WithCredentials(_mqttSettings.Username, _mqttSettings.Password) // Add username and password
-                                    //.Build();
+                                _mqttClientOptions = new MqttClientOptionsBuilder()
+                                    .WithTcpServer(testMode ? "test.mosquitto.org" : _mqttSettings.BrokerDNS1, _mqttSettings.Port)
+                                    .WithCredentials(_mqttSettings.Username, _mqttSettings.Password)
+                                    .WithTlsOptions(new MqttClientTlsOptionsBuilder()
+                                        .WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
+                                    .WithProtocolVersion(MqttProtocolVersion.V311)
+                                    .Build();
 
-                                    _mqttClientOptions = new MqttClientOptionsBuilder()
-                                        .WithTcpServer(_mqttSettings.BrokerDNS1, _mqttSettings.Port)
-                                        .WithCredentials(_mqttSettings.Username, _mqttSettings.Password)
-                                        .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
-                                        .WithProtocolVersion(MqttProtocolVersion.V311)
-                                        .Build();
+                                // Connect to the broker asynchronously
+                                var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken);
+
+                                if (connAck.ResultCode == MqttClientConnectResultCode.Success)
+                                {
+                                    Console.WriteLine("The MQTT client is connected.");
+
+                                    // Subscribe to the topic asynchronously
+                                    if (!isSubscribed)
+                                    {
+                                        var topicFilter = new MqttTopicFilterBuilder()
+                                            .WithTopic(_mqttSettings.CoreXmlTipic)
+                                            .Build();
+
+                                        var response = await _mqttClient.SubscribeAsync(topicFilter, cancellationToken);
+                                        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
+
+                                        var jsonResponse = JsonSerializer.Serialize(response);
+                                        Console.WriteLine($"Subscription response: {jsonResponse}");
+
+                                        isSubscribed = true;
+                                    }
                                 }
                                 else
                                 {
-                                    _mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("test.mosquitto.org", 8883)
-                                        .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
-                                        .Build();
+                                    Console.WriteLine($"Failed to connect to MQTT broker. Reason: {connAck.ResultCode}");
                                 }
-
-                                //_mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken).Wait(cancellationToken); // Use .Wait to block within the lock
-                                //var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions);
-
-                                //if (connAck.ResultCode == MqttClientConnectResultCode.Success)
-                                //{
-                                //    Console.WriteLine("The MQTT client is connected.");
-
-                                //    // Subscribe to all topics using the # wildcard
-                                //    if (!isSubscribed)
-                                //    {
-                                //        var topicFilter = new MqttTopicFilterBuilder().WithTopic(_mqttSettings.CoreXmlTipic)
-                                //            .Build();
-
-                                //        var response = _mqttClient.SubscribeAsync(topicFilter, cancellationToken).Result; // Use .Result to block within the lock
-                                //        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
-
-                                //        var jsonResponse = JsonSerializer.Serialize(response);
-                                //        Console.WriteLine($"Subscription response: {jsonResponse}");
-
-                                //        isSubscribed = true;
-                                //    }
-                                //}
                             }
                         }
                     }
@@ -215,7 +190,7 @@ namespace EEWWebApiApp.Services
                             ["type"] = 717350000
                         };
 
-                        _ = CreateFailureRecord(jNRCan);
+                        await CreateFailureRecord(jNRCan);
                     }
                     finally
                     {
