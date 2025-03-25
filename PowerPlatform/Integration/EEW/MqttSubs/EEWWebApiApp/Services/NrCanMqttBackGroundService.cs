@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Extensions.Configuration;
 using System.Runtime.CompilerServices;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Extensions.Logging;
 
 namespace EEWWebApiApp.Services
 {
@@ -23,80 +24,56 @@ namespace EEWWebApiApp.Services
         static readonly MqttTopicTemplate sampleTemplate = new("mqttnet/samples/topic/{id}");
         private readonly IHostApplicationLifetime _applicationLifetime;
         private readonly object _connectionLock = new object(); // Lock object for synchronization
-        private readonly ILogger _logger;
+        private readonly ILogger<NrCanMqttBackGroundService> _logger;
         private readonly CRMHelper _crmHelper;
         private MQTTSettings _mqttSettings = new MQTTSettings();
         private D365Settings _d365Settings = new D365Settings();
+        private int _connectionFailureCount = 0;
+        private const int MaxConnectionFailures = 3;
+        private string _currentBroker = string.Empty;
 
-        public NrCanMqttBackGroundService(IConfiguration configuration, IHostApplicationLifetime applicationLifetime)
+        public NrCanMqttBackGroundService(IConfiguration configuration, IHostApplicationLifetime applicationLifetime, ILogger<NrCanMqttBackGroundService> logger)
         {
+            _logger = logger;
             _mqttClient = _mqttFactory.CreateMqttClient();
             _applicationLifetime = applicationLifetime;
 
             _mqttSettings = configuration.GetSection("MQTTSettings")?.Get<MQTTSettings>();
             _d365Settings = configuration.GetSection("D365Settings")?.Get<D365Settings>();
             _crmHelper = new CRMHelper(_d365Settings);
+            _currentBroker = _mqttSettings.BrokerDNS1;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             try
             {
-                // Start the MQTT client and pass the cancellation token
-                var connectTask = ConnectToTestMqtt(stoppingToken);
+                var connectTask = ConnectToNrCan(stoppingToken);
 
-                // Wait for the connection to be established
                 while (!_mqttClient.IsConnected && !stoppingToken.IsCancellationRequested)
                 {
-                    Console.WriteLine("Waiting for MQTT connection...");
+                    _logger.LogInformation("Waiting for MQTT connection...");
                     await Task.Delay(1000, stoppingToken);
                 }
 
-                if (_mqttClient.IsConnected)
+                if (!_mqttClient.IsConnected)
                 {
-                    // Publish a test message
-                    await PublishMessageAsync("test/topic", "Hello, MQTT!", stoppingToken);
+                    _logger.LogError("MQTT connection failed.");
                 }
-                else
-                {
-                    Console.WriteLine("MQTT connection failed.");
-                }
-
-                // Wait for the cancellation token to be triggered or handle the graceful stop
-                var timeToShutdown = DateTime.Now.Date.AddDays(1);  // set to tomorrow midnight
-                while (!stoppingToken.IsCancellationRequested)
-                {
-                    if (DateTime.Now >= timeToShutdown)
-                    {
-                        Console.WriteLine("Triggering graceful shutdown at: " + DateTime.Now);
-
-                        // Trigger the graceful shutdown of the application
-                        _applicationLifetime.StopApplication();  // Graceful stop
-
-                        return;
-                    }
-
-                    // Regular delay to monitor the message queue
-                    await Task.Delay(1000, stoppingToken);
-                }
-            }
+                            }
             catch (OperationCanceledException)
             {
-                // Handle cancellation (e.g., log or cleanup)
-                Console.WriteLine("Operation was canceled.");
+                _logger.LogWarning("Operation was canceled.");
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                _logger.LogError(ex, "An error occurred during execution.");
             }
             finally
             {
-                // Perform cleanup if needed
-                Console.WriteLine("ExecuteAsync has stopped.");
+                _logger.LogInformation("ExecuteAsync has stopped.");
             }
         }
-
 
         public async Task ConnectToNrCan(CancellationToken cancellationToken, bool testMode = false)
         {
@@ -114,76 +91,55 @@ namespace EEWWebApiApp.Services
                         }
                         else
                         {
-                            // Attach the event handler for incoming messages
-                            _mqttClient.ApplicationMessageReceivedAsync += async e =>
-                            {
-                                Console.WriteLine($"[{DateTime.UtcNow}] Received application message.");
-                                Console.WriteLine($"Topic: {e.ApplicationMessage.Topic}");
-                                Console.WriteLine($"Payload: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)}");
-                                Console.WriteLine($"QoS: {e.ApplicationMessage.QualityOfServiceLevel}");
-                                Console.WriteLine($"Retain: {e.ApplicationMessage.Retain}");
+                            ProcessEEWMessages();
 
-                                // Process the message asynchronously
-                                JObject jNRCan = new JObject()
-                                {
-                                    ["topic"] = e.ApplicationMessage.Topic,
-                                    ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
-                                };
-
-                                await CreateNrCanAlertRecord(jNRCan); // Ensure this method is async
-                            };
-
-                            // Check connection and reconnect if necessary
                             if (!await _mqttClient.TryPingAsync())
                             {
-                                Console.WriteLine("Ping failed. Attempting to reconnect...");
+                                _logger.LogWarning("Ping failed. Attempting to reconnect...");
 
-                                string certificatePath = testMode ? "./data/test.pem" : "partners.pem";
+                                string certificatePath = testMode ? "./data/test.pem" : "./data/partners.pem";
 
-                                // Configure MQTT client options with authentication and encryption
+                                // Determine which broker to use
+                                if (_connectionFailureCount >= MaxConnectionFailures)
+                                {
+                                    _currentBroker = _currentBroker == _mqttSettings.BrokerDNS1 ? _mqttSettings.BrokerDNS2 : _mqttSettings.BrokerDNS1;
+                                    _connectionFailureCount = 0;
+                                }
                                 _mqttClientOptions = new MqttClientOptionsBuilder()
-                                    .WithTcpServer(testMode ? "test.mosquitto.org" : _mqttSettings.BrokerDNS1, _mqttSettings.Port)
+                                    .WithTcpServer(testMode ? "test.mosquitto.org" : _currentBroker, _mqttSettings.Port)
                                     .WithCredentials(_mqttSettings.Username, _mqttSettings.Password)
                                     .WithTlsOptions(new MqttClientTlsOptionsBuilder()
                                         .WithTrustChain(LoadCertificatesFromPem(certificatePath)).Build())
                                     .WithProtocolVersion(MqttProtocolVersion.V311)
                                     .Build();
 
-                                // Connect to the broker asynchronously
                                 var connAck = await _mqttClient.ConnectAsync(_mqttClientOptions, cancellationToken);
 
                                 if (connAck.ResultCode == MqttClientConnectResultCode.Success)
                                 {
-                                    Console.WriteLine("The MQTT client is connected.");
+                                    _logger.LogInformation("The MQTT client is connected.");
 
-                                    // Subscribe to the topic asynchronously
+                                    _connectionFailureCount = 0; // Reset failure count on successful connection
+
                                     if (!isSubscribed)
                                     {
-                                        var topicFilter = new MqttTopicFilterBuilder()
-                                            .WithTopic(_mqttSettings.CoreXmlTipic)
-                                            .Build();
-
-                                        var response = await _mqttClient.SubscribeAsync(topicFilter, cancellationToken);
-                                        Console.WriteLine("MQTT client subscribed to topic: " + _mqttSettings.GroundMotionPolygonTopic);
-
-                                        var jsonResponse = JsonSerializer.Serialize(response);
-                                        Console.WriteLine($"Subscription response: {jsonResponse}");
-
-                                        isSubscribed = true;
+                                        isSubscribed = await SubscribeToTopics(isSubscribed, cancellationToken);
                                     }
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Failed to connect to MQTT broker. Reason: {connAck.ResultCode}");
+                                    _logger.LogError("Failed to connect to MQTT broker. Reason: {Reason}", connAck.ResultCode);
+                                    _connectionFailureCount++;
                                 }
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        // Log the exception
-                        Console.WriteLine($"An error occurred: {ex.Message}");
-                        isSubscribed = false; // Reset subscription flag on error
+                        _logger.LogError(ex, "An error occurred while connecting to MQTT broker.");
+                        isSubscribed = false;
+                        _connectionFailureCount++;
+
                         JObject jNRCan = new JObject()
                         {
                             ["detail"] = ex.Message,
@@ -194,11 +150,153 @@ namespace EEWWebApiApp.Services
                     }
                     finally
                     {
-                        // Wait for 5 seconds before checking the connection again
                         await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
                     }
                 }
             }, cancellationToken);
+        }
+
+        private async Task<bool> SubscribeToTopics(bool isSubscribed, CancellationToken cancellationToken)
+        {
+            var topics = new List<string>
+                {
+                    _mqttSettings.GroundMotionPolygonTopic,
+                    _mqttSettings.GroundMotionPointsTopic,
+                    _mqttSettings.CoreXmlTopic,
+                    _mqttSettings.EEWOverallHealth
+                };
+
+            var topicFilters = topics.Select(topic =>
+                new MqttTopicFilterBuilder().WithTopic(topic).Build()).ToList();
+
+            var responses = new List<MqttClientSubscribeResult>();
+
+            foreach (var topicFilter in topicFilters)
+            {
+                var response = await _mqttClient.SubscribeAsync(topicFilter, cancellationToken);
+                responses.Add(response);
+
+                // Log each subscription attempt
+                _logger.LogInformation("Subscribed to MQTT topic: {Topic}, Response: {Response}", topicFilter.Topic, JsonSerializer.Serialize(response));
+            }
+
+            // Check if any subscription failed
+            bool allSubscribedSuccessfully = responses.All(response =>
+                response.Items.All(item =>
+                    item.ResultCode == MqttClientSubscribeResultCode.GrantedQoS0 ||
+                    item.ResultCode == MqttClientSubscribeResultCode.GrantedQoS1 ||
+                    item.ResultCode == MqttClientSubscribeResultCode.GrantedQoS2));
+
+            if (!allSubscribedSuccessfully)
+            {
+                _logger.LogError("One or more MQTT topic subscriptions failed.");
+                return false;
+            }
+
+            _logger.LogInformation("Successfully subscribed to all MQTT topics.");
+            return true;
+        }
+
+        private void ProcessEEWMessages()
+        {
+            _mqttClient.ApplicationMessageReceivedAsync += async e =>
+            {
+                if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPolygonTopic
+                && (_d365Settings.LoggingLevel == LoggingLevel.Polygon || _d365Settings.LoggingLevel == LoggingLevel.All))
+                {
+                    JObject jNRCan = new JObject()
+                    {
+                        ["topic"] = e.ApplicationMessage.Topic,
+                        ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
+                    };
+                    try
+                    {
+                        var originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                        //string filePath = "./data/polygon.xml"; // Replace with your XML file path
+                        //originalXml = File.ReadAllText(filePath);
+                        // Deserialize XML to class
+                        var eventMessage = XmlHelper.DeserializeEventMessagePolygon(originalXml);
+
+                        // Serialize class back to XML
+                        var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+                        // Compare original and serialized XML
+                        XmlHelper.CompareXml(originalXml, serializedXml);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+                    }
+                    //await CreateNrCanAlertRecord(jNRCan);
+                }
+                else if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPointsTopic
+                && (_d365Settings.LoggingLevel == LoggingLevel.Point || _d365Settings.LoggingLevel == LoggingLevel.All))
+                {
+                    JObject jNRCan = new JObject()
+                    {
+                        ["topic"] = e.ApplicationMessage.Topic,
+                        ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
+                    };
+                    try
+                    {
+                        var originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                        //string filePath = "./data/mappoints.xml"; // Replace with your XML file path
+                        //originalXml = File.ReadAllText(filePath);
+                        // Deserialize XML to class
+                        var eventMessage = XmlHelper.DeserializeEventMessageMap(originalXml);
+
+                        // Serialize class back to XML
+                        var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+
+                        // Compare original and serialized XML
+                        XmlHelper.CompareXml(originalXml, serializedXml);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+                    }
+                    //await CreateNrCanAlertRecord(jNRCan);
+                }
+                else if (e.ApplicationMessage.Topic == _mqttSettings.CoreXmlTopic
+                && (_d365Settings.LoggingLevel == LoggingLevel.General || _d365Settings.LoggingLevel == LoggingLevel.All
+                    || _d365Settings.LoggingLevel == LoggingLevel.Polygon))
+                {
+                    JObject jNRCan = new JObject()
+                    {
+                        ["topic"] = e.ApplicationMessage.Topic,
+                        ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
+                    };
+                    try
+                    {
+                        var originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+                        //string filePath = "./data/dm.xml"; // Replace with your XML file path
+                        //originalXml = File.ReadAllText(filePath);
+                        // Deserialize XML to class
+                        var eventMessage = XmlHelper.DeserializeEventMessageDm(originalXml);
+
+                        // Serialize class back to XML
+                        var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+
+                        // Compare original and serialized XML
+                        XmlHelper.CompareXml(originalXml, serializedXml);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+                    }
+
+                    //await CreateNrCanAlertRecord(jNRCan);
+                }
+                else if (e.ApplicationMessage.Topic == _mqttSettings.EEWOverallHealth && _connectionFailureCount > 0)
+                {
+                    JObject jNRCan = new JObject()
+                    {
+                        ["topic"] = e.ApplicationMessage.Topic + ": " + _currentBroker,
+                        ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload)
+                    };
+                    _logger.LogInformation($"Connection error happened, monitor health of servers.");
+                    await CreateNrCanAlertRecord(jNRCan);
+                }
+            };
         }
 
         private async Task UsingStaticSampleData(CancellationToken cancellationToken)
@@ -228,76 +326,6 @@ namespace EEWWebApiApp.Services
             await Task.Delay(TimeSpan.FromSeconds(60), cancellationToken);
         }
 
-        public async Task ConnectToTestMqtt(CancellationToken cancellationToken)
-        {
-            await Task.Run(async () =>
-            {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-                    bool isSubscribed = false;
-
-                    try
-                    {
-                        const string mosquitto_org = @"
-                            -----BEGIN CERTIFICATE-----
-                            MIIEAzCCAuugAwIBAgIUBY1hlCGvdj4NhBXkZ/uLUZNILAwwDQYJKoZIhvcNAQEL
-                            BQAwgZAxCzAJBgNVBAYTAkdCMRcwFQYDVQQIDA5Vbml0ZWQgS2luZ2RvbTEOMAwG
-                            A1UEBwwFRGVyYnkxEjAQBgNVBAoMCU1vc3F1aXR0bzELMAkGA1UECwwCQ0ExFjAU
-                            BgNVBAMMDW1vc3F1aXR0by5vcmcxHzAdBgkqhkiG9w0BCQEWEHJvZ2VyQGF0Y2hv
-                            by5vcmcwHhcNMjAwNjA5MTEwNjM5WhcNMzAwNjA3MTEwNjM5WjCBkDELMAkGA1UE
-                            BhMCR0IxFzAVBgNVBAgMDlVuaXRlZCBLaW5nZG9tMQ4wDAYDVQQHDAVEZXJieTES
-                            MBAGA1UECgwJTW9zcXVpdHRvMQswCQYDVQQLDAJDQTEWMBQGA1UEAwwNbW9zcXVp
-                            dHRvLm9yZzEfMB0GCSqGSIb3DQEJARYQcm9nZXJAYXRjaG9vLm9yZzCCASIwDQYJ
-                            KoZIhvcNAQEBBQADggEPADCCAQoCggEBAME0HKmIzfTOwkKLT3THHe+ObdizamPg
-                            UZmD64Tf3zJdNeYGYn4CEXbyP6fy3tWc8S2boW6dzrH8SdFf9uo320GJA9B7U1FW
-                            Te3xda/Lm3JFfaHjkWw7jBwcauQZjpGINHapHRlpiCZsquAthOgxW9SgDgYlGzEA
-                            s06pkEFiMw+qDfLo/sxFKB6vQlFekMeCymjLCbNwPJyqyhFmPWwio/PDMruBTzPH
-                            3cioBnrJWKXc3OjXdLGFJOfj7pP0j/dr2LH72eSvv3PQQFl90CZPFhrCUcRHSSxo
-                            E6yjGOdnz7f6PveLIB574kQORwt8ePn0yidrTC1ictikED3nHYhMUOUCAwEAAaNT
-                            MFEwHQYDVR0OBBYEFPVV6xBUFPiGKDyo5V3+Hbh4N9YSMB8GA1UdIwQYMBaAFPVV
-                            6xBUFPiGKDyo5V3+Hbh4N9YSMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
-                            BQADggEBAGa9kS21N70ThM6/Hj9D7mbVxKLBjVWe2TPsGfbl3rEDfZ+OKRZ2j6AC
-                            6r7jb4TZO3dzF2p6dgbrlU71Y/4K0TdzIjRj3cQ3KSm41JvUQ0hZ/c04iGDg/xWf
-                            +pp58nfPAYwuerruPNWmlStWAXf0UTqRtg4hQDWBuUFDJTuWuuBvEXudz74eh/wK
-                            sMwfu1HFvjy5Z0iMDU8PUDepjVolOCue9ashlS4EB5IECdSR2TItnAIiIwimx839
-                            LdUdRudafMu5T5Xma182OC0/u/xRlEm+tvKGGmfFcN0piqVl8OrSPBgIlb+1IKJE
-                            m/XriWr/Cq4h/JfB7NTsezVslgkBaoU=
-                            -----END CERTIFICATE-----
-                            ";
-
-                        var caChain = new X509Certificate2Collection();
-                        caChain.ImportFromPem(mosquitto_org); // from https://test.mosquitto.org/ssl/mosquitto.org.crt
-
-                        using var mqttClient = _mqttFactory.CreateMqttClient();
-                        var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("test.mosquitto.org", 8883)
-                            .WithTlsOptions(new MqttClientTlsOptionsBuilder().WithTrustChain(caChain).Build())
-                            .Build();
-
-                        var connAck = await mqttClient.ConnectAsync(mqttClientOptions);
-                        Console.WriteLine("Connected to test.moquitto.org:8883 with CaFile mosquitto.org.crt: " + connAck.ResultCode);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log the exception
-                        Console.WriteLine($"An error occurred: {ex.Message}");
-                        isSubscribed = false; // Reset subscription flag on error
-                        JObject jNRCan = new JObject()
-                        {
-                            ["detail"] = ex.Message,
-                            ["type"] = 717350000
-                        };
-
-                        _ = CreateFailureRecord(jNRCan);
-                    }
-                    finally
-                    {
-                        // Wait for 5 seconds before checking the connection again
-                        await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
-                    }
-                }
-            }, cancellationToken);
-        }
-
         private static X509Certificate2Collection LoadCertificatesFromPem(string certPath)
         {
             var caChain = new X509Certificate2Collection();
@@ -317,16 +345,17 @@ namespace EEWWebApiApp.Services
                 var newNRCan = new JObject
                 {
                     ["emcr_source"] = 717350000,
+                    ["emcr_topic"] = jNRCan["topic"],
                     ["emcr_message"] = jNRCan["payload"]
                 };
 
 
                 var result = await _crmHelper.CreateRecordAsync("emcr_alerts", newNRCan);
-                //_logger.Log(LogLevel.Information, "Record created successfully: " + result);
+                _logger.Log(LogLevel.Information, "Record created successfully: " + result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                _logger.LogError("Error: " + ex.Message);
             }
         }
 
@@ -362,166 +391,6 @@ namespace EEWWebApiApp.Services
             Console.WriteLine($"Published message to topic: {topic}");
         }
 
-        public async Task Clean_Disconnect()
-        {
-            // This will send the DISCONNECT packet. Calling _Dispose_ without DisconnectAsync the
-            // connection is closed in a "not clean" way. See MQTT specification for more details.
-            await _mqttClient.DisconnectAsync(new MqttClientDisconnectOptionsBuilder().WithReason(MqttClientDisconnectOptionsReason.NormalDisconnection).Build());
-        }
-        private async Task PublishResponseAsync(string topic, string payload)
-        {
-            try
-            {
-                if (_mqttClient.IsConnected)
-                {
-                    var responseMessage = new MqttApplicationMessageBuilder()
-                        .WithTopic(topic) // Response topic
-                        .WithPayload(payload) // Response payload
-                        .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.ExactlyOnce) // QoS 2
-                        .WithRetainFlag(false) // Do not retain the response message
-                        .Build();
 
-                    await _mqttClient.PublishAsync(responseMessage);
-                    Console.WriteLine($"Published response to topic: {topic} with QoS 2");
-                }
-                else
-                {
-                    Console.WriteLine("MQTT client is not connected. Cannot publish response.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public static async Task Send_Responses()
-        {
-            /*
-             * This sample subscribes to a topic and sends a response to the broker. This requires at least QoS level 1 to work!
-             */
-
-            var mqttFactory = new MqttClientFactory();
-
-            using (var mqttClient = mqttFactory.CreateMqttClient())
-            {
-                mqttClient.ApplicationMessageReceivedAsync += delegate (MqttApplicationMessageReceivedEventArgs args)
-                {
-                    // Do some work with the message...
-
-                    // Now respond to the broker with a reason code other than success.
-                    args.ReasonCode = MqttApplicationMessageReceivedReasonCode.ImplementationSpecificError;
-                    args.ResponseReasonString = "That did not work!";
-
-                    // User properties require MQTT v5!
-                    args.ResponseUserProperties.Add(new MqttUserProperty("My", "Data"));
-
-                    // Now the broker will resend the message again.
-                    return Task.CompletedTask;
-                };
-
-                var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("broker.hivemq.com").Build();
-
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-                var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder().WithTopicTemplate(sampleTemplate.WithParameter("id", "1")).Build();
-
-                var response = await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-                Console.WriteLine("MQTT client subscribed to topic.");
-
-                var jsonResponse = JsonSerializer.Serialize(response);
-                Console.WriteLine(jsonResponse);
-            }
-        }
-
-        public static async Task Subscribe_Multiple_Topics()
-        {
-            /*
-             * This sample subscribes to several topics in a single request.
-             */
-
-            var mqttFactory = new MqttClientFactory();
-
-            using (var mqttClient = mqttFactory.CreateMqttClient())
-            {
-                var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("broker.hivemq.com").Build();
-
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-                // Create the subscribe options including several topics with different options.
-                // It is also possible to all of these topics using a dedicated call of _SubscribeAsync_ per topic.
-                var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
-                    .WithTopicTemplate(sampleTemplate.WithParameter("id", "1"))
-                    .WithTopicTemplate(sampleTemplate.WithParameter("id", "2"), noLocal: true)
-                    .WithTopicTemplate(sampleTemplate.WithParameter("id", "3"), retainHandling: MqttRetainHandling.SendAtSubscribe)
-                    .Build();
-
-                var response = await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-                Console.WriteLine("MQTT client subscribed to topics.");
-
-                var jsonResponse = JsonSerializer.Serialize(response);
-                Console.WriteLine(jsonResponse);
-            }
-        }
-
-        static void ConcurrentProcessingDisableAutoAcknowledge(CancellationToken shutdownToken, IMqttClient mqttClient)
-        {
-            /*
-             * This sample shows how to achieve concurrent processing and not have message AutoAcknowledged
-             * This to have a proper QoS1 (at-least-once) experience for what at least MQTT specification can provide
-             */
-            mqttClient.ApplicationMessageReceivedAsync += ea =>
-            {
-                ea.AutoAcknowledge = false;
-
-                async Task ProcessAsync()
-                {
-                    // DO YOUR WORK HERE!
-                    await Task.Delay(1000, shutdownToken);
-                    await ea.AcknowledgeAsync(shutdownToken);
-                    // WARNING: If process failures are not transient the message will be retried on every restart of the client
-                    //          A failed message will not be dispatched again to the client as MQTT does not have a NACK packet to let
-                    //          the broker know processing failed
-                    //
-                    // Optionally: Use a framework like Polly to create a retry policy: https://github.com/App-vNext/Polly#retry
-                }
-
-                _ = Task.Run(ProcessAsync, shutdownToken);
-
-                return Task.CompletedTask;
-            };
-        }
-
-        static void ConcurrentProcessingWithLimit(CancellationToken shutdownToken, IMqttClient mqttClient)
-        {
-            /*
-             * This sample shows how to achieve concurrent processing, with:
-             * - a maximum concurrency limit based on Environment.ProcessorCount
-             */
-
-            var concurrent = new SemaphoreSlim(Environment.ProcessorCount);
-
-            mqttClient.ApplicationMessageReceivedAsync += async ea =>
-            {
-                await concurrent.WaitAsync(shutdownToken).ConfigureAwait(false);
-
-                async Task ProcessAsync()
-                {
-                    try
-                    {
-                        // DO YOUR WORK HERE!
-                        await Task.Delay(1000, shutdownToken);
-                    }
-                    finally
-                    {
-                        concurrent.Release();
-                    }
-                }
-
-                _ = Task.Run(ProcessAsync, shutdownToken);
-            };
-        }
     }
 }

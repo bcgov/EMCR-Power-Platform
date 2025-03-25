@@ -29,7 +29,7 @@
     <None Update="Data\test.pem">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="partners.pem">
+    <None Update="Data\partners.pem">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

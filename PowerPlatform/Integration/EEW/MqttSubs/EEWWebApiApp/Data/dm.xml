@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event_message version="0" orig_sys="dm" message_type="new" timestamp="2025-03-22T14:50:04.257021Z" category="live" alg_vers="2.6.8 2023-09-26" instance="dm@eew-qw-alert1.eew1.nrcan.gc.ca" ref_id="0" ref_src="">
+    <core_info id="1742654994">
+        <mag units="Mw">4.9</mag>
+        <mag_uncer units="Mw">0.4</mag_uncer>
+        <lat units="deg">49.7104</lat>
+        <lat_uncer units="deg">0.1283</lat_uncer>
+        <lon units="deg">-123.5892</lon>
+        <lon_uncer units="deg">0.1283</lon_uncer>
+        <depth units="km">8.0</depth>
+        <depth_uncer units="km">5.0</depth_uncer>
+        <orig_time units="UTC">2025-03-22T14:49:54.076088Z</orig_time>
+        <orig_time_uncer units="sec">2.5177</orig_time_uncer>
+        <likelihood>0.9091</likelihood>
+        <num_stations>4</num_stations>
+    </core_info>
+    <contributors>
+        <contributor alg_instance="sa@eew-qw-test1.eew1.nrcan.gc.ca" alg_name="sa" alg_version="2.6.8 2023-09-26" category="live" event_id="1740173200" version="0"/>
+		<contributor alg_instance="sa@eew-qw-test1.eew1.nrcan.gc.ca" alg_name="sa" alg_version="2.6.8 2023-09-26" category="live" event_id="1740173200" version="0"/>
+    </contributors>
+    <gm_info>
+        <gmpoint_obs>
+            <pga_obs number="4">
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL20.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">14.3776</value>
+                    <lat units="deg">49.6933</lat>
+                    <lon units="deg">-123.1442</lon>
+                    <time units="UTC">2025-02-21T21:26:38.620Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL25.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.3609</value>
+                    <lat units="deg">49.3741</lat>
+                    <lon units="deg">-123.2725</lon>
+                    <time units="UTC">2025-02-21T21:26:40.530Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL02.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">4.9993</value>
+                    <lat units="deg">49.3566</lat>
+                    <lon units="deg">-123.0903</lon>
+                    <time units="UTC">2025-02-21T21:26:41.960Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL16.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">3.4341</value>
+                    <lat units="deg">49.4676</lat>
+                    <lon units="deg">-123.9119</lon>
+                    <time units="UTC">2025-02-21T21:26:39.160Z</time>
+                </obs>
+            </pga_obs>
+        </gmpoint_obs>
+    </gm_info>
+</event_message>

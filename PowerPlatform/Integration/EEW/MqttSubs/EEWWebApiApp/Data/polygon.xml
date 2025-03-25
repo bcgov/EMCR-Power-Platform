@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event_message version="4" orig_sys="eqinfo2gm" message_type="update" timestamp="2025-03-21T19:35:08.593238Z" category="live" alg_vers="1.2.8 2023-11-02" instance="eqinfo2gm-contour.qw.west@eew-qw-test1" ref_id="0" ref_src="">
+    <core_info id="1742585693">
+        <mag units="Mw">5.0642</mag>
+        <mag_uncer units="Mw">0.2138</mag_uncer>
+        <lat units="deg">49.7236</lat>
+        <lat_uncer units="deg">0.0484</lat_uncer>
+        <lon units="deg">-123.6018</lon>
+        <lon_uncer units="deg">0.0484</lon_uncer>
+        <depth units="km">9.0</depth>
+        <depth_uncer units="km">3.5355</depth_uncer>
+        <orig_time units="UTC">2025-03-21T19:34:53.233262Z</orig_time>
+        <orig_time_uncer units="sec">0.5514</orig_time_uncer>
+        <likelihood>0.9984</likelihood>
+        <num_stations>13</num_stations>
+    </core_info>
+    <contributors>
+        <contributor alg_instance="epic@eew-qw-test1" alg_name="epic" alg_version="3.3.7-2023-11-01" category="live" event_id="25" version="4"/>
+        <contributor alg_instance="epic@eew-qw-test2" alg_name="epic" alg_version="3.3.7-2023-11-01" category="live" event_id="468" version="4"/>
+        <contributor alg_instance="finder.qw.west@eew-qw-test1" alg_name="finder" alg_version="finder-3.1.2_2023-10-31/finder-3.2.4_2023-10-30" category="live" event_id="1740173205" version="2"/>
+        <contributor alg_instance="finder.qw.west@eew-qw-test2" alg_name="finder" alg_version="finder-3.1.2_2023-10-31/finder-3.2.4_2023-10-30" category="live" event_id="1740173205" version="1"/>
+        <contributor alg_instance="sa@eew-qw-test1.eew1.nrcan.gc.ca" alg_name="sa" alg_version="2.6.8 2023-09-26" category="live" event_id="1740173200" version="4"/>
+    </contributors>
+    <gm_info>
+        <gmpoint_obs>
+            <pga_obs number="32">
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL22.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">41.1445</value>
+                    <lat units="deg">49.2695</lat>
+                    <lon units="deg">-122.939</lon>
+                    <time units="UTC">2025-02-21T21:26:44.400Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL20.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">15.3087</value>
+                    <lat units="deg">49.6933</lat>
+                    <lon units="deg">-123.1442</lon>
+                    <time units="UTC">2025-02-21T21:26:38.620Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL21.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">11.3289</value>
+                    <lat units="deg">50.1315</lat>
+                    <lon units="deg">-122.9548</lon>
+                    <time units="UTC">2025-02-21T21:26:43.790Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="epic">
+                    <SNCL>BCL10.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">8.8874</value>
+                    <lat units="deg">49.271</lat>
+                    <lon units="deg">-123.1432</lon>
+                    <time units="UTC">2025-02-21T21:26:43.020Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL26.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.3926</value>
+                    <lat units="deg">49.176</lat>
+                    <lon units="deg">-123.1129</lon>
+                    <time units="UTC">2025-02-21T21:26:44.970Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL25.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.3609</value>
+                    <lat units="deg">49.3741</lat>
+                    <lon units="deg">-123.2725</lon>
+                    <time units="UTC">2025-02-21T21:26:40.530Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL04.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.2862</value>
+                    <lat units="deg">49.2626</lat>
+                    <lon units="deg">-123.2447</lon>
+                    <time units="UTC">2025-02-21T21:26:42.610Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCV30.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">5.8644</value>
+                    <lat units="deg">49.148</lat>
+                    <lon units="deg">-123.697</lon>
+                    <time units="UTC">2025-02-21T21:26:43.670Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL02.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">5.3825</value>
+                    <lat units="deg">49.3566</lat>
+                    <lon units="deg">-123.0903</lon>
+                    <time units="UTC">2025-02-21T21:26:41.960Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL16.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">3.4341</value>
+                    <lat units="deg">49.4676</lat>
+                    <lon units="deg">-123.9119</lon>
+                    <time units="UTC">2025-02-21T21:26:39.160Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>WSLR.CN.HNZ.--</SNCL>
+                    <value units="cm/s/s">2.5622</value>
+                    <lat units="deg">50.1266</lat>
+                    <lon units="deg">-122.9212</lon>
+                    <time units="UTC">2025-02-21T21:26:43.880Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCL03.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">2.4637</value>
+                    <lat units="deg">49.241</lat>
+                    <lon units="deg">-123.114</lon>
+                    <time units="UTC">2025-02-21T21:26:43.640Z</time>
+                </obs>
+                <obs orig_sys="epic">
+                    <SNCL>BCV29.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">1.3559</value>
+                    <lat units="deg">49.2271</lat>
+                    <lon units="deg">-123.9882</lon>
+                    <time units="UTC">2025-02-21T21:26:43.030Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL22.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">41.018</value>
+                    <lat units="deg">49.27</lat>
+                    <lon units="deg">-122.939</lon>
+                    <time units="UTC">2025-02-21T21:26:44.849Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL20.QW.HNN.00</SNCL>
+                    <value units="cm/s/s">34.323</value>
+                    <lat units="deg">49.693</lat>
+                    <lon units="deg">-123.144</lon>
+                    <time units="UTC">2025-02-21T21:26:44.049Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL25.QW.HNN.00</SNCL>
+                    <value units="cm/s/s">23.6</value>
+                    <lat units="deg">49.374</lat>
+                    <lon units="deg">-123.272</lon>
+                    <time units="UTC">2025-02-21T21:26:46.269Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL16.QW.HNE.00</SNCL>
+                    <value units="cm/s/s">14.606</value>
+                    <lat units="deg">49.468</lat>
+                    <lon units="deg">-123.912</lon>
+                    <time units="UTC">2025-02-21T21:26:44.580Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL21.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">11.338</value>
+                    <lat units="deg">50.132</lat>
+                    <lon units="deg">-122.955</lon>
+                    <time units="UTC">2025-02-21T21:26:44.060Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL10.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">8.928</value>
+                    <lat units="deg">49.271</lat>
+                    <lon units="deg">-123.143</lon>
+                    <time units="UTC">2025-02-21T21:26:43.960Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCL26.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.425</value>
+                    <lat units="deg">49.176</lat>
+                    <lon units="deg">-123.113</lon>
+                    <time units="UTC">2025-02-21T21:26:45.320Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCL04.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.292</value>
+                    <lat units="deg">49.263</lat>
+                    <lon units="deg">-123.245</lon>
+                    <time units="UTC">2025-02-21T21:26:42.990Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCV30.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">5.848</value>
+                    <lat units="deg">49.148</lat>
+                    <lon units="deg">-123.697</lon>
+                    <time units="UTC">2025-02-21T21:26:44.990Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCL02.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">5.385</value>
+                    <lat units="deg">49.357</lat>
+                    <lon units="deg">-123.09</lon>
+                    <time units="UTC">2025-02-21T21:26:43.170Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCL23.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">3.598</value>
+                    <lat units="deg">49.003</lat>
+                    <lon units="deg">-122.265</lon>
+                    <time units="UTC">2025-02-21T21:26:38.119Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>WSLR.CN.HNZ.--</SNCL>
+                    <value units="cm/s/s">3.298</value>
+                    <lat units="deg">50.127</lat>
+                    <lon units="deg">-122.921</lon>
+                    <time units="UTC">2025-02-21T21:26:44.650Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCL03.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">2.463</value>
+                    <lat units="deg">49.241</lat>
+                    <lon units="deg">-123.114</lon>
+                    <time units="UTC">2025-02-21T21:26:44.869Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCV29.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">1.362</value>
+                    <lat units="deg">49.227</lat>
+                    <lon units="deg">-123.988</lon>
+                    <time units="UTC">2025-02-21T21:26:43.970Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL20.QW.HNN.00</SNCL>
+                    <value units="cm/s/s">30.374</value>
+                    <lat units="deg">49.693</lat>
+                    <lon units="deg">-123.144</lon>
+                    <time units="UTC">2025-02-21T21:26:43.309Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL16.QW.HNE.00</SNCL>
+                    <value units="cm/s/s">13.436</value>
+                    <lat units="deg">49.468</lat>
+                    <lon units="deg">-123.912</lon>
+                    <time units="UTC">2025-02-21T21:26:44.140Z</time>
+                </obs>
+                <obs assoc="true" orig_sys="finder">
+                    <SNCL>BCL25.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">6.377</value>
+                    <lat units="deg">49.374</lat>
+                    <lon units="deg">-123.272</lon>
+                    <time units="UTC">2025-02-21T21:26:41.440Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>WSLR.CN.HNZ.--</SNCL>
+                    <value units="cm/s/s">2.565</value>
+                    <lat units="deg">50.127</lat>
+                    <lon units="deg">-122.921</lon>
+                    <time units="UTC">2025-02-21T21:26:44.190Z</time>
+                </obs>
+                <obs orig_sys="finder">
+                    <SNCL>BCV30.QW.HNZ.00</SNCL>
+                    <value units="cm/s/s">1.057</value>
+                    <lat units="deg">49.148</lat>
+                    <lon units="deg">-123.697</lon>
+                    <time units="UTC">2025-02-21T21:26:43.960Z</time>
+                </obs>
+            </pga_obs>
+        </gmpoint_obs>
+        <gmcontour_pred number="4">
+            <contour>
+                <MMI units="">2.0</MMI>
+                <PGA units="cm/s/s">0.7926</PGA>
+                <PGV units="cm/s">0.0365</PGV>
+                <polygon number="8">51.6425,-123.6018 51.0608,-121.4428 49.6857,-120.6351 48.3484,-121.5601 47.8047,-123.6018 48.3484,-125.6435 49.6857,-126.5685 51.0608,-125.7608 51.6425,-123.6018</polygon>
+            </contour>
+            <contour>
+                <MMI units="">3.0</MMI>
+                <PGA units="cm/s/s">2.9142</PGA>
+                <PGV units="cm/s">0.1347</PGV>
+                <polygon number="8">50.6766,-123.6018 50.3927,-122.5448 49.7142,-122.1279 49.0451,-122.5737 48.7706,-123.6018 49.0451,-124.6299 49.7142,-125.0757 50.3927,-124.6588 50.6766,-123.6018</polygon>
+            </contour>
+            <contour>
+                <MMI units="">4.0</MMI>
+                <PGA units="cm/s/s">12.8729</PGA>
+                <PGV units="cm/s">0.6449</PGV>
+                <polygon number="8">50.0509,-123.6018 49.9545,-123.2421 49.7225,-123.0955 49.4916,-123.2455 49.3963,-123.6018 49.4916,-123.9581 49.7225,-124.1081 49.9545,-123.9615 50.0509,-123.6018</polygon>
+            </contour>
+            <contour>
+                <MMI units="">5.0</MMI>
+                <PGA units="cm/s/s">44.5296</PGA>
+                <PGV units="cm/s">3.0888</PGV>
+                <polygon number="8">49.8259,-123.6018 49.7959,-123.4897 49.7235,-123.4436 49.6512,-123.4901 49.6213,-123.6018 49.6512,-123.7135 49.7235,-123.7600 49.7959,-123.7139 49.8259,-123.6018</polygon>
+            </contour>
+        </gmcontour_pred>
+    </gm_info>
+</event_message>

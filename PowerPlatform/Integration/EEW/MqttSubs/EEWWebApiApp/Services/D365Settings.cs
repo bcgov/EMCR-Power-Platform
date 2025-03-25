@@ -6,8 +6,17 @@
         public string ClientSecret { get; set; }
         public string TenantId { get; set; }
         public string CrmBaseUrl { get; set; }
+        public LoggingLevel LoggingLevel { get; set; }
     }
 
+    public enum LoggingLevel
+    {
+        Polygon,
+        Point,
+        General,
+        None,
+        All
+    }
 
     public class MQTTSettings
     {
@@ -16,11 +25,9 @@
         public string Username { get; set; }
         public int Port { get; set; }
         public string Password { get; set; }
-        public string Certificate { get; set; }
-        public string CoreXmlTipic { get; set; }
+        public string CoreXmlTopic { get; set; }
         public string GroundMotionPolygonTopic { get; set; }
         public string GroundMotionPointsTopic { get; set; }
         public string EEWOverallHealth { get; set; }
     }
-
 }
