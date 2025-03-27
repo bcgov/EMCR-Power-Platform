@@ -119,7 +119,7 @@ public class EventMessageMap
     public string ref_src { get; set; }
 
     [XmlElement("core_info")]
-    public CoreInfo core_info { get; set; }
+    public CoreInfo CoreInfo { get; set; }
 
     [XmlArray("contributors")]
     [XmlArrayItem("contributor")]

@@ -53,5 +53,42 @@ namespace EEWWebApiApp.Services
                 }
             }
         }
+
+        public async Task<bool> FetchRecordsAsync(string entityName, string fetchXml)
+        {
+            string accessToken = await GetAccessTokenAsync();
+            string requestUri = $"{_settings.CrmBaseUrl}api/data/v9.2/{entityName}?fetchXml={Uri.EscapeDataString(fetchXml)}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue
+                {
+                    NoCache = true,
+                    NoStore = true,
+                    MustRevalidate = true
+                };
+
+                HttpResponseMessage response = await client.GetAsync(requestUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    if (responseBody.Contains("[]"))
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                else
+                {
+                    string errorResponse = await response.Content.ReadAsStringAsync();
+
+                    Console.WriteLine("Error from CRM call: " + errorResponse);
+                    return false;
+                }
+            }
+        }
     }
 }

@@ -20,8 +20,7 @@
 
     public class MQTTSettings
     {
-        public string BrokerDNS1 { get; set; }
-        public string BrokerDNS2 { get; set; }
+        public string[] Brokers { get; set; }
         public string Username { get; set; }
         public int Port { get; set; }
         public string Password { get; set; }
