@@ -24,13 +24,6 @@ jobs:
           SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}/Unmanaged
           OUTPUT_FILE=./artifacts/${{ inputs.solution-name }}.zip
 
-          if [ ! -d "$SOLUTION_DIR" ]; then
-            echo "Error: Solution directory not found: $SOLUTION_DIR"
-            exit 1
-          fi
-
-          echo "Packing solution from directory: $SOLUTION_DIR"
-
           echo "Packing solution..."
           pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed false
 
