@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{20c5cbf4-68d8-4f33-9dd7-89c0fd515360}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{5d48fbe1-891b-4ea6-a62d-e840e3f1796b}" IsUserDefined="1" name="{5d48fbe1-891b-4ea6-a62d-e840e3f1796b}" locklevel="0" expanded="true" showlabel="true">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9cf475d1-8087-4a88-84f7-3c12bc485282}" name="{9cf475d1-8087-4a88-84f7-3c12bc485282}" columns="11" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{32b27e09-dd2b-48c1-a47c-0db93f9caa08}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Ministry" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ministry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_ministry" disabled="false" />
+                      </cell>
+                      <cell id="{3ececb38-819d-4561-9490-73ae7ab5d021}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Branch/Division" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_branchdivision" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_branchdivision" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0f1db786-f069-4ff2-a187-60671aff9977}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Business Unit" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_businessunit" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_businessunit" disabled="false" />
+                      </cell>
+                      <cell id="{fae5342a-3761-4a12-a813-e356b33a10a1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Business Function(s)" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_businessfunctions" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_businessfunctions" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1c7cba7a-e4d0-4161-93f8-fd8cfae71583}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Sub-Functions" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_subfunctions" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_subfunctions" disabled="false" />
+                      </cell>
+                      <cell id="{b8e6e0da-6f55-49cb-9866-89eab321a9db}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Supporting Process(es)" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_supportingprocesses" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_supportingprocesses" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{47903243-c224-45e9-a71c-e0f120ba605e}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell id="{246a5e1c-1043-0be5-1a74-879e1494d180}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{5d48fbe1-891b-4ea6-a62d-e840e3f1796b}_section_2" showlabel="false" showbar="false" locklevel="0" id="{760d4dd1-daa9-a017-26ec-c555ce62e730}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2008c1e5-1140-2777-5dc0-dccb2a3c71b9}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Health &amp; Safety" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_healthsafety" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="emcr_healthsafety" disabled="false" uniqueid="{452d28af-dc2e-4528-902f-3d75b8cad094}" />
+                      </cell>
+                      <cell id="{76e3ddab-3a43-9257-b721-998a633a3570}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Service Delivery" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_servicedelivery" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="emcr_servicedelivery" disabled="false" uniqueid="{23f6ea87-35da-4527-b71a-7566fd3a9ae0}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{66bd1b46-94b5-90d5-56e1-14c0046398ca}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Legal" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_legal" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="emcr_legal" disabled="false" uniqueid="{f18b6e23-968b-450a-b9e9-1392b60a8c72}" />
+                      </cell>
+                      <cell id="{1c37c141-4075-9c60-564e-9d7320e3a6e2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Financial Impact to Gov't" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_financialimpacttogovt" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="emcr_financialimpacttogovt" disabled="false" uniqueid="{5ec18e46-7974-44fa-b085-beda35ea7776}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e452ebd7-9815-bbb9-a05a-bdcd4129d6ba}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Environment" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_environment" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="emcr_environment" disabled="false" uniqueid="{be724ae5-1998-4c43-8946-08dfc7c8c9d9}" />
+                      </cell>
+                      <cell id="{01de6bb5-5d60-09e7-8633-aed83d9418cc}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{5d48fbe1-891b-4ea6-a62d-e840e3f1796b}_section_3" showlabel="false" showbar="false" locklevel="0" id="{b1312dc7-a737-1145-0997-742abdd34555}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0867e5ad-7486-291e-44ec-70a345135333}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Impact Description" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_impactdescription" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="emcr_impactdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{06b7d52e-a576-b84b-b3bc-20433968c586}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="RTO" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_rto" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_rto" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c5836e9-7e92-0b4b-7006-2dd32b8e94e9}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Function Priority" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_functionpriority" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_functionpriority" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d8ed5086-9282-897a-6413-9da594379609}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Time of Greatest Impact" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_timeofgreatestimpact" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_timeofgreatestimpact" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1516e1cb-85c6-1519-c633-2a08a498e8a1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Seasonal Vulnerabilities" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_seasonalvulnerabilities" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_seasonalvulnerabilities" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="{5d48fbe1-891b-4ea6-a62d-e840e3f1796b}_section_4" showlabel="false" showbar="false" locklevel="0" id="{1925704e-adc2-913a-38b3-a724b6d79467}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{26a5081a-39ac-4232-904c-444aa1263aac}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="What IT Systems are needed to for this function?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_whatitsystemsareneededtoforthisfunction" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="emcr_whatitsystemsareneededtoforthisfunction" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{da584a89-2e31-4799-a699-06c5c8e0d332}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="What Critical Systems are needed for the function?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_whatcriticalsystemsareneededforthefunction" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="emcr_whatcriticalsystemsareneededforthefunction" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2b5198bd-b836-08ea-b427-8ce5eee64a75}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Critical Systems RTO for each function" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticalsystemsrtoforeachfunction" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="emcr_criticalsystemsrtoforeachfunction" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4d71ac15-80da-36de-1d8a-4be89d5d617e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Are these Critical Systems registered with OCIO?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_arethesecriticalsystemsregisteredwithocio" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="emcr_arethesecriticalsystemsregisteredwithocio" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{e9aa0a4d-9a15-444a-a27e-51fc3820d2b2}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{3e67791a-63c9-ee67-8568-9336648083de}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9bd9007b-e974-b431-9bd9-b3230d49bd85}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+            </cell>
+            <cell id="{7b16dc12-968d-a4ed-94ad-55a1caa1e7d4}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Priority" languagecode="1033" />
+              </labels>
+              <control id="header_emcr_priority" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_priority" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{f79bd84a-7928-4b62-a08c-148c48165f06}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9b6d6f11-726b-40f2-9d90-22186f912f5c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{298dcb61-3be9-41a0-a56b-6436e919d21d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{af39e04a-e159-482f-8955-28dad6d04956}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <controlDescriptions>
+        <controlDescription forControl="{452d28af-dc2e-4528-902f-3d75b8cad094}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>emcr_healthsafety</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_healthsafety</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_healthsafety</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_healthsafety</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{23f6ea87-35da-4527-b71a-7566fd3a9ae0}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>emcr_servicedelivery</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_servicedelivery</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_servicedelivery</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_servicedelivery</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{f18b6e23-968b-450a-b9e9-1392b60a8c72}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>emcr_legal</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_legal</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_legal</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_legal</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{5ec18e46-7974-44fa-b085-beda35ea7776}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>emcr_financialimpacttogovt</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_financialimpacttogovt</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_financialimpacttogovt</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_financialimpacttogovt</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{be724ae5-1998-4c43-8946-08dfc7c8c9d9}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>emcr_environment</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_environment</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_environment</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">emcr_environment</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

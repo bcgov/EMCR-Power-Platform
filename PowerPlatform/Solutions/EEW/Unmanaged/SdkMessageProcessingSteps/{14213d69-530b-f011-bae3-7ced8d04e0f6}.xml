@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Emcr.Eew.Plugin.EventPostPlugin: Create of emcr_alert" SdkMessageProcessingStepId="{14213d69-530b-f011-bae3-7ced8d04e0f6}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>9ebdbb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>Emcr.Eew.Plugin.EventPostPlugin, Emcr.Eew.Plugin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=db6ce2fbe3af04b0</PluginTypeName>
+  <PluginTypeId>8dd4e5e8-3488-4ebb-b04b-903e9fa58173</PluginTypeId>
+  <PrimaryEntity>emcr_alert</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <FilteringAttributes>createdon,emcr_alertid,emcr_createdonseconds</FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>1</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>40</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages />
+</SdkMessageProcessingStep>

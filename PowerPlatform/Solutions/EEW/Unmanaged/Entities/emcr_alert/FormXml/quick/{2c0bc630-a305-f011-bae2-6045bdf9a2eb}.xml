@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{2c0bc630-a305-f011-bae2-6045bdf9a2eb}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="ACBA75B7-97B6-4116-AA55-51312992B721" name="tab_1" showlabel="false" labelid="{a84cd9ff-92d1-436c-8ba5-10ab6e9e90f5}">
+          <labels>
+            <label description="New Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section id="AD49B5BF-256F-46A8-9C75-947146172EB9" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{fbccad29-02ed-4892-9c51-7e603f6b1c61}">
+                  <labels>
+                    <label description="Event Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="C0550AC7-0F44-45A4-8EF5-D2911C0689D9" labelid="{65172a61-abc7-40ee-8f67-0e2ec029222f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{69ecebaf-21e4-471e-b040-833a28dadeff}" locklevel="0" colspan="1" rowspan="1" labelid="{62c2d005-1e6e-4a0b-b7c9-5081e67ac35f}">
+                        <labels>
+                          <label description="Source" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_source" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_source" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19612bbb-727a-461b-b4c4-da98b98f53c2}" locklevel="0" colspan="1" rowspan="1" labelid="{8dbb9761-add1-43bd-9ce7-1734d911982e}">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{baf6bae7-5710-4f56-86b9-41b1246fbcc5}" locklevel="0" colspan="1" rowspan="1" labelid="{b98f2ddb-3833-42ec-b678-e5b5c28c53c9}">
+                        <labels>
+                          <label description="Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_type" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_type" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{52f6d93f-6584-4372-a1ac-719bc7a33c74}" locklevel="0" colspan="1" rowspan="1" labelid="{8a4d406d-7ae0-44b9-910a-c92cee0c7320}">
+                        <labels>
+                          <label description="Original Time Units (UTC)" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_originaltimeunitsutc" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="emcr_originaltimeunitsutc" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ba960624-a533-41ef-b104-f8d54966c9a9}" locklevel="0" colspan="1" rowspan="1" labelid="{8b842a3e-8f9c-4669-80dd-0f6dd9a33c11}">
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="1" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Event quick view form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

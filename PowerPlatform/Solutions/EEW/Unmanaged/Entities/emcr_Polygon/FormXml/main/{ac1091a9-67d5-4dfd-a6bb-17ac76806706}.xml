@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{ac1091a9-67d5-4dfd-a6bb-17ac76806706}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{a15b68b0-d357-4418-b726-7d84ef78dada}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{b4fc26cf-c4cb-47c5-8062-39fae202b376}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{9e14bbe4-b8a8-480c-9904-99fd6eab0b90}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9df5aafa-9b9e-4096-9986-9a6bdf605f49}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9029bac7-2505-4835-92cc-b3d9be865adc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Event" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_event" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_event" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1ae8cd55-3c8b-432d-bdc5-0aa030a8f76c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Contour" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_contour" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_contour" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cd019735-2d79-47ed-8aac-bf94da972020}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="PGA Units" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_pgaunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgaunits" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d9793005-5bc0-4a3d-a2a6-9ecbd01f3e82}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="PGV Units" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_pgvunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgvunits" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9de00f85-b22b-487e-bdbf-dac59d1bab72}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="MMI Units" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mmiunits" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_mmiunits" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{817e97a2-2704-4dd5-b9b7-4897876a648b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="ESRI JSON" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_esrijson" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_esrijson" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f0660277-5e4c-4007-b3be-d330dcbebafa}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="WKT" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_wkt" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_wkt" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{d5b63f08-776c-4934-97db-922bb9bcd886}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{13e2c22d-175a-48c7-9c94-b28edb2b841d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ab94e17c-73f5-441d-adc8-8d774364f675}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6f9570c4-0e7d-4db1-9225-e40d6ab93acd}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{b38bb29c-c533-4858-8a1c-5a18378dde18}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{d9f370dc-181e-4cd6-bfdd-32b14bf6b1f3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a4dd370d-6ac8-4b1c-9c93-02c76eeb4402}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{805fcd02-3023-48ab-8549-ab48d4e3ea05}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

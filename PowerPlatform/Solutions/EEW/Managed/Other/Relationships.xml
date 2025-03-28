@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_emcr_notificationhistory" />
+  <EntityRelationship Name="business_unit_emcr_polygon" />
+  <EntityRelationship Name="emcr_alert_ParentEvent_emcr_alert" />
+  <EntityRelationship Name="emcr_eewfailurelog_Event_emcr_alert" />
+  <EntityRelationship Name="emcr_notificationhistory_Event_emcr_alert" />
+  <EntityRelationship Name="emcr_nrcanadanotification_Event_emcr_alert" />
+  <EntityRelationship Name="emcr_polygon_Event_emcr_alert" />
+  <EntityRelationship Name="lk_emcr_alert_createdby" />
+  <EntityRelationship Name="lk_emcr_alert_modifiedby" />
+  <EntityRelationship Name="lk_emcr_eewfailurelog_createdby" />
+  <EntityRelationship Name="lk_emcr_eewfailurelog_modifiedby" />
+  <EntityRelationship Name="lk_emcr_notificationhistory_createdby" />
+  <EntityRelationship Name="lk_emcr_notificationhistory_modifiedby" />
+  <EntityRelationship Name="lk_emcr_nrcanadanotification_createdby" />
+  <EntityRelationship Name="lk_emcr_nrcanadanotification_modifiedby" />
+  <EntityRelationship Name="lk_emcr_polygon_createdby" />
+  <EntityRelationship Name="lk_emcr_polygon_modifiedby" />
+  <EntityRelationship Name="organization_emcr_alert" />
+  <EntityRelationship Name="organization_emcr_eewfailurelog" />
+  <EntityRelationship Name="organization_emcr_nrcanadanotification" />
+  <EntityRelationship Name="owner_emcr_notificationhistory" />
+  <EntityRelationship Name="owner_emcr_polygon" />
+  <EntityRelationship Name="team_emcr_notificationhistory" />
+  <EntityRelationship Name="team_emcr_polygon" />
+  <EntityRelationship Name="user_emcr_notificationhistory" />
+  <EntityRelationship Name="user_emcr_polygon" />
+</EntityRelationships>

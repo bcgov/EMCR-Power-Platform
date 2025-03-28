@@ -1,0 +1,34 @@
+function handleChangeTypeVisibility(executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    // Mapping of option values to section names
+    var sectionMap = {
+        717350000: "CurrentEMCRLocationData",
+        717350001: "CurrentLocation",
+        717350005: "CurrentWLRSRegion",
+        717350002: "CurrentEMCRLocationType",
+        717350004: "CurrentRegionalDistrict",
+        717350003: "CurrentEconomicDistrict",
+        717350006: "CurrentEMCRRegion"
+    };
+
+    var selectedValue = formContext.getAttribute("emcr_changetype").getValue();
+    var generalTab = formContext.ui.tabs.get("general");
+
+    if (!generalTab) {
+        console.error("General tab not found.");
+        return;
+    }
+
+    // Loop through each section in the map
+    Object.entries(sectionMap).forEach(function([value, sectionName]) {
+        var section = generalTab.sections.get(sectionName);
+        if (section) {
+            // Show only if value matches selected option, else hide
+            var shouldShow = selectedValue !== null && parseInt(value) === selectedValue;
+            section.setVisible(shouldShow);
+        } else {
+            console.warn("Section not found: " + sectionName);
+        }
+    });
+}

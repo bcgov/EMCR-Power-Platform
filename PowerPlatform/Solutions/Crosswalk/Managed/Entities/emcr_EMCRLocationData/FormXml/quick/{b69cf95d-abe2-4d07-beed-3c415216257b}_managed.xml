@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b69cf95d-abe2-4d07-beed-3c415216257b}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form maxWidth="400">
+      <tabs>
+        <tab id="{d2df79ad-4455-44c5-9f48-1a4d6d6820d3}" name="tab_1" showlabel="false">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section id="{0243d21b-60d0-4587-866f-2ce95d62949f}" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0">
+                  <labels>
+                    <label description="section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6d18be7a-80d6-9c0a-de45-7b3d0dac3044}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EMCR Location" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_emcrlocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_emcrlocation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3448aa3-9541-a3dd-615e-287789e275b1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Latitude" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_latitude" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="emcr_latitude" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7410cc04-1a83-5094-7cca-974b094a8cc4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Longitude" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_longitude" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="emcr_longitude" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5ece208d-8e2c-964b-4368-c3b4652d6eea}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="NRS Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_nrstype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_nrstype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b7b9ce19-9248-6067-1204-d942a8384519}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="GeoBC Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_geobctype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_geobctype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3ca31a3a-763c-b692-8a57-d5e6cb11a979}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Pass1 Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_pass1type" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_pass1type" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d787c6c8-89b6-6162-3e92-c0b69499ee60}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Pass2 Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_pass2type" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_pass2type" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ebd55131-2d04-ee54-846d-dc5ab824e078}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EMCR Type" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_emcrtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_emcrtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a41aab48-2e13-3059-cbb1-6d7bc7983533}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="EMCR Region" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_emcrregion" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_emcrregion" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ed5dde01-7084-2904-78e1-c484142a7e33}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="WLRS Region" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_wlrsregion" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_wlrsregion" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46067441-a003-7c00-55b4-0e270aeee815}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Regional District" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_regionaldistrict" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_regionaldistrict" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{23910ad7-214a-dad0-c748-1c9714156983}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Economic District" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_economicdistrict" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_economicdistrict" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5935aa91-87d6-6615-2ebd-8350ba8860d0}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="System Alias" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_systemalias" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_systemalias" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{de63dec3-244e-7954-647a-a5a92a0acca5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="1">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Current EMCR Location Data" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

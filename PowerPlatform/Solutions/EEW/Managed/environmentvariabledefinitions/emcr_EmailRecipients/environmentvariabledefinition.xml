@@ -1,0 +1,13 @@
+<environmentvariabledefinition schemaname="emcr_EmailRecipients">
+  <description default="List of Email Recipients">
+    <label description="List of Email Recipients" languagecode="1033" />
+  </description>
+  <displayname default="Core Email Recipients">
+    <label description="Core Email Recipients" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

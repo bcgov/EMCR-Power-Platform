@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{df842dfa-c17b-4850-9e5e-bc4cc51e1ff4}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_notificationhistoryid">
+          <cell name="emcr_name" width="100" />
+          <cell name="emcr_notificationtype" width="139" />
+          <cell name="emcr_event" width="100" />
+          <cell name="a_917f01d83e8840158c046fa8e19b50f5.emcr_type" width="114" />
+          <cell name="a_917f01d83e8840158c046fa8e19b50f5.statuscode" width="165" />
+          <cell name="a_917f01d83e8840158c046fa8e19b50f5.emcr_magnitude" width="147" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_notificationhistory">
+          <attribute name="emcr_notificationhistoryid" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_notificationtype" />
+          <link-entity alias="a_917f01d83e8840158c046fa8e19b50f5" name="emcr_alert" to="emcr_event" from="emcr_alertid" link-type="outer" visible="false">
+            <attribute name="emcr_type" />
+            <attribute name="statuscode" />
+            <attribute name="emcr_magnitude" />
+          </link-entity>
+          <attribute name="emcr_name" />
+          <attribute name="emcr_event" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Notification Histories" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

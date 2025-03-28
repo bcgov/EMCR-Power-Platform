@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{1820f53c-e1d6-4cb9-af44-2328ba070401}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_polygonid">
+          <cell name="emcr_event" width="100" />
+          <cell name="emcr_name" width="300" />
+          <cell name="emcr_contour" width="100" />
+          <cell name="emcr_mmiunits" width="104" />
+          <cell name="emcr_pgaunits" width="102" />
+          <cell name="emcr_pgvunits" width="102" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_polygon">
+          <attribute name="emcr_polygonid" />
+          <attribute name="emcr_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_contour" />
+          <attribute name="emcr_event" />
+          <attribute name="emcr_mmiunits" />
+          <attribute name="emcr_pgaunits" />
+          <attribute name="emcr_pgvunits" />
+          <order attribute="createdon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Polygons" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

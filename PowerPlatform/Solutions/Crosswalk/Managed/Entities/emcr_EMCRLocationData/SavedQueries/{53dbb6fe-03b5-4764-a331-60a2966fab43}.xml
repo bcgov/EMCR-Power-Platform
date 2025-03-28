@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{53dbb6fe-03b5-4764-a331-60a2966fab43}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_emcrlocationdataid">
+          <cell name="emcr_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="emcr_economicdistrict" width="100" />
+          <cell name="emcr_emcrlocation" width="100" />
+          <cell name="emcr_emcrregion" width="100" />
+          <cell name="emcr_emcrtype" width="100" />
+          <cell name="emcr_geobctype" width="100" />
+          <cell name="emcr_nrstype" width="100" />
+          <cell name="emcr_systemalias" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_emcrlocationdata">
+          <attribute name="emcr_name" />
+          <attribute name="createdon" />
+          <order attribute="emcr_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_systemalias" />
+          <attribute name="emcr_nrstype" />
+          <attribute name="emcr_geobctype" />
+          <attribute name="emcr_emcrtype" />
+          <attribute name="emcr_emcrregion" />
+          <attribute name="emcr_emcrlocation" />
+          <attribute name="emcr_economicdistrict" />
+          <attribute name="emcr_emcrlocationdataid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active EMCR Location Data" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

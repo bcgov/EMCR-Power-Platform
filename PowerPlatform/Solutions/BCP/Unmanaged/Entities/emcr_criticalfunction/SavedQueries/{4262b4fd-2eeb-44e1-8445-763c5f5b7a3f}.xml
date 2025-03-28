@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4262b4fd-2eeb-44e1-8445-763c5f5b7a3f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_criticalfunctionid">
+          <cell name="emcr_ministry" width="143" />
+          <cell name="emcr_branchdivision" width="154" />
+          <cell name="emcr_businessunit" width="158" />
+          <cell name="emcr_businessfunctions" width="158" />
+          <cell name="emcr_subfunctions" width="232" />
+          <cell name="emcr_supportingprocesses" width="300" />
+          <cell name="emcr_healthsafety" width="131" />
+          <cell name="emcr_servicedelivery" width="135" />
+          <cell name="emcr_legal" width="100" />
+          <cell name="emcr_financialimpacttogovt" width="183" />
+          <cell name="emcr_environment" width="114" />
+          <cell name="emcr_impactdescription" width="300" />
+          <cell name="emcr_rto" width="100" />
+          <cell name="emcr_functionpriority" width="137" />
+          <cell name="emcr_timeofgreatestimpact" width="177" />
+          <cell name="emcr_seasonalvulnerabilities" width="176" />
+          <cell name="emcr_whatitsystemsareneededtoforthisfunction" width="300" />
+          <cell name="emcr_whatcriticalsystemsareneededforthefunction" width="300" />
+          <cell name="emcr_criticalsystemsrtoforeachfunction" width="262" />
+          <cell name="emcr_arethesecriticalsystemsregisteredwithocio" width="300" />
+          <cell name="emcr_priority" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_criticalfunction">
+          <attribute name="emcr_criticalfunctionid" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_ministry" />
+          <attribute name="emcr_branchdivision" />
+          <attribute name="emcr_businessunit" />
+          <attribute name="emcr_subfunctions" />
+          <attribute name="emcr_supportingprocesses" />
+          <attribute name="emcr_healthsafety" />
+          <attribute name="emcr_servicedelivery" />
+          <attribute name="emcr_legal" />
+          <attribute name="emcr_financialimpacttogovt" />
+          <attribute name="emcr_environment" />
+          <attribute name="emcr_impactdescription" />
+          <attribute name="emcr_rto" />
+          <attribute name="emcr_functionpriority" />
+          <attribute name="emcr_timeofgreatestimpact" />
+          <attribute name="emcr_seasonalvulnerabilities" />
+          <attribute name="emcr_whatitsystemsareneededtoforthisfunction" />
+          <attribute name="emcr_whatcriticalsystemsareneededforthefunction" />
+          <attribute name="emcr_criticalsystemsrtoforeachfunction" />
+          <attribute name="emcr_arethesecriticalsystemsregisteredwithocio" />
+          <attribute name="emcr_priority" />
+          <attribute name="emcr_businessfunctions" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Critical Functions" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

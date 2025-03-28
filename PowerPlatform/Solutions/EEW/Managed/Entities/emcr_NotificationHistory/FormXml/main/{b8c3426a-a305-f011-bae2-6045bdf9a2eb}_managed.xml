@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b8c3426a-a305-f011-bae2-6045bdf9a2eb}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab name="NotificationDetails" id="76e41fb0-bd20-4d64-a847-327e4277812a" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Notification Details" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="NotificationDetails" id="352640a9-0234-4984-b6e3-0d189e43ceb7" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Notification Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{b90f259d-f747-40f7-91fd-5879c4210a2c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_name" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{eb0655eb-e376-47e6-812f-b43ec87799ea}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_notificationtype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_notificationtype" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{42ac9e0a-4afc-4195-bfc9-94c32afd51d0}" locklevel="0" colspan="1" rowspan="15">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_notificationcontent" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_notificationcontent" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{aaac4d46-fcef-4f0d-a0ca-0269e4986b00}" locklevel="0" colspan="1" rowspan="4">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_recipients" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_recipients" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{d9353a65-5a3e-4cdf-8f4e-71f3c2cbfad4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="EventDetails" id="d55753f5-4cb8-43ef-9afc-e90e706a2a69" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Event Details" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="EventDetails" id="31eeea46-036d-42be-9a75-8f006e727fca" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Event Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{c983d5dc-9824-420a-9900-b7179145ec29}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_event" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_event" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{954791e9-46a6-4a60-a886-f018ad7c17b4}" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="EventQuickView" languagecode="1033" />
+                        </labels>
+                        <control id="EventQuickView" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="emcr_event">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="emcr_alert"&gt;2c0bc630-a305-f011-bae2-6045bdf9a2eb&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{5c15773e-8c26-4ca8-b1b5-df7242b26c79}" IsUserDefined="1" labelid="{f408e518-32b2-41c7-a056-fb43d8275e48}" name="Administration" visible="false">
+          <labels>
+            <label description="Administration" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{afc961ad-2554-411e-ad37-96a37debe3c5}" labelid="{01050812-4fa3-4678-92f8-9e55e6e96d17}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{13abbd52-0aeb-4813-a478-d4259bf3ea8e}" labelid="{b75808b9-6428-4db5-a6aa-f4c8064116be}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{36b15dee-ff34-408b-99a3-0625f02a87d5}" labelid="{13d651d2-57c5-418e-8ee6-d7589ea11721}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{287c0d28-6440-4d58-a948-c841118e29eb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{11492aec-f3e6-45f7-a604-01bdd1685214}" showlabel="false" labelid="{e1e6a5a7-0317-477e-bae0-8f78e1c9f1ee}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e3c95524-b839-4e20-b2ad-7ca693cc650a}" showlabel="false" labelid="{bf20f56f-8691-4b3c-b833-c63f6ceffcdb}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{951df41d-9d57-4176-acb2-0b2034bfdb11}" showlabel="false" labelid="{16c859d6-231f-4b36-bffc-c34065ad6b4b}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{b6299a53-ad69-490a-b1b5-ee0258864eda}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9084121e-af05-420f-bdbf-7e4203aa290b}" showlabel="false" labelid="{66117011-c65a-4051-a7c8-24b71d60e925}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ac5e0b7e-a2d2-4127-9863-b1f5650cf07f}" showlabel="false" labelid="{1e13291a-3b0b-4e3b-8011-7caeb78c93b3}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{620c01e9-3354-46a8-8b3d-e357dd8fca91}" showlabel="false" labelid="{47669848-0596-4f5f-8a2d-c4d86d66bf16}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="1" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Notification History main form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

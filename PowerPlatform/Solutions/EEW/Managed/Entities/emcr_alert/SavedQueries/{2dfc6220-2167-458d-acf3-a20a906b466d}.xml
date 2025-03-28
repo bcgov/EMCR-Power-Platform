@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{2dfc6220-2167-458d-acf3-a20a906b466d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_alertid">
+          <cell name="emcr_name" width="75" />
+          <cell name="emcr_eventid" width="100" />
+          <cell name="emcr_version" width="64" />
+          <cell name="emcr_topic" width="100" />
+          <cell name="emcr_type" width="65" />
+          <cell name="emcr_magnitude" width="89" />
+          <cell name="emcr_latitude" width="77" />
+          <cell name="emcr_longitude" width="100" />
+          <cell name="emcr_originaltimeunitsutc" width="194" />
+          <cell name="emcr_likelihood" width="102" />
+          <cell name="emcr_publicalert" width="109" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_alert">
+          <attribute name="emcr_alertid" />
+          <attribute name="emcr_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_magnitude" />
+          <order attribute="emcr_name" descending="true" />
+          <attribute name="emcr_latitude" />
+          <attribute name="emcr_longitude" />
+          <attribute name="emcr_originaltimeunitsutc" />
+          <attribute name="emcr_type" />
+          <attribute name="emcr_likelihood" />
+          <attribute name="emcr_topic" />
+          <attribute name="emcr_publicalert" />
+          <attribute name="emcr_eventid" />
+          <attribute name="emcr_version" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Events" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

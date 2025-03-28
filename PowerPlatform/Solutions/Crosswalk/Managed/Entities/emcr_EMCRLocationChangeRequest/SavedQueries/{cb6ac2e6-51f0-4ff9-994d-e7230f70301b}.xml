@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{cb6ac2e6-51f0-4ff9-994d-e7230f70301b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_emcrlocationchangerequestid">
+          <cell name="emcr_name" width="200" />
+          <cell name="emcr_approved" width="88" />
+          <cell name="emcr_changerequest" width="132" />
+          <cell name="emcr_changetype" width="115" />
+          <cell name="emcr_revieweddate" width="126" />
+          <cell name="emcr_reviewedby" width="116" />
+          <cell name="emcr_submittedby" width="118" />
+          <cell name="emcr_submitteddate" width="128" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="emcr_emcrlocationchangerequest">
+          <attribute name="emcr_emcrlocationchangerequestid" />
+          <attribute name="emcr_name" />
+          <attribute name="createdon" />
+          <order attribute="emcr_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="emcr_approved" />
+          <attribute name="emcr_changerequest" />
+          <attribute name="emcr_changetype" />
+          <attribute name="emcr_revieweddate" />
+          <attribute name="emcr_reviewedby" />
+          <attribute name="emcr_submittedby" />
+          <attribute name="emcr_submitteddate" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active EMCR Location Change Requests" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

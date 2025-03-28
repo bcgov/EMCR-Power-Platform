@@ -1,0 +1,34 @@
+name: Deploy D365 Solution
+
+on:
+  workflow_dispatch:
+    inputs:
+      solution-name:
+        description: "Solution Name"
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build D365 Solution
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pack Solution from Unpacked Files
+        run: |
+          # Set variables
+          SOLUTION_NAME=${{ inputs.solution-name }}
+          SOLUTION_DIR=./PowerPlatform/Solutions/${SOLUTION_NAME}/Unmanaged
+          OUTPUT_FILE=./artifacts/${SOLUTION_NAME}.zip
+
+          # Pack solution using pac command (assuming the unpacked files are in the solution directory)
+          pac solution pack --path $SOLUTION_DIR --zipfile $OUTPUT_FILE --managed false
+
+      - name: Upload Solution Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: d365-solution
+          path: ./artifacts/${{ inputs.solution-name }}.zip

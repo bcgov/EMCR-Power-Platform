@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{0dce84d0-7506-f011-bae2-6045bdfa0ad3}</WebResourceId>
+  <Name>emcr_changetypehandler</Name>
+  <DisplayName>Change Type Handler</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/emcr_changetypehandler0DCE84D0-7506-F011-BAE2-6045BDFA0AD3</FileName>
+</WebResource>

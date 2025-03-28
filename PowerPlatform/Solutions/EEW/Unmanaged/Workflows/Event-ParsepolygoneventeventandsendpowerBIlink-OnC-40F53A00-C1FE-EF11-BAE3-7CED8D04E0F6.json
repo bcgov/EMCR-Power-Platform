@@ -1,0 +1,986 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_EmcrAppsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_EmcrAppsOutlook"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_teams_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_EmcrAppsMSTeams"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Polygon Message Text (emcr_PolygonMessageText)": {
+          "defaultValue": "We would like to inform you that an earthquake has recently occurred in British Columbia. This email provides a detailed Polygon Report that outlines the affected area. It contains the geospatial data necessary for assessing the extent of the impact and coordinating response efforts. Earthquake Details:",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_PolygonMessageText"
+          }
+        },
+        "Polygon Email Recipients (emcr_PolygonEmailRecipients)": {
+          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_PolygonEmailRecipients"
+          }
+        },
+        "PowerBI report URL (emcr_PowerBIreportURL)": {
+          "defaultValue": "https://app.powerbi.com/groups/651e9cbc-9565-457e-8465-a8d27917fcb4/reports/a96ff2ae-682a-4dd7-ad44-58142a4ba5c3/e78e2075ce84dda32c5e?experience=power-bi",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_PowerBIreportURL"
+          }
+        },
+        "Polygon Teams Recipients (emcr_PolygonTeamsRecipients)": {
+          "defaultValue": "EEW EarthQuake Teams Alerts Test,EEW EarthQuake alert group 2",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_PolygonTeamsRecipients"
+          }
+        },
+        "Polygon Email Subject Line (emcr_PolygonEmailSubjectLine)": {
+          "defaultValue": "Test Polygon EEW Alert - not real",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_PolygonEmailSubjectLine"
+          }
+        }
+      },
+      "triggers": {
+        "When_a_polygon_alert_is_created": {
+          "metadata": {
+            "operationMetadataId": "2f31e98c-8b71-47b3-b1e8-c7659aecdd27"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "emcr_alert",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "(emcr_topic eq 'eew/sys/gm-contour/data' and emcr_arepolygonscreated eq false)",
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_Array_Formatted_Coordinates": {
+          "runAfter": {
+            "Initialize_MMI_4_or_greater": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "23c91ca6-ae31-43e5-9e26-b23caa30af3a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FormattedCoordinates",
+                "type": "array",
+                "value": "@null"
+              }
+            ]
+          }
+        },
+        "Event_XML": {
+          "runAfter": {
+            "Initialize_Public_Alert_Issued": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a7d59020-8c83-459d-9a95-74469cf8b59b"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()?['body/emcr_message']"
+        },
+        "Read_Contours": {
+          "runAfter": {
+            "PowerBIURL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6298ee89-7c66-418d-b3cf-706edbf1bcd3"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), '/event_message/gm_info/gmcontour_pred/contour')"
+        },
+        "Apply_to_each_Contour_Node": {
+          "foreach": "@outputs('Read_Contours')",
+          "actions": {
+            "Read_Polygon_Information": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "411b3d69-48e5-4750-85e1-280c73404916"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(xml(item()),'string(contour/polygon)')"
+            },
+            "Get_MMI": {
+              "runAfter": {
+                "Read_Polygon_Information": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "42a8ac5b-8fd1-4282-a8b3-7beea2f1a672"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(xml(item()),'number(contour/MMI)')"
+            },
+            "Get_PGA": {
+              "runAfter": {
+                "Is_MMI_greater_than_4": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5ec3a7e9-b8ff-4a79-b22d-f9b64805aa3b"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(xml(item()),'string(contour/PGA)')"
+            },
+            "Get_PGV": {
+              "runAfter": {
+                "Get_PGA": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "04bcce3b-06bb-40e8-9616-33ca864f46ef"
+              },
+              "type": "Compose",
+              "inputs": "@xpath(xml(item()),'string(contour/PGV)')"
+            },
+            "Split_Polygon": {
+              "runAfter": {
+                "Get_PGV": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c555bd72-4186-4da7-b43a-8c0ecc01034b"
+              },
+              "type": "Compose",
+              "inputs": "@split(outputs('Read_Polygon_Information'),' ')"
+            },
+            "Set_FormattedCoordinates_to_NULL": {
+              "runAfter": {
+                "Increment_Polygon_Number": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d9165f86-f6af-4673-a621-292c64e0e276"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "FormattedCoordinates",
+                "value": "@null"
+              }
+            },
+            "Apply_to_each_coordinate": {
+              "foreach": "@outputs('Split_Polygon')",
+              "actions": {
+                "Reversed_Location": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "3c794066-9f15-4624-9a8c-c03d0d13520b"
+                  },
+                  "type": "Compose",
+                  "inputs": "@concat(\r\n  split(string(item()), ',')[1],\r\n  ',',\r\n  split(string(item()), ',')[0]\r\n)"
+                },
+                "Append_to_FormattedCoordinates": {
+                  "runAfter": {
+                    "Reversed_Location": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "1b7a4b09-d2d1-4604-a0e0-378e8f4f070a"
+                  },
+                  "type": "AppendToArrayVariable",
+                  "inputs": {
+                    "name": "FormattedCoordinates",
+                    "value": "@outputs('Reversed_Location')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_FormattedCoordinates_to_NULL": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7108c232-4a88-4ede-ac8b-45d6f24cbbef"
+              },
+              "type": "Foreach"
+            },
+            "Compose_ESRI_JSON": {
+              "runAfter": {
+                "Apply_to_each_coordinate": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fd536970-5aa7-413f-9b93-2f0c4c753e1a"
+              },
+              "type": "Compose",
+              "inputs": "@concat(\r\n  '{\"rings\":[[[',\r\n  join(variables('FormattedCoordinates'), '],['),\r\n  ']]]}'\r\n)\r\n"
+            },
+            "Create_polygon_record_in_Dataverse": {
+              "runAfter": {
+                "Compose_ESRI_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a2f1c350-db82-42fb-917b-93931882ddd3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_polygons",
+                  "item/emcr_contour": "@variables('PolygonNumber')",
+                  "item/emcr_esrijson": "@outputs('Compose_ESRI_JSON')",
+                  "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
+                  "item/emcr_mmiunits": "@outputs('Get_MMI')",
+                  "item/emcr_name": "@{triggerOutputs()?['body/emcr_name']}-  Polygon - @{variables('PolygonNumber')}",
+                  "item/emcr_pgaunits": "@outputs('Get_PGA')",
+                  "item/emcr_pgvunits": "@outputs('Get_PGV')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Increment_Polygon_Number": {
+              "runAfter": {
+                "Split_Polygon": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "052214b3-edab-4bbe-a400-7687bd4f422b"
+              },
+              "type": "IncrementVariable",
+              "inputs": {
+                "name": "PolygonNumber",
+                "value": 1
+              }
+            },
+            "Is_MMI_greater_than_4": {
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "a644dada-ad11-4683-9f65-0bbfe2ad7f4f"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "MMI 4 or greater",
+                    "value": "@true"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_MMI": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "and": [
+                  {
+                    "greaterOrEquals": [
+                      "@outputs('Get_MMI')",
+                      4
+                    ]
+                  },
+                  {
+                    "equals": [
+                      "@variables('MMI 4 or greater')",
+                      "@false"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3c1c1b40-b79f-433c-b86d-1bd242350a1d"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Read_Contours": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "af56403b-1bb0-4cff-871e-dfef39769264"
+          },
+          "type": "Foreach",
+          "runtimeConfiguration": {
+            "concurrency": {
+              "repetitions": 1
+            }
+          }
+        },
+        "Initialize_Polygon_Number": {
+          "runAfter": {
+            "Initialize_Array_Formatted_Coordinates": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "97605653-193d-4ee5-8e19-8c4e03af4f5c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PolygonNumber",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Set_Public_Alert": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "203460f1-4130-4b42-b20b-802e95c4ed1b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_1",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@parameters('Polygon Email Recipients (emcr_PolygonEmailRecipients)')",
+              "emailMessage/Subject": "@{triggerOutputs()?['body/emcr_name']}   @{parameters('Polygon Email Subject Line (emcr_PolygonEmailSubjectLine)')}",
+              "emailMessage/Body": "<p>@{parameters('Polygon Message Text (emcr_PolygonMessageText)')}<br>\n<br>\nEarthquake Details:<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPublic Alert issued = @{variables('Public Alert')}<br>\nAlert Status =@{if(equals(triggerOutputs()?['body/statuscode'], '1'), 'New', 'Update')}<br>\nOrigin Time= @{outputs('OriginTime')}+/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/-@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = &nbsp;@{outputs('Latitude')}&amp;nbsp;+/- @{outputs('Latitude_Uncertainty')}<br>\nLongitude = &nbsp;@{outputs('Longitude')}+/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<br>\n<br>\nPlease find powerBI report here: <a href=\"&lt;object custom=\"></a><a href=\"@{outputs('PowerBIURL')}\">EEW Polygon Report</a><br>\n<br>\nEEW Alerts Team&nbsp;</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Add_Notification_History_for_Email": {
+          "runAfter": {
+            "Apply_to_each_recipient": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0494c015-f988-4eb9-8a89-f59d7d358baf"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emcr_notificationhistories",
+              "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
+              "item/emcr_name": "Email for @{triggerOutputs()?['body/emcr_name']}",
+              "item/emcr_notificationcontent": "<p>@{parameters('Polygon Message Text (emcr_PolygonMessageText)')}<br>\n<br>\nEarthquake Details:<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPublic Alert issued = @{variables('Public Alert')}<br>\nAlert Status =@{if(equals(triggerOutputs()?['body/statuscode'], '1'), 'New', 'Update')}<br>\nOrigin Time= @{outputs('OriginTime')}+/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/-@{outputs('Magnitude_Uncertainty')} <br>\nLatitude = &nbsp;@{outputs('Latitude')}&amp;nbsp;+/- @{outputs('Latitude_Uncertainty')}<br>\nLongitude = &nbsp;@{outputs('Longitude')}+/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<br>\n<br>\nPlease find powerBI report here: <a href=\"&lt;object custom=\"></a><a href=\"@{outputs('PowerBIURL')}\">EEW Polygon Report</a><br>\n<br>\nEEW Alerts Team</p>",
+              "item/emcr_notificationtype": 717350000,
+              "item/emcr_recipients": "@parameters('Polygon Email Recipients (emcr_PolygonEmailRecipients)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Add_Notification_History_for_Teams": {
+          "runAfter": {
+            "Add_Notification_History_for_Email": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ff3d83e4-e57b-4029-b249-24594109d640"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emcr_notificationhistories",
+              "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
+              "item/emcr_name": "Teams polygon report for @{triggerOutputs()?['body/emcr_name']}",
+              "item/emcr_notificationcontent": "<p>@{parameters('Polygon Message Text (emcr_PolygonMessageText)')}<br>\n<br>\nEarthquake Details:<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPublic Alert issued = @{variables('Public Alert')}<br>\nAlert Status =@{if(equals(triggerOutputs()?['body/statuscode'], '1'), 'New', 'Update')}<br>\nOrigin Time= @{outputs('OriginTime')}+/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/-@{outputs('Magnitude_Uncertainty')} <br>\nLatitude = &nbsp;@{outputs('Latitude')}&amp;nbsp;+/- @{outputs('Latitude_Uncertainty')}<br>\nLongitude = &nbsp;@{outputs('Longitude')}+/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<br>\n<br>\nPlease find powerBI report here: <a href=\"&lt;object custom=\"></a><a href=\"@{outputs('PowerBIURL')}\">EEW Polygon Report</a><br>\n<br>\nEEW Alerts Team</p>",
+              "item/emcr_notificationtype": 717350001,
+              "item/emcr_recipients": "@parameters('Polygon Teams Recipients (emcr_PolygonTeamsRecipients)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_MMI_4_or_greater": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "b86bee3e-6987-40a9-9cdb-29a43c62606a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "MMI 4 or greater",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Set_Public_Alert": {
+          "actions": {
+            "Set_public_Alert_issued_to_Yes_and_save_to_Dynamics": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f7401c5a-a994-404d-8319-3eb89d468334"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_alerts",
+                  "recordId": "@triggerOutputs()?['body/emcr_alertid']",
+                  "item/emcr_arepolygonscreated": true,
+                  "item/emcr_category": "@outputs('Dynamics_Alert_Category')",
+                  "item/emcr_depthuncertaintyunitskm": "@outputs('Depth_Uncertainty')",
+                  "item/emcr_depthunitskm": "@outputs('Depth')",
+                  "item/emcr_latitude": "@outputs('Latitude')",
+                  "item/emcr_latitudeuncertainty": "@outputs('Latitude_Uncertainty')",
+                  "item/emcr_likelihood": "@outputs('Likelihood')",
+                  "item/emcr_longitude": "@outputs('Longitude')",
+                  "item/emcr_longitudeuncertainty": "@outputs('Longitude_Uncertainty')",
+                  "item/emcr_magnitude": "@outputs('Magnitude')",
+                  "item/emcr_magnitudeuncertainty": "@outputs('Magnitude_Uncertainty')",
+                  "item/emcr_timestamp": "@outputs('TimeStamp')",
+                  "item/emcr_numberstations": "@outputs('Number_Of_Stations')",
+                  "item/emcr_originaltimeuncertaintyunitssec": "@outputs('OriginTime_Uncertainty')",
+                  "item/emcr_originaltimeunitsutc": "@outputs('OriginTime')",
+                  "item/emcr_polygonurl": "@outputs('PowerBIURL')",
+                  "item/emcr_publicalert": 717350000,
+                  "item/statuscode": "@outputs('Message_Type_Status_Reason')",
+                  "item/emcr_type": 717350000
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Likely_Issued": {
+              "runAfter": {
+                "Set_public_Alert_issued_to_Yes_and_save_to_Dynamics": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fa55275d-80d1-4fd1-af7e-1aba72ae77a2"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Public Alert",
+                "value": "Likely Issued - [Magnitude ≥ 5 and MMI ≥ IV]"
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each_Contour_Node": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_public_Alert_issued_to_No_and_save_to_Dynamics": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "f4217db2-3582-426d-b6b9-4db46c54fcce"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "emcr_alerts",
+                    "recordId": "@triggerOutputs()?['body/emcr_alertid']",
+                    "item/emcr_arepolygonscreated": true,
+                    "item/emcr_category": "@outputs('Dynamics_Alert_Category')",
+                    "item/emcr_depthuncertaintyunitskm": "@outputs('Depth_Uncertainty')",
+                    "item/emcr_depthunitskm": "@outputs('Depth')",
+                    "item/emcr_latitude": "@outputs('Latitude')",
+                    "item/emcr_latitudeuncertainty": "@outputs('Latitude_Uncertainty')",
+                    "item/emcr_likelihood": "@outputs('Likelihood')",
+                    "item/emcr_longitude": "@outputs('Longitude')",
+                    "item/emcr_longitudeuncertainty": "@outputs('Longitude_Uncertainty')",
+                    "item/emcr_magnitude": "@outputs('Magnitude')",
+                    "item/emcr_magnitudeuncertainty": "@outputs('Magnitude_Uncertainty')",
+                    "item/emcr_timestamp": "@outputs('TimeStamp')",
+                    "item/emcr_numberstations": "@outputs('Number_Of_Stations')",
+                    "item/emcr_originaltimeuncertaintyunitssec": "@outputs('OriginTime_Uncertainty')",
+                    "item/emcr_originaltimeunitsutc": "@outputs('OriginTime')",
+                    "item/emcr_polygonurl": "@outputs('PowerBIURL')",
+                    "item/emcr_publicalert": 717350001,
+                    "item/emcr_type": 717350000
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Likely_Not_Issued": {
+                "runAfter": {
+                  "Set_public_Alert_issued_to_No_and_save_to_Dynamics": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "a3652ab2-7316-47c0-88d7-e76a8ce516e8"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "Public Alert",
+                  "value": "Likely Not Issued - [5 > Magnitude ≥ 4 and MMI ≥ III]"
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "greaterOrEquals": [
+                  "@outputs('Magnitude')",
+                  5
+                ]
+              },
+              {
+                "equals": [
+                  "@variables('MMI 4 or greater')",
+                  "@true"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "51417da1-0562-48aa-abda-955a5fe41f1d"
+          },
+          "type": "If"
+        },
+        "Magnitude": {
+          "runAfter": {
+            "Message_Type_Status_Reason": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "053e68c1-d945-4ca3-ba12-bc64a93172a1"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/mag)')"
+        },
+        "Initialize_Public_Alert_Issued": {
+          "runAfter": {
+            "Initialize_Polygon_Number": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9908cd4e-4dfe-4047-b9e1-87a93751aa9e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Public Alert",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Alert_Category": {
+          "runAfter": {
+            "Event_XML": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "52b9e100-a534-4c52-9fb7-897b32f07d9a"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)')\r\n"
+        },
+        "Version": {
+          "runAfter": {
+            "Dynamics_Alert_Category": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "78816df9-e0f4-4aaa-9142-ea2acc439607"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/@version)')\r\n"
+        },
+        "Message_Type_Status_Reason": {
+          "runAfter": {
+            "Version": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d77ee572-f281-44d1-b8c3-3645cd55800c"
+          },
+          "type": "Compose",
+          "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'new'), 1, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'update'), 717350001, null))"
+        },
+        "Magnitude_Uncertainty": {
+          "runAfter": {
+            "Magnitude": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5bc728f5-e2d1-4489-a63a-e4ff2c8c62b2"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/mag_uncer)')"
+        },
+        "Latitude": {
+          "runAfter": {
+            "Magnitude_Uncertainty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e6a9fc1d-4f57-494d-aa0b-385d72dd8a72"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat)')"
+        },
+        "Latitude_Uncertainty": {
+          "runAfter": {
+            "Latitude": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9a6ba3f7-b4af-447f-8903-e93933bfaec9"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat_uncer)')"
+        },
+        "Longitude": {
+          "runAfter": {
+            "Latitude_Uncertainty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f6fb7ea6-783e-4f6f-a9be-22c9440ba6b7"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon)')"
+        },
+        "Longitude_Uncertainty": {
+          "runAfter": {
+            "Longitude": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "abb86303-71c3-427a-9374-a2c9fa26f009"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon_uncer)')"
+        },
+        "Depth": {
+          "runAfter": {
+            "Longitude_Uncertainty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fbca8f21-3a93-4ce0-a5d6-600658e5024f"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth)')"
+        },
+        "Depth_Uncertainty": {
+          "runAfter": {
+            "Depth": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d56f8f84-2cb1-426f-aaaa-77fb76b32086"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth_uncer)')"
+        },
+        "OriginTime": {
+          "runAfter": {
+            "Depth_Uncertainty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d4f590fb-a994-4571-b0e9-6a5be88affdf"
+          },
+          "type": "Compose",
+          "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/orig_time)'), 'yyyy-MM-dd hh:mm tt')\r\n"
+        },
+        "OriginTime_Uncertainty": {
+          "runAfter": {
+            "OriginTime": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "55fea9b3-998b-4a9f-9893-afba97392451"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/orig_time_uncer)')"
+        },
+        "Likelihood": {
+          "runAfter": {
+            "OriginTime_Uncertainty": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2410a851-5dbe-4ae7-8c1b-208349405594"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/likelihood)')"
+        },
+        "Number_Of_Stations": {
+          "runAfter": {
+            "Likelihood": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "79bff160-5884-4f5f-a401-23d47d9f3f2e"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/num_stations)')"
+        },
+        "Alert_Status": {
+          "runAfter": {
+            "Number_Of_Stations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8ca87959-c224-436b-9b21-5da187a38703"
+          },
+          "type": "Compose",
+          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)')"
+        },
+        "TimeStamp": {
+          "runAfter": {
+            "Alert_Status": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7de581ce-3bde-4132-b387-1a4999c48577"
+          },
+          "type": "Compose",
+          "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/@timestamp)'), 'yyyy-MM-dd hh:mm tt')\r\n"
+        },
+        "Dynamics_Alert_Category": {
+          "runAfter": {
+            "Alert_Category": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "aa6c30b6-98bd-4679-94ea-c38eca74b0da"
+          },
+          "type": "Compose",
+          "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'live'), 717350000, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'test'), 717350001, null))"
+        },
+        "Get_PolyGon_Teams_recipients": {
+          "runAfter": {
+            "Send_an_email_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "75f0ca2c-6378-443b-ad6e-bb597af98a02"
+          },
+          "type": "Compose",
+          "inputs": "@parameters('Polygon Teams Recipients (emcr_PolygonTeamsRecipients)')"
+        },
+        "Teams_Recipients_Array": {
+          "runAfter": {
+            "Get_PolyGon_Teams_recipients": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "71926a88-d982-45a1-abd9-faf43b76601f"
+          },
+          "type": "Compose",
+          "inputs": "@split(outputs('Get_Polygon_Teams_recipients'), ',')"
+        },
+        "List_chats": {
+          "runAfter": {
+            "Teams_Recipients_Array": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f92cb11c-401f-4aca-8dee-1540b3e16e86"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams_1",
+              "operationId": "GetChats",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "chatType": "group",
+              "topic": "all"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_recipient": {
+          "foreach": "@outputs('Teams_Recipients_Array')",
+          "actions": {
+            "Filter_array": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c97a80aa-e95b-4b71-8bfd-48d0dca82541"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@outputs('List_chats')?['body/value']",
+                "where": "@equals(item()?['topic'], items('Apply_to_each_recipient'))"
+              }
+            },
+            "Compose_chatID": {
+              "runAfter": {
+                "Filter_array": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9faf78a8-1091-4934-9dd3-3aa41b47e974"
+              },
+              "type": "Compose",
+              "inputs": "@first(body('Filter_Array'))['Id']"
+            },
+            "Post_polygon_message_to_current_chat": {
+              "runAfter": {
+                "Compose_chatID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cae90eb8-da23-47c0-a167-1ea6b37d610e"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_teams_1",
+                  "operationId": "PostMessageToConversation",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                },
+                "parameters": {
+                  "poster": "User",
+                  "location": "Group chat",
+                  "body/recipient": "@outputs('Compose_chatID')",
+                  "body/messageBody": "<p>@{parameters('Polygon Message Text (emcr_PolygonMessageText)')}<br>\n<br>\nEarthquake Details:<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPublic Alert issued = @{variables('Public Alert')}<br>\nAlert Status =@{if(equals(triggerOutputs()?['body/statuscode'], '1'), 'New', 'Update')}<br>\nOrigin Time= @{outputs('OriginTime')}+/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/-@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = &nbsp;@{outputs('Latitude')}&amp;nbsp;+/- @{outputs('Latitude_Uncertainty')}<br>\nLongitude = &nbsp;@{outputs('Longitude')}+/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<br>\n<br>\nPlease find powerBI report here: <a href=\"&lt;object custom=\"></a><a href=\"@{outputs('PowerBIURL')}\">EEW Polygon Report</a><br>\n<br>\nEEW Alerts Team&nbsp;</p>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_chats": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2d90db71-7338-447d-a364-7a61afcc12e2"
+          },
+          "type": "Foreach"
+        },
+        "PowerBIURL": {
+          "runAfter": {
+            "TimeStamp": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6795218f-886d-4b6a-aebd-ce8e8fd88836"
+          },
+          "type": "Compose",
+          "inputs": "@concat(parameters('PowerBI report URL (emcr_PowerBIreportURL)'), '&filter=emcr_polygon%2Femcr_event%20eq%20%27', string(triggerOutputs()?['body/emcr_alertid']), '%27')"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
