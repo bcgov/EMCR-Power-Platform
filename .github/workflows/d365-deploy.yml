@@ -15,9 +15,14 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install Power Platform CLI
+    - name: Install .NET SDK 6.0 and Power Platform CLI
       run: |
-        # Install .NET SDK (Power Platform CLI requires it)
+        # Add the Microsoft package repository for .NET SDK
+        sudo apt-get update
+        sudo apt-get install -y wget apt-transport-https software-properties-common
+        wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
+        sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+        sudo apt-get update
         sudo apt-get install -y dotnet-sdk-6.0
 
         # Install the Power Platform CLI (pac)
