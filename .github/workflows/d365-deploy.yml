@@ -18,15 +18,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Pack Solution from Unpacked Files
+        shell: pwsh
         run: |
-          echo "Getting source files..."
+          $solutionDir = "./PowerPlatform/Solutions/${{ inputs.solution-name }}/Unmanaged"
+          $outputFile = "./artifacts/${{ inputs.solution-name }}.zip"
 
-          SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}/Unmanaged
-          OUTPUT_FILE=./artifacts/${{ inputs.solution-name }}.zip
+          if (-Not (Test-Path -Path $solutionDir -PathType Container)) {
+            Write-Host "Error: Solution directory not found: $solutionDir"
+            exit 1
+          }
 
-          echo "Packing solution..."
-          pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed false
-
+          Write-Host "Packing solution..."
+          pac solution pack --path $solutionDir --zipfile $outputFile --managed false
 
       - name: Upload Solution Artifact
         uses: actions/upload-artifact@v4
