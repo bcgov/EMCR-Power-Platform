@@ -1,38 +1,36 @@
-name: Deploy D365 Solution
+name: Pack Power Platform Solution
 
 on:
   workflow_dispatch:
     inputs:
       solution-name:
-        description: "Solution Name"
+        description: 'Name of the solution'
         required: true
-        type: string
 
 jobs:
   build:
-    name: Build D365 Solution
-    runs-on: windows-latest
+    runs-on: ubuntu-latest 
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Pack Solution from Unpacked Files
-        shell: pwsh
-        run: |
-          $solutionDir = "./PowerPlatform/Solutions/${{ inputs.solution-name }}/Unmanaged"
-          $outputFile = "./artifacts/${{ inputs.solution-name }}.zip"
+    - name: Install Power Platform CLI
+      run: |
+        npm install -g pac-cli
 
-          if (-Not (Test-Path -Path $solutionDir -PathType Container)) {
-            Write-Host "Error: Solution directory not found: $solutionDir"
-            exit 1
-          }
+    - name: Pack Solution from Unpacked Files
+      shell: bash
+      run: |
+        set -e  # Exit on error
 
-          Write-Host "Packing solution..."
-          pac solution pack --path $solutionDir --zipfile $outputFile --managed false
+        SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}/Managed
+        OUTPUT_FILE=./artifacts/${{ inputs.solution-name }}.zip
 
-      - name: Upload Solution Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: d365-solution
-          path: ./artifacts/${{ inputs.solution-name }}.zip
+        if [ ! -d "$SOLUTION_DIR" ]; then
+          echo "Error: Solution directory not found: $SOLUTION_DIR"
+          exit 1
+        fi
+
+        echo "Packing solution..."
+        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed true
