@@ -17,14 +17,21 @@ jobs:
 
     - name: Install Power Platform CLI
       run: |
+        # Install .NET SDK (Power Platform CLI requires it)
+        sudo apt-get install -y dotnet-sdk-6.0
+
+        # Install the Power Platform CLI (pac)
         npm install -g pac-cli
 
-    - name: Pack Solution Files
+        # Verify installation of pac CLI
+        pac --version  # This should show the version if it's installed correctly
+
+    - name: Pack Solution from Files
       shell: bash
       run: |
         set -e  # Exit on error
 
-        SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}/Managed
+        SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}Managed
         OUTPUT_FILE=./artifacts/${{ inputs.solution-name }}.zip
 
         if [ ! -d "$SOLUTION_DIR" ]; then
@@ -33,7 +40,7 @@ jobs:
         fi
 
         echo "Packing solution..."
-        pac solution pack --folder "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE"
+        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed false
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
