@@ -34,3 +34,44 @@ jobs:
 
         echo "Packing solution..."
         pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed true
+
+    - name: Upload Solution Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: solution-zip
+        path: ./artifacts/${{ inputs.solution-name }}.zip
+
+
+  deploy:
+    name: Deploy - EMCR-UAT
+    runs-on: ubuntu-latest
+    needs: build
+    environment: EMCR-UAT
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Download Solution Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: solution-zip
+        path: ./artifacts
+
+    - name: Authenticate with Power Platform
+      env:
+        ENV_URL: ${{ vars.PP_ENV_URL }}              
+        APP_ID: ${{ vars.PP_APP_ID }}              
+        TENANT_ID: ${{ vars.PP_TENANT_ID }}        
+      run: |
+        pac auth create \
+          --url "$ENV_URL" \
+          --applicationId "$APP_ID" \
+          --clientSecret "${{ secrets.PP_CLIENT_SECRET }}" \
+          --tenant "$TENANT_ID"
+
+    - name: Deploy Solution
+      run: |
+        pac solution import \
+          --path "./artifacts/${{ inputs.solution-name }}.zip" \
+          --async true \
+          --max-async-wait 60
