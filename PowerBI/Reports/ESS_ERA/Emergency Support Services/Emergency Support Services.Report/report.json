@@ -1,0 +1,120 @@
+{
+  "config": "{\"version\":\"5.40\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY22SU11\",\"version\":\"5.40\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"allowChangeFilterTypes\":true,\"useEnhancedTooltips\":true,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "BC_EMCR_H_RGB_Rev_copy030680670220433193.png",
+            "path": "BC_EMCR_H_RGB_Rev_copy030680670220433193.png",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY22SU11",
+            "path": "BaseThemes/CY22SU11.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#003366'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0ca7779fdace29c07ad6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":7000,\"width\":351.219512195122,\"height\":100.09756097560977,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"BC_EMCR_H_RGB_Rev_copy030680670220433193.png\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 100.10,
+          "width": 351.22,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"2eba6a2ce88d2cd10e6f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":350.7917174177832,\"y\":0,\"z\":6000,\"width\":799.8051157125457,\"height\":92.08282582216809,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"ESS by Community\",\"textStyle\":{\"fontSize\":\"28pt\",\"color\":\"#ffffff\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 92.08,
+          "width": 799.81,
+          "x": 350.79,
+          "y": 0.00,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"5ec46af0443df92d0be7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":12.634776006074413,\"y\":105.93773728170085,\"z\":4000,\"width\":185.63401670463176,\"height\":108.85345482156417,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.TaskName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Task Number\"},\"Name\":\"Query1.TaskName\",\"NativeReferenceName\":\"TaskName\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 108.85,
+          "width": 185.63,
+          "x": 12.63,
+          "y": 105.94,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"88a1cebcfe63d92d0b12\",\"layouts\":[{\"id\":0,\"position\":{\"x\":706.1398176291793,\"y\":106.01823708206688,\"z\":3000,\"width\":247.0516717325228,\"height\":108.93617021276596,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.EvacuatedFromLocation\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"EvacuatedFromLocation\"},\"Name\":\"Query1.EvacuatedFromLocation\",\"NativeReferenceName\":\"EvacuatedFromLocation\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 108.94,
+          "width": 247.05,
+          "x": 706.14,
+          "y": 106.02,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"c5f5692b2c8d7400176c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":214.79119210326502,\"y\":105.93773728170085,\"z\":1000,\"width\":203.1283219438117,\"height\":108.85345482156417,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.Status\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Status\"},\"Name\":\"Query1.Status\",\"NativeReferenceName\":\"Status\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 108.85,
+          "width": 203.13,
+          "x": 214.79,
+          "y": 105.94,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"da0d284978d92049cfcd\",\"layouts\":[{\"id\":0,\"position\":{\"x\":967.0463173880031,\"y\":105.93773728170085,\"z\":5000,\"width\":297.40318906605927,\"height\":108.85345482156417,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.Self-Registered Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Self-Registered Date\"},\"Name\":\"Query1.Self-Registered Date\",\"NativeReferenceName\":\"Self-Registered Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Self-Registered Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2023-01-01T01:36:45.166'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Self-Registered Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2023-01-01T00:00:00'\"}}}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 108.85,
+          "width": 297.40,
+          "x": 967.05,
+          "y": 105.94,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"e058ad3b6e78951c5fd9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":432.49810174639333,\"y\":105.93773728170085,\"z\":2000,\"width\":263.38648443432044,\"height\":108.85345482156417,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.TaskLocation\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Host Local Community\"},\"Name\":\"Query1.TaskLocation\",\"NativeReferenceName\":\"TaskLocation\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Host Local Community'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F1F1F1'\"}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"visualHeader\":[{\"properties\":{\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F1F1F1'\"}}}}},\"foreground\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#355992'\"}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 108.85,
+          "width": 263.39,
+          "x": 432.50,
+          "y": 105.94,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"e8232b70897abcc1a0e0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":12.634776006074413,\"y\":236.1731207289294,\"z\":0,\"width\":1251.814730447988,\"height\":453.8800303720578,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Query1.EvacuatedFromLocation\"},{\"queryRef\":\"Query1.EvacuationFileDate\"},{\"queryRef\":\"Query1.RegistrationCompletedDate\"},{\"queryRef\":\"Query1.TaskLocation\"},{\"queryRef\":\"Query1.TaskName\"},{\"queryRef\":\"Query1.Status\"},{\"queryRef\":\"Sum(Query1.Evacuees)\"},{\"queryRef\":\"Sum(Query1.Households)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"q\",\"Entity\":\"Query1\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"EvacuatedFromLocation\"},\"Name\":\"Query1.EvacuatedFromLocation\",\"NativeReferenceName\":\"EvacuatedFromLocation\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Evacuees\"}},\"Function\":0},\"Name\":\"Sum(Query1.Evacuees)\",\"NativeReferenceName\":\"Sum of Evacuees\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Status\"},\"Name\":\"Query1.Status\",\"NativeReferenceName\":\"Status\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Host Local Community\"},\"Name\":\"Query1.TaskLocation\",\"NativeReferenceName\":\"TaskLocation\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Task Number\"},\"Name\":\"Query1.TaskName\",\"NativeReferenceName\":\"TaskName\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"RegistrationCompletedDate\"},\"Name\":\"Query1.RegistrationCompletedDate\",\"NativeReferenceName\":\"RegistrationCompletedDate\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Self-Registered Date\"},\"Name\":\"Query1.EvacuationFileDate\",\"NativeReferenceName\":\"EvacuationFileDate\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Households\"}},\"Function\":0},\"Name\":\"Sum(Query1.Households)\",\"NativeReferenceName\":\"Sum of Households\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"q\"}},\"Property\":\"Self-Registered Date\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 453.88,
+          "width": 1251.81,
+          "x": 12.63,
+          "y": 236.17,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

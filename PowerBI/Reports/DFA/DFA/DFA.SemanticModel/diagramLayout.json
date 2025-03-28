@@ -1,0 +1,445 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 569.52379499162953
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 2590.087822178717,
+            "y": 186.71906338923395
+          },
+          "nodeIndex": "Values",
+          "nodeLineageTag": "5c2ff700-79c2-4d90-a082-98a6fa88e463",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2435.516393607289,
+            "y": 542.93096026604587
+          },
+          "nodeIndex": "AllDates",
+          "nodeLineageTag": "8347451d-d496-428c-9f77-9bd5937cca71",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1808.0878221787177,
+            "y": 325.57620624637678
+          },
+          "nodeIndex": "AllDates FactCase Bridge",
+          "nodeLineageTag": "1a3e94c4-dc9c-4ae6-acd6-aa5e8743ef23",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 1807.8021078930033,
+            "y": 499.86192053209106
+          },
+          "nodeIndex": "AllDates FactClaim Bridge",
+          "nodeLineageTag": "98ff80d0-ab4d-4582-a86b-8a83f246b390",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1804.6592507501459,
+            "y": 668.43334910351939
+          },
+          "nodeIndex": "AllDates FactEvent Bridge",
+          "nodeLineageTag": "360b586d-db12-4080-920d-cdc37a79ea78",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1807.2306793215746,
+            "y": 841.29049196066251
+          },
+          "nodeIndex": "AllDates FactProject Bridge",
+          "nodeLineageTag": "616042e2-0816-4576-aeae-9060cd27ab6b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1806.9449650358604,
+            "y": 1012.719063389234
+          },
+          "nodeIndex": "AllDates FactProjectClaim Bridge",
+          "nodeLineageTag": "a0e59a63-3fd4-450b-b671-46ad73c5c278",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2874.087822178717,
+            "y": 728.1476348178054
+          },
+          "nodeIndex": "MonthlyReportMeasures",
+          "nodeLineageTag": "922abee6-b887-48a5-b954-c5421f0c614e",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3158.087822178717,
+            "y": 716.1476348178054
+          },
+          "nodeIndex": "Time Series",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 759.60155345218163
+          },
+          "nodeIndex": "DimCaseDetail",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1212.69113544497
+          },
+          "nodeIndex": "DimClaimStatus",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1053.5834646320404
+          },
+          "nodeIndex": "DimClaimType",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4.2857142857142776,
+            "y": 425.05440223109866
+          },
+          "nodeIndex": "DimEventDetail",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1360.2952696356108
+          },
+          "nodeIndex": "DimLocation",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8.5714285714285836,
+            "y": 275.71428571428578
+          },
+          "nodeIndex": "DimProjectDetail",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 3.2306793215739162,
+            "y": 536.57620624637684
+          },
+          "nodeIndex": "DimProjectClaimDetail",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1489.2306793215739,
+            "y": 31.004889314160891
+          },
+          "nodeIndex": "FactCase",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1206.532100640803,
+            "y": 6.6329539399987354
+          },
+          "nodeIndex": "FactClaim",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 914.28069923796136,
+            "y": 0
+          },
+          "nodeIndex": "FactEvent",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 307.88491176867944,
+            "y": 0
+          },
+          "nodeIndex": "FactProject",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 616.77441943995154,
+            "y": 0
+          },
+          "nodeIndex": "FactProjectClaim",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1298.7327739277364,
+            "y": 0
+          },
+          "nodeIndex": "AllDates",
+          "nodeLineageTag": "8347451d-d496-428c-9f77-9bd5937cca71",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1285.9744399146873,
+            "y": 337.04524397970448
+          },
+          "nodeIndex": "AllDates FactCase Bridge",
+          "nodeLineageTag": "1a3e94c4-dc9c-4ae6-acd6-aa5e8743ef23",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 1988.852207538856,
+            "y": 339.47955804187984
+          },
+          "nodeIndex": "AllDates FactClaim Bridge",
+          "nodeLineageTag": "98ff80d0-ab4d-4582-a86b-8a83f246b390",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 953.36393411816312,
+            "y": 341.29113417283708
+          },
+          "nodeIndex": "AllDates FactEvent Bridge",
+          "nodeLineageTag": "360b586d-db12-4080-920d-cdc37a79ea78",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 1600.4131138522444,
+            "y": 338.69496011460819
+          },
+          "nodeIndex": "AllDates FactProject Bridge",
+          "nodeLineageTag": "616042e2-0816-4576-aeae-9060cd27ab6b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 644.05564624031,
+            "y": 343.17117167101014
+          },
+          "nodeIndex": "AllDates FactProjectClaim Bridge",
+          "nodeLineageTag": "a0e59a63-3fd4-450b-b671-46ad73c5c278",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1283.0905242772656,
+            "y": 593.43608613305275
+          },
+          "nodeIndex": "FactCase",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1989.7167427542759,
+            "y": 568.70625653533284
+          },
+          "nodeIndex": "FactClaim",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 956.35746761193423,
+            "y": 585.133562837255
+          },
+          "nodeIndex": "FactEvent",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 1609.6629040443727,
+            "y": 572.07923641038474
+          },
+          "nodeIndex": "FactProject",
+          "size": {
+            "height": 320,
+            "width": 320
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 642.79677225875457,
+            "y": 581.70585143444191
+          },
+          "nodeIndex": "FactProjectClaim",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0,
+          "expandedHeight": 300
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 89.192590520569439,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

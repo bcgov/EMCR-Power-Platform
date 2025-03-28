@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Dest"
+  DTS:DTSID="{296EFF8A-822D-4C3D-924F-1C8425BB96C9}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::Dest_InitialCatalog]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Dest_Password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::Dest_ServerName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::Dest_UserName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Retain="True"
+      DTS:ConnectionString="Data Source=subside.idir.bcgov;User ID=quartech_user;Initial Catalog=EMBC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAgpkMUKcg70aW0I5lqZom/QAAAAACAAAAAAADZgAAwAAAABAAAAAY7hMLfNkH6mrtMNs01iXZAAAAAASAAACgAAAAEAAAANKIj312AZFjhVUxnBPVqG+AAAAAMBsCHvEXbPPMX1ZMUmU4UCJCtiTC6f3rbfE4Kb+bRlGEFkTM3wwTcJEdjuioFGY4dvw9WYy5HdggqYxJNGB8AAAHe513S0AUr33nsYgNShJ0tuehmvzAr5bq8lYTfOpdLI22Jo1JuzNCoEqYUfJLqGTnXh0afVneGKV9JuLjkGAUAAAAR9ck+Ok8tNh+2aAC81XGTzHEiT8=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

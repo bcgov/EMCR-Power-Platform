@@ -1,0 +1,11 @@
+// Learn more about DAX queries at https://aka.ms/dax-queries
+
+// Here is a sample DAX query from your model, click 'Run'
+// Try other DAX queries by right clicking a table, column, or measure in the data pane and choosing one from 'Quick queries'
+EVALUATE
+   VAR fact =  CALCULATETABLE(FactProject, FILTER(DimEventDetail, [EventID] = "2023 Freshet"), NOT(ISBLANK(FactProject[ProjectApprovedDate])))
+    VAR both = NATURALINNERJOIN(fact, DimProjectDetail)
+   
+   RETURN SELECTCOLUMNS(both, [ProjectApprovedDate], [ProjectState])
+	
+	

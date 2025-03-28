@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "MVP Visuals"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "07f8f5d9-7e94-4f5f-84f6-dea47053f9e2"
+  }
+}

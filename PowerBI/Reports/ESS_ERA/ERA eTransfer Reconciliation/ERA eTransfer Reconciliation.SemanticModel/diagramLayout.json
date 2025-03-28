@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 66.361639415359832,
+            "y": 346.25
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "73fd9031-d36d-469d-a5ec-0e55f2ec0c87",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 294.1847511806298,
+            "y": 35.250000000000043
+          },
+          "nodeIndex": "ETransferTransaction",
+          "nodeLineageTag": "ed9e8846-9dc1-4e2e-bf4c-8a9aa2e524ea",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 64.315109177342038
+          },
+          "nodeIndex": "ETransferTransactionStatus",
+          "nodeLineageTag": "85aea359-a28a-4194-8dc9-b5660c60e0e4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 578.36163941535983,
+            "y": 96.574992632434657
+          },
+          "nodeIndex": "Support",
+          "nodeLineageTag": "b02e5e4b-f2d4-482a-9327-e830d835f453",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 427.69496766243014,
+            "y": 414.25
+          },
+          "nodeIndex": "SupportType",
+          "nodeLineageTag": "49d6841a-5713-426c-b761-032ba2cb41e9",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1126.3616394153598,
+            "y": 126.25
+          },
+          "nodeIndex": "Supports",
+          "nodeLineageTag": "f6606ed3-a0db-4f03-b7ed-75cd0eb109c0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 803.36163941535983,
+            "y": 358.25
+          },
+          "nodeIndex": "Task",
+          "nodeLineageTag": "82fcc8d3-6ab4-45cc-9d9e-d70b48c15e44",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

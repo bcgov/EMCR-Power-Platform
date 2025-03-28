@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "DFA Private Monthly Reporting"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bf82c6ef-bedc-48ab-ae23-c65b7c094686"
+  }
+}

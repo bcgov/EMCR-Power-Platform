@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ERA eTransfer Reconciliation"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "be0688a6-752e-4ddd-9aed-c52866d93e98"
+  }
+}

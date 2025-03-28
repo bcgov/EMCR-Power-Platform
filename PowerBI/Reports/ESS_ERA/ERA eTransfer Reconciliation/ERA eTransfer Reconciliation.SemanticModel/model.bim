@@ -1,0 +1,1706 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.138.782.0 (24.11)"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"src_FactETransferTransaction\",\"src_DimSupportType\",\"src_DimETransferTransactionStatus\",\"src_DimSupport\",\"src_DimTask\",\"src_FactSupport\",\"src_DimDate\",\"trans_FactETransferTransaction\",\"trans_DimSupportType\",\"trans_FactSupport\",\"trans_DimETransferTransactionStatus\",\"trans_DimSupport\",\"trans_DimTask\",\"trans_DimDate\",\"ETransferTransaction\",\"SupportType\",\"ETransferTransactionStatus\",\"Supports\",\"Task\",\"Support\",\"Date\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "etransfertransaction.casresponsedate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "ETransferTransaction",
+                    "ConceptualProperty": "CASResponseDate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "CAS Response Date": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "etransfertransaction.createdondate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "ETransferTransaction",
+                    "ConceptualProperty": "CreatedOnDate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Created On Date": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "etransfertransaction.transactionid": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "ETransferTransaction",
+                    "ConceptualProperty": "TransactionID"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Transaction ID": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "etransfertransactionstatus.statusreason": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "ETransferTransactionStatus",
+                    "ConceptualProperty": "StatusReason"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Status Reason": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "support.supportnumber": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Support",
+                    "ConceptualProperty": "SupportNumber"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Support Number": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "src_FactETransferTransaction",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_FactETransferTransaction = Source{[Schema=\"era_rpt\",Item=\"FactETransferTransaction\"]}[Data]",
+          "in",
+          "    era_rpt_FactETransferTransaction"
+        ],
+        "kind": "m",
+        "lineageTag": "64cd8efb-d51a-4d71-bfec-a52cbced30e4",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "src_DimSupportType",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_DimSupportType = Source{[Schema=\"era_rpt\",Item=\"DimSupportType\"]}[Data]",
+          "in",
+          "    era_rpt_DimSupportType"
+        ],
+        "kind": "m",
+        "lineageTag": "dae0b67a-6ba1-4557-a8a3-823bef833cf4",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "src_DimETransferTransactionStatus",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_DimETransferTransactionStatus = Source{[Schema=\"era_rpt\",Item=\"DimETransferTransactionStatus\"]}[Data]",
+          "in",
+          "    era_rpt_DimETransferTransactionStatus"
+        ],
+        "kind": "m",
+        "lineageTag": "9ab2cb07-efff-4164-8109-2125f433b1a6",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "src_DimSupport",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_DimSupport = Source{[Schema=\"era_rpt\",Item=\"DimSupport\"]}[Data]",
+          "in",
+          "    era_rpt_DimSupport"
+        ],
+        "kind": "m",
+        "lineageTag": "07f2df7a-b93d-422e-861e-0515462c6e73",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "src_DimDate",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    dbo_D_DATE = Source{[Schema=\"dbo\",Item=\"D_DATE\"]}[Data]",
+          "in",
+          "    dbo_D_DATE"
+        ],
+        "kind": "m",
+        "lineageTag": "b88a2e8e-d06e-4c28-8f15-994513e3f61b",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "trans_FactETransferTransaction",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_FactETransferTransaction",
+          "in",
+          "    Source"
+        ],
+        "kind": "m",
+        "lineageTag": "c76cd651-4efe-4d4a-8198-79bf56a74fdf",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "trans_DimSupportType",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_DimSupportType,",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Source] = \"ERA Dynamics\"))",
+          "in",
+          "    #\"Filtered Rows\""
+        ],
+        "kind": "m",
+        "lineageTag": "e41f77be-6b56-4aa9-b99b-bf49d622ab9f",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "trans_DimETransferTransactionStatus",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_DimETransferTransactionStatus",
+          "in",
+          "    Source"
+        ],
+        "kind": "m",
+        "lineageTag": "e937b985-bf91-4efb-8c99-b4fe272ec1ce",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "trans_DimSupport",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_DimSupport,",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Source] = \"ERA Dynamics\"))",
+          "in",
+          "    #\"Filtered Rows\""
+        ],
+        "kind": "m",
+        "lineageTag": "de960232-61c6-46e0-959d-ee96eeeb7569",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "trans_DimDate",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_DimDate,",
+          "    Filter = Table.SelectRows(Source, each [CAL_DAY_DT] >= #datetime(2022, 5, 1, 0, 0, 0) and [CAL_DAY_DT] < DateTime.LocalNow())",
+          "in",
+          "    Filter"
+        ],
+        "kind": "m",
+        "lineageTag": "22306645-807f-44b4-a5e0-48cd86b5d00e",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "src_FactSupport",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_FactSupport = Source{[Schema=\"era_rpt\",Item=\"FactSupport\"]}[Data]",
+          "in",
+          "    era_rpt_FactSupport"
+        ],
+        "kind": "m",
+        "lineageTag": "3e12ae22-bf79-4ccd-b78a-5af723221f8d",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "trans_FactSupport",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_FactSupport,",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Source] = \"ERA Dynamics\"))",
+          "in",
+          "    #\"Filtered Rows\""
+        ],
+        "kind": "m",
+        "lineageTag": "046f1ae4-c272-43c3-8504-bb1c1a602462",
+        "queryGroup": "Transformation"
+      },
+      {
+        "name": "src_DimTask",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Sql.Database(\"subside.idir.bcgov\", \"EMBC\"),",
+          "    era_rpt_DimTask = Source{[Schema=\"era_rpt\",Item=\"DimTask\"]}[Data]",
+          "in",
+          "    era_rpt_DimTask"
+        ],
+        "kind": "m",
+        "lineageTag": "86f79d2b-ee9b-44c5-83a5-22b94f98b74b",
+        "queryGroup": "Source"
+      },
+      {
+        "name": "trans_DimTask",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = src_DimTask,",
+          "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([Source] = \"ERA Dynamics\"))",
+          "in",
+          "    #\"Filtered Rows\""
+        ],
+        "kind": "m",
+        "lineageTag": "b4a672b2-8d06-45a3-8bb8-f23d64667ecc",
+        "queryGroup": "Transformation"
+      }
+    ],
+    "queryGroups": [
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "folder": "Source"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "1"
+          }
+        ],
+        "folder": "Transformation"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "2"
+          }
+        ],
+        "folder": "Presentation"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "AutoDetected_94e71b30-3ccb-4bb0-b673-ac43d397809c",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "DimSupportBK",
+        "fromTable": "ETransferTransaction",
+        "toColumn": "DimSupportBK",
+        "toTable": "Support"
+      },
+      {
+        "name": "AutoDetected_f111ef5a-e885-474f-b71b-7bd5124ef87a",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "DimETransferTransactionStatusBK",
+        "fromTable": "ETransferTransaction",
+        "toColumn": "DimETransferTransactionStatusBK",
+        "toTable": "ETransferTransactionStatus"
+      },
+      {
+        "name": "AutoDetected_6515b8f1-81af-4162-9456-c7e7141cd624",
+        "fromColumn": "DimSupportTypeBK",
+        "fromTable": "Supports",
+        "toColumn": "DimSupportTypeBK",
+        "toTable": "SupportType"
+      },
+      {
+        "name": "3ec29b77-de6b-24ff-6480-4585cb1f555f",
+        "fromColumn": "CreatedOnDate",
+        "fromTable": "ETransferTransaction",
+        "toColumn": "CAL_DAY_DT",
+        "toTable": "Date"
+      },
+      {
+        "name": "eb436053-e87f-bb61-0d5a-5370cf4fd4c4",
+        "fromColumn": "DimTaskBK",
+        "fromTable": "Supports",
+        "toColumn": "DimTaskBK",
+        "toTable": "Task"
+      },
+      {
+        "name": "b493d506-3e0a-23c2-1e3b-4f80b6b8011d",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "DimSupportBK",
+        "fromTable": "Support",
+        "toColumn": "DimSupportBK",
+        "toTable": "Supports"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "ETransferTransaction",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "FactETransferTransactionBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c39dba57-71f8-4222-9ff9-bfe3216dace1",
+            "sourceColumn": "FactETransferTransactionBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimSupportBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bab83479-3898-40c7-a534-1c6694185cdc",
+            "sourceColumn": "DimSupportBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimETransferTransactionStatusBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b5f1662e-0672-484d-8682-094ea5477c41",
+            "sourceColumn": "DimETransferTransactionStatusBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TransactionID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d7acccc4-9d3b-4339-89ac-973a0e9544df",
+            "sourceColumn": "TransactionID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CreatedOnDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "793b6ca8-2684-4253-9248-8e637b56edd8",
+            "sourceColumn": "CreatedOnDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CASResponseDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "b3109046-41e8-4637-a120-5da17c5c87a6",
+            "sourceColumn": "CASResponseDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2a54ea79-d7e1-42bf-a6f3-b186829de897",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ed9e8846-9dc1-4e2e-bf4c-8a9aa2e524ea",
+        "partitions": [
+          {
+            "name": "ETransferTransaction",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_FactETransferTransaction",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SupportType",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DimSupportTypeBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d71a9aa9-a26a-4305-a39a-8d9f4e031181",
+            "sourceColumn": "DimSupportTypeBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Support Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d4051cc5-b0d6-43db-8156-d7031bdb184e",
+            "sourceColumn": "Support Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "192845ac-b193-4e0a-b201-42360b8a2a77",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "49d6841a-5713-426c-b761-032ba2cb41e9",
+        "partitions": [
+          {
+            "name": "SupportType",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_DimSupportType",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ETransferTransactionStatus",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DimETransferTransactionStatusBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d935d2e9-fca5-4aa5-9644-24eb8547fc9a",
+            "sourceColumn": "DimETransferTransactionStatusBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "StatusReason",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "891924ac-f0fd-4b7b-947d-5bf938b9068e",
+            "sourceColumn": "StatusReason",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7728db8e-b88b-4db8-8381-5f79959d0620",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "85aea359-a28a-4194-8dc9-b5660c60e0e4",
+        "partitions": [
+          {
+            "name": "ETransferTransactionStatus",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_DimETransferTransactionStatus",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Support",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DimSupportBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a218c5dc-5b19-4a76-8318-e70b092af4e1",
+            "sourceColumn": "DimSupportBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SupportNumber",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "529f3e6b-7e48-4244-a86a-271d8ef4d302",
+            "sourceColumn": "SupportNumber",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "15c3e725-3dd3-4543-aedd-f993c16d479f",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b02e5e4b-f2d4-482a-9327-e830d835f453",
+        "partitions": [
+          {
+            "name": "Support",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_DimSupport",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DATE_SK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e2e901d5-ccb7-4f7d-817a-88ae3a431c2d",
+            "sourceColumn": "DATE_SK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_DTC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c9e255b7-3783-40ff-88b0-967e625a982a",
+            "sourceColumn": "CAL_DAY_DTC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_DT",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "900e1aa6-ac8f-4d18-9b15-35b9b5b52853",
+            "sourceColumn": "CAL_DAY_DT",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_YEAR_TXT",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "52736d13-0538-43a4-b769-3f48a9d685ac",
+            "sourceColumn": "FISCAL_YEAR_TXT",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_YEAR_SHORT_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "554f3809-ebfd-4213-982b-dc9020ef2d1f",
+            "sourceColumn": "FISCAL_YEAR_SHORT_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_YEAR_LONG_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "27e7c0ec-4231-480a-8ea0-7a232570e135",
+            "sourceColumn": "FISCAL_YEAR_LONG_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_QTR_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6a28805a-8e84-4593-9b8e-040259c6c95f",
+            "sourceColumn": "FISCAL_QTR_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_QTR_SHORT_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ee4bbb51-c2b2-419f-a7ca-40145ce19e86",
+            "sourceColumn": "FISCAL_QTR_SHORT_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_QTR_LONG_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0f1e2e62-0134-4842-b439-5c019c1f3d1f",
+            "sourceColumn": "FISCAL_QTR_LONG_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_MONTH_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e93dc339-2a20-410a-87be-4a07e58a26e9",
+            "sourceColumn": "FISCAL_MONTH_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_MONTH_SHORT_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b2a9f9c4-4a76-47b3-95a1-8d409148722f",
+            "sourceColumn": "FISCAL_MONTH_SHORT_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FISCAL_MONTH_LONG_DSC",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "887bb0b8-5667-48fb-86ef-8a6c17c72737",
+            "sourceColumn": "FISCAL_MONTH_LONG_DSC",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7cbb3663-40d9-48a4-9fdb-32da428faeec",
+            "sourceColumn": "CAL_DAY_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_MONTH_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "bc1ae6ab-1a12-464a-9c7d-89c677f12e3a",
+            "sourceColumn": "CAL_MONTH_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_YEAR_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d4e485eb-f56a-49a6-950c-6001f705b127",
+            "sourceColumn": "CAL_YEAR_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_MONTH_SHORT_NM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a6ac2091-e6f1-44f7-8a00-c08c21858992",
+            "sourceColumn": "CAL_MONTH_SHORT_NM",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_MONTH_LONG_NM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1d272c79-88b7-42a3-8aa0-528b4d08c131",
+            "sourceColumn": "CAL_MONTH_LONG_NM",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_NM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a01e12b9-24ca-4154-9efe-257bdff6e95a",
+            "sourceColumn": "CAL_DAY_NM",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_OF_MONTH_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "357dc965-4a95-4e28-ab5d-8ec122d9db15",
+            "sourceColumn": "CAL_DAY_OF_MONTH_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_DAY_OF_WEEK_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "284cb1ad-acc1-4157-bd76-a1a1c6c7e4b1",
+            "sourceColumn": "CAL_DAY_OF_WEEK_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_WEEKDAY_INDICATOR_YN",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5c91b587-d14b-4d0f-a541-ed7f05404f16",
+            "sourceColumn": "CAL_WEEKDAY_INDICATOR_YN",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_END_OF_MONTH_YN",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "292f6144-d570-48da-af3f-78a3931dafee",
+            "sourceColumn": "CAL_END_OF_MONTH_YN",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_WEEK_NUMBER_VAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5a04cecb-27ec-4b97-a387-159e41c627f6",
+            "sourceColumn": "CAL_WEEK_NUMBER_VAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CAL_BC_HOLIDAY_YN",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e91a8858-d8e8-4072-8140-5ccd73773d9c",
+            "sourceColumn": "CAL_BC_HOLIDAY_YN",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "73fd9031-d36d-469d-a5ec-0e55f2ec0c87",
+        "partitions": [
+          {
+            "name": "Date",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_DimDate",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Supports",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "FactSupportBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "04afcb70-fa1e-48dd-84d3-1571b437f748",
+            "sourceColumn": "FactSupportBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimSupportBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "046964ff-25ec-4c47-8d8b-ce0ed4e173aa",
+            "sourceColumn": "DimSupportBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimSupportTypeBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0bdf1250-466f-43a9-a026-a07ff3b1ef56",
+            "sourceColumn": "DimSupportTypeBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TotalAmount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "161080dc-d1c1-4019-a480-bf2d7feccf17",
+            "sourceColumn": "TotalAmount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "DimTaskBK_EvacuationFile",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "75ee45e9-51cb-4a1c-8931-2c95f41c31c0",
+            "sourceColumn": "DimTaskBK_EvacuationFile",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimTaskBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e73fd5c9-695a-4225-a603-7b50c7048bce",
+            "sourceColumn": "DimTaskBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TaskStartDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "b9eae9b2-bd32-44d2-8cda-0e4e45e88113",
+            "sourceColumn": "TaskStartDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TaskEndDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "3a3d7592-7e47-476b-94e8-1b0ef5136436",
+            "sourceColumn": "TaskEndDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimLocationBK_Task",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "557e73e2-3f69-42f1-ac11-d33c0b145244",
+            "sourceColumn": "DimLocationBK_Task",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimLocationBK_EvacuatedFrom",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dfb331fc-0c55-47c8-83e6-2256d592c0f8",
+            "sourceColumn": "DimLocationBK_EvacuatedFrom",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimEvacuationFileStatusBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4e1f2281-98c5-41f4-8e66-cca4ce7be828",
+            "sourceColumn": "DimEvacuationFileStatusBK",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ValidFromDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "7e539bc4-deac-4481-8a93-3aa173b2345e",
+            "sourceColumn": "ValidFromDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ValidToDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "c3491358-a522-48cc-ace5-9e35b493e5ba",
+            "sourceColumn": "ValidToDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimEvacuationFileBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0fc4ffb6-e82f-4483-a7cd-2786045b5c84",
+            "sourceColumn": "DimEvacuationFileBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimSupportDeliveryTypeBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "04a64d0d-5c40-40a2-87b9-d32f7ab9c83a",
+            "sourceColumn": "DimSupportDeliveryTypeBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DimSupportStatusBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "52e64941-e5ff-4516-a0dc-df6461588e1b",
+            "sourceColumn": "DimSupportStatusBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2ec9c29d-3b93-4fbb-84b3-d7a77fe7801f",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f6606ed3-a0db-4f03-b7ed-75cd0eb109c0",
+        "partitions": [
+          {
+            "name": "Supports",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_FactSupport",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Task",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DimTaskBK",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bf95205c-a2b8-417b-9baf-01e9cb774042",
+            "sourceColumn": "DimTaskBK",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Task Number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "22bb25ed-0f1d-4ade-9781-fefc92f28700",
+            "sourceColumn": "Task Number",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SupportPathway",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e0ad795d-eb55-4b01-b5d9-54eeddfa8fa0",
+            "sourceColumn": "SupportPathway",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IncidentCategory",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7995be44-f282-4e51-b7a8-4d27a4e2eba6",
+            "sourceColumn": "IncidentCategory",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "EventLevel",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e5a79649-f1d9-423b-8ede-c93d005e6a86",
+            "sourceColumn": "EventLevel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TaskStartDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "b39dc63e-9835-408e-9a17-b58c3cbab74a",
+            "sourceColumn": "TaskStartDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "TaskEndDate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "3efea94e-dc52-4d15-a339-d2969db299a8",
+            "sourceColumn": "TaskEndDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Source",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b0afc5f9-f8ac-4072-8754-6ba94fd46fd8",
+            "sourceColumn": "Source",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "82fcc8d3-6ab4-45cc-9d9e-d70b48c15e44",
+        "partitions": [
+          {
+            "name": "Task",
+            "mode": "import",
+            "queryGroup": "Presentation",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = trans_DimTask",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

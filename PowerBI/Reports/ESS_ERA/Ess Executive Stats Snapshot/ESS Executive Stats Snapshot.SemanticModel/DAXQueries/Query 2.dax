@@ -1,0 +1,558 @@
+DEFINE
+	VAR __DS0FilterTable = 
+		FILTER(
+			KEEPFILTERS(VALUES('Date'[CAL_DAY_DT])),
+			AND(
+				AND('Date'[CAL_DAY_DT] >= DATE(2024, 2, 26), 'Date'[CAL_DAY_DT] < DATE(2025, 3, 2)),
+				NOT('Date'[CAL_DAY_DT] IN {BLANK()})
+			)
+		)
+
+	VAR __DS0Core = 
+		SUMMARIZECOLUMNS(
+			'Task'[Task Number],
+			ROLLUPADDISSUBTOTAL(
+				'Task'[IncidentCategory], "IsDM0Total",
+				'Task'[SupportPathway], "IsDM1Total",
+				'TaskLocation'[EMCRRegion], "IsDM2Total",
+				'TaskLocation'[City], "IsDM3Total",
+				'ActiveTask'[TaskStartDate], "IsDM4Total",
+				'ActiveTask'[TaskEndDate], "IsDM5Total",
+				'Task'[EventLevel], "IsDM6Total",
+				'SupportDeliveryType'[SupportDeliveryType], "IsDM7Total",
+				'EvacuationFile'[Insurance], "IsDM8Total"
+			),
+			__DS0FilterTable,
+			"Total_Supports_Amount", 'Metrics'[Total Supports Amount],
+			"Evacuees", 'Metrics'[Evacuees],
+			"Households", 'Metrics'[Households],
+			"Supports", 'Metrics'[Supports],
+			"CurrentDays", 'Task'[CurrentDays],
+			"SumActive10PlusDays", IGNORE(CALCULATE(SUM('ActiveTask'[Active10PlusDays])))
+		)
+
+	VAR __DS0CoreTableByDM0 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = TRUE, [IsDM1Total] = TRUE), [IsDM2Total] = TRUE),
+											[IsDM3Total] = TRUE
+										),
+										[IsDM4Total] = TRUE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"SortBy_DM0_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM1 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = TRUE), [IsDM2Total] = TRUE),
+											[IsDM3Total] = TRUE
+										),
+										[IsDM4Total] = TRUE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"SortBy_DM1_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM2 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = TRUE),
+											[IsDM3Total] = TRUE
+										),
+										[IsDM4Total] = TRUE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"SortBy_DM2_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM3 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+											[IsDM3Total] = TRUE
+										),
+										[IsDM4Total] = TRUE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"SortBy_DM3_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM4 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+											[IsDM3Total] = FALSE
+										),
+										[IsDM4Total] = TRUE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"IsDM3Total", [IsDM3Total],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"SortBy_DM4_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM5 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+											[IsDM3Total] = FALSE
+										),
+										[IsDM4Total] = FALSE
+									),
+									[IsDM5Total] = TRUE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"IsDM3Total", [IsDM3Total],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"IsDM4Total", [IsDM4Total],
+			"'ActiveTask'[TaskStartDate]", 'ActiveTask'[TaskStartDate],
+			"SortBy_DM5_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM6 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+											[IsDM3Total] = FALSE
+										),
+										[IsDM4Total] = FALSE
+									),
+									[IsDM5Total] = FALSE
+								),
+								[IsDM6Total] = TRUE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"IsDM3Total", [IsDM3Total],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"IsDM4Total", [IsDM4Total],
+			"'ActiveTask'[TaskStartDate]", 'ActiveTask'[TaskStartDate],
+			"IsDM5Total", [IsDM5Total],
+			"'ActiveTask'[TaskEndDate]", 'ActiveTask'[TaskEndDate],
+			"SortBy_DM6_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM7 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(
+											AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+											[IsDM3Total] = FALSE
+										),
+										[IsDM4Total] = FALSE
+									),
+									[IsDM5Total] = FALSE
+								),
+								[IsDM6Total] = FALSE
+							),
+							[IsDM7Total] = TRUE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"IsDM3Total", [IsDM3Total],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"IsDM4Total", [IsDM4Total],
+			"'ActiveTask'[TaskStartDate]", 'ActiveTask'[TaskStartDate],
+			"IsDM5Total", [IsDM5Total],
+			"'ActiveTask'[TaskEndDate]", 'ActiveTask'[TaskEndDate],
+			"IsDM6Total", [IsDM6Total],
+			"'Task'[EventLevel]", 'Task'[EventLevel],
+			"SortBy_DM7_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0CoreTableByDM8 = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0Core),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(
+										AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+										[IsDM3Total] = FALSE
+									),
+									[IsDM4Total] = FALSE
+								),
+								[IsDM5Total] = FALSE
+							),
+							[IsDM6Total] = FALSE
+						),
+						[IsDM8Total] = TRUE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"IsDM0Total", [IsDM0Total],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"IsDM1Total", [IsDM1Total],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"IsDM2Total", [IsDM2Total],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"IsDM3Total", [IsDM3Total],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"IsDM4Total", [IsDM4Total],
+			"'ActiveTask'[TaskStartDate]", 'ActiveTask'[TaskStartDate],
+			"IsDM5Total", [IsDM5Total],
+			"'ActiveTask'[TaskEndDate]", 'ActiveTask'[TaskEndDate],
+			"IsDM6Total", [IsDM6Total],
+			"'Task'[EventLevel]", 'Task'[EventLevel],
+			"IsDM7Total", [IsDM7Total],
+			"'SupportDeliveryType'[SupportDeliveryType]", 'SupportDeliveryType'[SupportDeliveryType],
+			"SortBy_DM8_0", [Total_Supports_Amount]
+		)
+
+	VAR __DS0PrimaryWithSortColumns = 
+		NATURALLEFTOUTERJOIN(
+			NATURALLEFTOUTERJOIN(
+				NATURALLEFTOUTERJOIN(
+					NATURALLEFTOUTERJOIN(
+						NATURALLEFTOUTERJOIN(
+							NATURALLEFTOUTERJOIN(
+								NATURALLEFTOUTERJOIN(
+									NATURALLEFTOUTERJOIN(
+										NATURALLEFTOUTERJOIN(
+											__DS0Core,
+											__DS0CoreTableByDM0
+										),
+										__DS0CoreTableByDM1
+									),
+									__DS0CoreTableByDM2
+								),
+								__DS0CoreTableByDM3
+							),
+							__DS0CoreTableByDM4
+						),
+						__DS0CoreTableByDM5
+					),
+					__DS0CoreTableByDM6
+				),
+				__DS0CoreTableByDM7
+			),
+			__DS0CoreTableByDM8
+		)
+
+	VAR __DS0PrimaryWithSortColumnsOutputTotals = 
+		SELECTCOLUMNS(
+			KEEPFILTERS(
+				FILTER(
+					KEEPFILTERS(__DS0PrimaryWithSortColumns),
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+									[IsDM3Total] = FALSE
+								),
+								[IsDM4Total] = FALSE
+							),
+							[IsDM5Total] = FALSE
+						),
+						[IsDM6Total] = FALSE
+					)
+				)
+			),
+			"'Task'[Task Number]", 'Task'[Task Number],
+			"SortBy_DM0_0", [SortBy_DM0_0],
+			"'Task'[IncidentCategory]", 'Task'[IncidentCategory],
+			"SortBy_DM1_0", [SortBy_DM1_0],
+			"'Task'[SupportPathway]", 'Task'[SupportPathway],
+			"SortBy_DM2_0", [SortBy_DM2_0],
+			"'TaskLocation'[EMCRRegion]", 'TaskLocation'[EMCRRegion],
+			"SortBy_DM3_0", [SortBy_DM3_0],
+			"'TaskLocation'[City]", 'TaskLocation'[City],
+			"SortBy_DM4_0", [SortBy_DM4_0],
+			"'ActiveTask'[TaskStartDate]", 'ActiveTask'[TaskStartDate],
+			"SortBy_DM5_0", [SortBy_DM5_0],
+			"'ActiveTask'[TaskEndDate]", 'ActiveTask'[TaskEndDate],
+			"SortBy_DM6_0", [SortBy_DM6_0],
+			"'Task'[EventLevel]", 'Task'[EventLevel],
+			"SortBy_DM7_0", [SortBy_DM7_0],
+			"IsDM7Total", [IsDM7Total],
+			"'SupportDeliveryType'[SupportDeliveryType]", 'SupportDeliveryType'[SupportDeliveryType],
+			"SortBy_DM8_0", [SortBy_DM8_0],
+			"IsDM8Total", [IsDM8Total],
+			"'EvacuationFile'[Insurance]", 'EvacuationFile'[Insurance],
+			"Total_Supports_Amount", [Total_Supports_Amount],
+			"Evacuees", [Evacuees],
+			"Households", [Households],
+			"Supports", [Supports],
+			"CurrentDays", [CurrentDays],
+			"SumActive10PlusDays", [SumActive10PlusDays]
+		)
+
+	VAR __DS0PrimaryWindowed = 
+		TOPN(
+			501,
+			__DS0PrimaryWithSortColumnsOutputTotals,
+			[SortBy_DM0_0],
+			0,
+			'Task'[Task Number],
+			1,
+			[SortBy_DM1_0],
+			0,
+			'Task'[IncidentCategory],
+			1,
+			[SortBy_DM2_0],
+			0,
+			'Task'[SupportPathway],
+			1,
+			[SortBy_DM3_0],
+			0,
+			'TaskLocation'[EMCRRegion],
+			1,
+			[SortBy_DM4_0],
+			0,
+			'TaskLocation'[City],
+			1,
+			[SortBy_DM5_0],
+			0,
+			'ActiveTask'[TaskStartDate],
+			1,
+			[SortBy_DM6_0],
+			0,
+			'ActiveTask'[TaskEndDate],
+			1,
+			[SortBy_DM7_0],
+			0,
+			'Task'[EventLevel],
+			1,
+			[IsDM7Total],
+			1,
+			[SortBy_DM8_0],
+			0,
+			'SupportDeliveryType'[SupportDeliveryType],
+			1,
+			[IsDM8Total],
+			1,
+			[Total_Supports_Amount],
+			0,
+			'EvacuationFile'[Insurance],
+			1
+		)
+
+	VAR __DS0CoreNoInstanceFiltersNoTotals = 
+		FILTER(
+			KEEPFILTERS(__DS0Core),
+			AND(
+				AND(
+					AND(
+						AND(
+							AND(
+								AND(
+									AND(AND([IsDM0Total] = FALSE, [IsDM1Total] = FALSE), [IsDM2Total] = FALSE),
+									[IsDM3Total] = FALSE
+								),
+								[IsDM4Total] = FALSE
+							),
+							[IsDM5Total] = FALSE
+						),
+						[IsDM6Total] = FALSE
+					),
+					[IsDM7Total] = FALSE
+				),
+				[IsDM8Total] = FALSE
+			)
+		)
+
+EVALUATE
+	GROUPBY(
+		__DS0CoreNoInstanceFiltersNoTotals,
+		"MinSumActive10PlusDays", MINX(CURRENTGROUP(), [SumActive10PlusDays]),
+		"MaxSumActive10PlusDays", MAXX(CURRENTGROUP(), [SumActive10PlusDays])
+	)
+
+EVALUATE
+	__DS0PrimaryWindowed
+
+ORDER BY
+	[SortBy_DM0_0] DESC,
+	'Task'[Task Number],
+	[SortBy_DM1_0] DESC,
+	'Task'[IncidentCategory],
+	[SortBy_DM2_0] DESC,
+	'Task'[SupportPathway],
+	[SortBy_DM3_0] DESC,
+	'TaskLocation'[EMCRRegion],
+	[SortBy_DM4_0] DESC,
+	'TaskLocation'[City],
+	[SortBy_DM5_0] DESC,
+	'ActiveTask'[TaskStartDate],
+	[SortBy_DM6_0] DESC,
+	'ActiveTask'[TaskEndDate],
+	[SortBy_DM7_0] DESC,
+	'Task'[EventLevel],
+	[IsDM7Total],
+	[SortBy_DM8_0] DESC,
+	'SupportDeliveryType'[SupportDeliveryType],
+	[IsDM8Total],
+	[Total_Supports_Amount] DESC,
+	'EvacuationFile'[Insurance]

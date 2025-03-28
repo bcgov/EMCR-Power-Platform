@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ESS - Referral Details including ERA1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7dbddb59-9fe3-496c-a314-eac72dfb493a"
+  }
+}

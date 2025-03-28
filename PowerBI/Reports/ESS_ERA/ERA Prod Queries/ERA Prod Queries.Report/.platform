@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ERA Prod Queries"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "058d5aef-275c-41a4-8c12-f97ff1a5a72b"
+  }
+}

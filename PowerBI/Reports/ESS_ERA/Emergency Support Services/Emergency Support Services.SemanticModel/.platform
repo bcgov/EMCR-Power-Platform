@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Emergency Support Services"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "85364588-bcd7-4a4a-8e2f-30e0de329f85"
+  }
+}

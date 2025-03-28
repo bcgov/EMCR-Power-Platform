@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "MVP Visuals"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5bf941af-2c9b-4b0a-9eab-217ece1ec4a7"
+  }
+}

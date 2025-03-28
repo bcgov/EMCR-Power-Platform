@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 294.13343470595765,
+            "y": 90.7230080804504
+          },
+          "nodeIndex": "account",
+          "nodeLineageTag": "6d9344fb-e45e-41d7-b7cc-84d26540c4c4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 185.60265342591396
+          },
+          "nodeIndex": "contact",
+          "nodeLineageTag": "b84693c2-5343-4f24-8dfe-9dcd4219cfd9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 578.32066521363527,
+            "y": -10
+          },
+          "nodeIndex": "emcr_readinessindexsurvey",
+          "nodeLineageTag": "a57a7dbd-b3ea-4f7f-9d7d-56b65d2d8edc",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852.32066521363527,
+            "y": 97.801326712956978
+          },
+          "nodeIndex": "emcr_year",
+          "nodeLineageTag": "b4795ee6-cdde-447d-a7ff-3a2b739062bd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

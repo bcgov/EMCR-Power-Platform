@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Src"
+  DTS:DTSID="{A553589E-58EC-424F-B249-6EEA2A701120}"
+  DTS:CreationName="DynamicsCRM">
+  <DTS:PropertyExpression
+    DTS:Name="CrmServerUrl">@[$Project::Src_CrmServerUrl]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="DiscoveryServerUrl">@[$Project::Src_DiscoveryServerUrl]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Domain">@[$Project::Src_Domain]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="OrganizationName">@[$Project::Src_OrganizationName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::Src_Password]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="UserName">@[$Project::Src_UserName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <CrmConnectionManager
+      ConnectionString="AuthenticationType=ActiveDirectory;ServiceEndpoint=Soap2011;DiscoveryServerUrl=https://embc-dfa.test.jag.gov.bc.ca/XRMServices/2011/Discovery.svc;UserName=TDOERKSE;Domain=idir;OrganizationName=EMBC-ESS;CrmServerUrl=https://embc-ess.test.jag.gov.bc.ca;ProxyUsername=;ProxyMode=NoProxy;ProxyServer=;ProxyServerPort=0;BypassProxyOnLocal=False;HomeRealmUri=;ApiVersion=;ServiceTimeout=120;RetryOnIntermittentErrors=True;IgnoreCertificateErrors=True">
+      <Password
+        Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAgpkMUKcg70aW0I5lqZom/QAAAAACAAAAAAADZgAAwAAAABAAAABfF8dJ2DXDpX8hM7dDcrmkAAAAAASAAACgAAAAEAAAACtGDxQe6qF4lCKTM8F1i8JgAAAAVUiQy2greVmHIPDhZt6u9GQVJN2mdyCyjGdKg5eph9UtN+z5OOx9hLY4ypqUJmaj6CJDbmdGCb1jhQEwt9pBMuUyfaCI4g0igzM5iCGceUQ40chKI6RmsPwi7eQGqwgcFAAAANHTenqxeqyIG72MNy86jZZ2u55g</Password>
+    </CrmConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

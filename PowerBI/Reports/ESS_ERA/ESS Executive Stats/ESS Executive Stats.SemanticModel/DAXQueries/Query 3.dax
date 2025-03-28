@@ -1,0 +1,20 @@
+DEFINE
+	VAR __DS0FilterTable = 
+		TREATAS({"Test Devops 25"}, 'Task'[Task Number])
+
+	VAR __DS0FilterTable2 = 
+		FILTER(
+			KEEPFILTERS(VALUES('Date'[CAL_DAY_DT])),
+			AND(
+				AND('Date'[CAL_DAY_DT] >= DATE(2024, 2, 26), 'Date'[CAL_DAY_DT] < DATE(2025, 3, 2)),
+				NOT('Date'[CAL_DAY_DT] IN {BLANK()})
+			)
+		)
+
+EVALUATE
+	SUMMARIZECOLUMNS(
+		__DS0FilterTable,
+		__DS0FilterTable2,
+		"Total_Supports_Amount", IGNORE('Metrics'[Total Supports Amount]),
+		"CurrentDays", IGNORE('Task'[CurrentDays])
+	)

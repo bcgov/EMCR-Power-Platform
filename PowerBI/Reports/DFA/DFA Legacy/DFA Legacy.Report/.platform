@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "DFA Legacy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1e912690-d213-43cf-a7e8-e03b2994be6a"
+  }
+}

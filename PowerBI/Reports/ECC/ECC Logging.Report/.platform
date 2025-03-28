@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ECC Logging"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cd35e766-e9d9-433a-8a6a-e3c7e60d2b3d"
+  }
+}
