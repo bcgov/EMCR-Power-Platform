@@ -1,4 +1,4 @@
-name: Pack Power Platform Solution
+name: Deploy-D365-Solution
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       run: |
         npm install -g pac-cli
 
-    - name: Pack Solution from Unpacked Files
+    - name: Pack Solution Files
       shell: bash
       run: |
         set -e  # Exit on error
@@ -33,7 +33,7 @@ jobs:
         fi
 
         echo "Packing solution..."
-        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed true
+        pac solution pack --folder "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE"
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
