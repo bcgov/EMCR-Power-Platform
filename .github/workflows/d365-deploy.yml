@@ -20,11 +20,10 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install Power Platform CLI (pac)
+    - name: Install Power Platform CLI (pac) with Chocolatey
       shell: pwsh
       run: |
-        # Install pac CLI using Windows package manager
-        winget install --id Microsoft.PowerPlatform -e --silent
+        choco install powerplatform-cli -y
 
         # Verify installation
         pac --version
