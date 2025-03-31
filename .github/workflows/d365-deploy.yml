@@ -20,38 +20,12 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install Power Platform CLI (pac)
-      shell: pwsh
-      run: |
-        # Use the built-in install command to fetch the latest version
-        Invoke-WebRequest -Uri "https://aka.ms/PowerAppsCLI" -OutFile "pac.msi"
-        Start-Process msiexec.exe -ArgumentList "/i pac.msi /quiet" -Wait
-
-        # Install the latest version
-        pac install latest
-
-        # Verify installation
-        pac --version
-
-    - name: Create Artifacts Directory
-      run: |
-        if (!(Test-Path -Path "./artifacts")) {
-          New-Item -ItemType Directory -Path "./artifacts"
-        }
-
-    - name: Pack Solution from Files
-      shell: pwsh  # Use PowerShell
-      run: |
-        $SOLUTION_DIR = "./PowerPlatform/Solutions/${{ inputs.solution-name }}Managed"
-        $OUTPUT_FILE = "./artifacts/${{ inputs.solution-name }}.zip"
-
-        if (-not (Test-Path -Path $SOLUTION_DIR)) {
-          Write-Host "Error: Solution directory not found: $SOLUTION_DIR"
-          exit 1
-        }
-
-        Write-Host "Packing solution..."
-        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE"
+    - name: Pack Power Platform Solution
+      uses: microsoft/powerplatform-actions/pack-solution@v1
+      with:
+        solution-folder: PowerPlatform/Solutions/${{ inputs.solution-name }}Managed
+        solution-output-file: artifacts/${{ inputs.solution-name }}.zip
+        managed: true  # Set to true for a managed solution, false for unmanaged
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
