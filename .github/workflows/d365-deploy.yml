@@ -15,17 +15,15 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install .NET SDK 6.0
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
+    - name: Install Power Platform CLI
+      uses: microsoft/powerplatform-actions/actions-install@v1
 
     - name: Pack Power Platform Solution
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
-        solution-folder: PowerPlatform/Solutions/${{ inputs.solution-name }}Managed
+        solution-folder: PowerPlatform/Solutions/${{ inputs.solution-name }}/Managed
         solution-output-file: artifacts/${{ inputs.solution-name }}.zip
-        managed: true  # Set to true for a managed solution, false for unmanaged
+        managed: true  # Set to true for managed, false for unmanaged
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
