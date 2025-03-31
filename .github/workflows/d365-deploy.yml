@@ -28,7 +28,7 @@ jobs:
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: solution-zip
+        name: ${{ inputs.solution-name }}
         path: ./artifacts/${{ inputs.solution-name }}.zip
 
 
@@ -44,27 +44,27 @@ jobs:
       - name: Download Solution Artifact
         uses: actions/download-artifact@v4
         with:
-          name: solution-zip
+          name: ${{ inputs.solution-name }}
           path: ./artifacts
 
-      # ✅ Install Power Platform CLI
-      - name: Install Power Platform CLI
-        uses: microsoft/powerplatform-actions/actions-install@v1
+      # # ✅ Install Power Platform CLI
+      # - name: Install Power Platform CLI
+      #   uses: microsoft/powerplatform-actions/actions-install@v1
 
-      # ✅ Authenticate using official Power Platform action
-      - name: Authenticate with Power Platform
-        uses: microsoft/powerplatform-actions/authenticate@v1
-        with:
-          environment-url: ${{ vars.PP_ENV_URL }}
-          client-id: ${{ vars.PP_APP_ID }}
-          tenant-id: ${{ vars.PP_TENANT_ID }}
-          client-secret: ${{ secrets.PP_CLIENT_SECRET }}
+      # # ✅ Authenticate using official Power Platform action
+      # - name: Authenticate with Power Platform
+      #   uses: microsoft/powerplatform-actions/authenticate@v1
+      #   with:
+      #     environment-url: ${{ vars.PP_ENV_URL }}
+      #     client-id: ${{ vars.PP_APP_ID }}
+      #     tenant-id: ${{ vars.PP_TENANT_ID }}
+      #     client-secret: ${{ secrets.PP_CLIENT_SECRET }}
 
-      # ✅ Deploy Solution using Import-Solution action
-      - name: Deploy Solution
-        uses: microsoft/powerplatform-actions/import-solution@v1
-        with:
-          environment-url: ${{ vars.PP_ENV_URL }}
-          solution-file: ./artifacts/${{ inputs.solution-name }}.zip
-          async: true
-          max-async-wait: 60
+      # # ✅ Deploy Solution using Import-Solution action
+      # - name: Deploy Solution
+      #   uses: microsoft/powerplatform-actions/import-solution@v1
+      #   with:
+      #     environment-url: ${{ vars.PP_ENV_URL }}
+      #     solution-file: ./artifacts/${{ inputs.solution-name }}.zip
+      #     async: true
+      #     max-async-wait: 60
