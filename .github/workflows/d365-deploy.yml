@@ -1,5 +1,3 @@
-name: Deploy-D365-Solution
-
 on:
   workflow_dispatch:
     inputs:
@@ -9,43 +7,46 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: windows-latest  # Use Windows runner
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install .NET SDK 6.0 and Power Platform CLI
+    - name: Install .NET SDK 6.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install Power Platform CLI (pac)
       run: |
-        # Add the Microsoft package repository for .NET SDK
-        sudo apt-get update
-        sudo apt-get install -y wget apt-transport-https software-properties-common
-        wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
-        sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
-        sudo apt-get update
-        sudo apt-get install -y dotnet-sdk-6.0
+        # Install Power Platform CLI via PowerShell
+        dotnet tool install --global Microsoft.PowerPlatform.Cds.Pac.Cli
 
-        # Install the Power Platform CLI (pac)
-        npm install -g pac-cli
+    - name: Verify Installations
+      run: |
+        dotnet --version
+        pac --version
 
-        # Verify installation of pac CLI
-        pac --version  # This should show the version if it's installed correctly
+    - name: Create Artifacts Directory
+      run: |
+        if (!(Test-Path -Path "./artifacts")) {
+          New-Item -ItemType Directory -Path "./artifacts"
+        }
 
     - name: Pack Solution from Files
-      shell: bash
+      shell: pwsh  # Use PowerShell
       run: |
-        set -e  # Exit on error
+        $SOLUTION_DIR = "./PowerPlatform/Solutions/${{ inputs.solution-name }}Managed"
+        $OUTPUT_FILE = "./artifacts/${{ inputs.solution-name }}.zip"
 
-        SOLUTION_DIR=./PowerPlatform/Solutions/${{ inputs.solution-name }}Managed
-        OUTPUT_FILE=./artifacts/${{ inputs.solution-name }}.zip
-
-        if [ ! -d "$SOLUTION_DIR" ]; then
-          echo "Error: Solution directory not found: $SOLUTION_DIR"
+        if (-not (Test-Path -Path $SOLUTION_DIR)) {
+          Write-Host "Error: Solution directory not found: $SOLUTION_DIR"
           exit 1
-        fi
+        }
 
-        echo "Packing solution..."
-        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE" --managed false
+        Write-Host "Packing solution..."
+        pac solution pack --path "$SOLUTION_DIR" --zipfile "$OUTPUT_FILE"
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
@@ -54,36 +55,36 @@ jobs:
         path: ./artifacts/${{ inputs.solution-name }}.zip
 
 
-  deploy:
-    name: Deploy - EMCR-UAT
-    runs-on: ubuntu-latest
-    needs: build
-    environment: EMCR-UAT
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+  # deploy:
+  #   name: Deploy - EMCR-UAT
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment: EMCR-UAT
+  #   steps:
+  #   - name: Checkout Repository
+  #     uses: actions/checkout@v4
 
-    - name: Download Solution Artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: solution-zip
-        path: ./artifacts
+  #   - name: Download Solution Artifact
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: solution-zip
+  #       path: ./artifacts
 
-    - name: Authenticate with Power Platform
-      env:
-        ENV_URL: ${{ vars.PP_ENV_URL }}              
-        APP_ID: ${{ vars.PP_APP_ID }}              
-        TENANT_ID: ${{ vars.PP_TENANT_ID }}        
-      run: |
-        pac auth create \
-          --url "$ENV_URL" \
-          --applicationId "$APP_ID" \
-          --clientSecret "${{ secrets.PP_CLIENT_SECRET }}" \
-          --tenant "$TENANT_ID"
+  #   - name: Authenticate with Power Platform
+  #     env:
+  #       ENV_URL: ${{ vars.PP_ENV_URL }}              
+  #       APP_ID: ${{ vars.PP_APP_ID }}              
+  #       TENANT_ID: ${{ vars.PP_TENANT_ID }}        
+  #     run: |
+  #       pac auth create \
+  #         --url "$ENV_URL" \
+  #         --applicationId "$APP_ID" \
+  #         --clientSecret "${{ secrets.PP_CLIENT_SECRET }}" \
+  #         --tenant "$TENANT_ID"
 
-    - name: Deploy Solution
-      run: |
-        pac solution import \
-          --path "./artifacts/${{ inputs.solution-name }}.zip" \
-          --async true \
-          --max-async-wait 60
+  #   - name: Deploy Solution
+  #     run: |
+  #       pac solution import \
+  #         --path "./artifacts/${{ inputs.solution-name }}.zip" \
+  #         --async true \
+  #         --max-async-wait 60
