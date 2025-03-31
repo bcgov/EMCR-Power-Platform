@@ -20,10 +20,15 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Install Power Platform CLI (pac) with Chocolatey
+    - name: Install Power Platform CLI (pac)
       shell: pwsh
       run: |
-        choco install powerplatform-cli -y
+        # Use the built-in install command to fetch the latest version
+        Invoke-WebRequest -Uri "https://aka.ms/PowerAppsCLI" -OutFile "pac.msi"
+        Start-Process msiexec.exe -ArgumentList "/i pac.msi /quiet" -Wait
+
+        # Install the latest version
+        pac install latest
 
         # Verify installation
         pac --version
