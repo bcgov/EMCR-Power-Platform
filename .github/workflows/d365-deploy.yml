@@ -32,36 +32,39 @@ jobs:
         path: ./artifacts/${{ inputs.solution-name }}.zip
 
 
-  # deploy:
-  #   name: Deploy - EMCR-UAT
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   environment: EMCR-UAT
-  #   steps:
-  #   - name: Checkout Repository
-  #     uses: actions/checkout@v4
+  deploy:
+    name: Deploy - EMCR-UAT
+    runs-on: windows-latest
+    needs: build
+    environment: EMCR-UAT
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-  #   - name: Download Solution Artifact
-  #     uses: actions/download-artifact@v4
-  #     with:
-  #       name: solution-zip
-  #       path: ./artifacts
+      - name: Download Solution Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: solution-zip
+          path: ./artifacts
 
-  #   - name: Authenticate with Power Platform
-  #     env:
-  #       ENV_URL: ${{ vars.PP_ENV_URL }}              
-  #       APP_ID: ${{ vars.PP_APP_ID }}              
-  #       TENANT_ID: ${{ vars.PP_TENANT_ID }}        
-  #     run: |
-  #       pac auth create \
-  #         --url "$ENV_URL" \
-  #         --applicationId "$APP_ID" \
-  #         --clientSecret "${{ secrets.PP_CLIENT_SECRET }}" \
-  #         --tenant "$TENANT_ID"
+      # ✅ Install Power Platform CLI
+      - name: Install Power Platform CLI
+        uses: microsoft/powerplatform-actions/actions-install@v1
 
-  #   - name: Deploy Solution
-  #     run: |
-  #       pac solution import \
-  #         --path "./artifacts/${{ inputs.solution-name }}.zip" \
-  #         --async true \
-  #         --max-async-wait 60
+      # ✅ Authenticate using official Power Platform action
+      - name: Authenticate with Power Platform
+        uses: microsoft/powerplatform-actions/authenticate@v1
+        with:
+          environment-url: ${{ vars.PP_ENV_URL }}
+          client-id: ${{ vars.PP_APP_ID }}
+          tenant-id: ${{ vars.PP_TENANT_ID }}
+          client-secret: ${{ secrets.PP_CLIENT_SECRET }}
+
+      # ✅ Deploy Solution using Import-Solution action
+      - name: Deploy Solution
+        uses: microsoft/powerplatform-actions/import-solution@v1
+        with:
+          environment-url: ${{ vars.PP_ENV_URL }}
+          solution-file: ./artifacts/${{ inputs.solution-name }}.zip
+          async: true
+          max-async-wait: 60
