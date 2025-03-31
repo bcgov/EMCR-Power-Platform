@@ -22,8 +22,8 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
         solution-folder: PowerPlatform/Solutions/${{ inputs.solution-name }}/Managed
-        solution-output-file: artifacts/${{ inputs.solution-name }}.zip
-        managed: true  # Set to true for managed, false for unmanaged
+        solution-file: artifacts/${{ inputs.solution-name }}.zip
+        solution-type: Managed
 
     - name: Upload Solution Artifact
       uses: actions/upload-artifact@v4
