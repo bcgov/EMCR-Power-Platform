@@ -1,3 +1,5 @@
+name: Deploy-D365-Solution
+
 on:
   workflow_dispatch:
     inputs:
