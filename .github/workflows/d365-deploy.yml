@@ -19,13 +19,12 @@ jobs:
         dotnet-version: '6.0.x'
 
     - name: Install Power Platform CLI (pac)
+      shell: pwsh
       run: |
-        # Install Power Platform CLI via PowerShell
-        dotnet tool install --global Microsoft.PowerPlatform.Cds.Pac.Cli
+        # Install pac CLI using Windows package manager
+        winget install --id Microsoft.PowerPlatform -e --silent
 
-    - name: Verify Installations
-      run: |
-        dotnet --version
+        # Verify installation
         pac --version
 
     - name: Create Artifacts Directory
