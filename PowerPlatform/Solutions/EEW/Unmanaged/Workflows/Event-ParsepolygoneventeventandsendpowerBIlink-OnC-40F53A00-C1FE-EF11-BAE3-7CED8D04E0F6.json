@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "emcr_EmcrAppsDataverse"
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -49,14 +49,14 @@
           }
         },
         "Polygon Email Recipients (emcr_PolygonEmailRecipients)": {
-          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca",
+          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca;Geethu.Nair@quartech.com",
           "type": "String",
           "metadata": {
             "schemaName": "emcr_PolygonEmailRecipients"
           }
         },
         "PowerBI report URL (emcr_PowerBIreportURL)": {
-          "defaultValue": "https://app.powerbi.com/groups/651e9cbc-9565-457e-8465-a8d27917fcb4/reports/a96ff2ae-682a-4dd7-ad44-58142a4ba5c3/e78e2075ce84dda32c5e?experience=power-bi",
+          "defaultValue": "https://app.powerbi.com/groups/a3f8a6a1-4702-468c-b819-a2c1ba9540c2/reports/eef6a7b5-f46e-4629-8bea-1ac5d425f873/e78e2075ce84dda32c5e?experience=power-bi",
           "type": "String",
           "metadata": {
             "schemaName": "emcr_PowerBIreportURL"
@@ -85,7 +85,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -280,7 +280,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "CreateRecord",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -425,7 +425,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "CreateRecord",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -452,7 +452,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "CreateRecord",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -493,7 +493,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "UpdateOnlyRecord",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -554,7 +554,7 @@
                 "type": "OpenApiConnection",
                 "inputs": {
                   "host": {
-                    "connectionName": "shared_commondataserviceforapps",
+                    "connectionName": "shared_commondataserviceforapps_1",
                     "operationId": "UpdateRecord",
                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                   },
@@ -578,6 +578,7 @@
                     "item/emcr_originaltimeunitsutc": "@outputs('OriginTime')",
                     "item/emcr_polygonurl": "@outputs('PowerBIURL')",
                     "item/emcr_publicalert": 717350001,
+                    "item/statuscode": "@outputs('Message_Type_Status_Reason')",
                     "item/emcr_type": 717350000
                   },
                   "authentication": "@parameters('$authentication')"

@@ -24,7 +24,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_source" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_source" disabled="false" />
+                        <control id="emcr_source" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_source" disabled="true" />
                       </cell>
                       <cell id="{ae066400-5aa4-4f8e-9669-5b64f5b5259f}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -134,7 +134,7 @@
                   <rows>
                     <row />
                     <row>
-                      <cell id="{0e9b4126-265e-4e23-9cbb-2f539d03862c}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{0e9b4126-265e-4e23-9cbb-2f539d03862c}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -166,7 +166,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_parentevent" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_parentevent" disabled="false" />
+                        <control id="emcr_parentevent" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_parentevent" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -297,7 +297,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_topic" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_topic" disabled="false" />
+                        <control id="emcr_topic" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_topic" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -305,7 +305,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_message" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_message" disabled="false" />
+                        <control id="emcr_message" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_message" disabled="true" />
                       </cell>
                     </row>
                     <row />
@@ -470,6 +470,14 @@
                     <row />
                     <row />
                     <row />
+                    <row>
+                      <cell id="{b01e51bc-83a5-4bb5-8bd6-5f365538588e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_memo" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_memo" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="tab_2_section_1" id="97e89570-6bac-4328-8d35-2b7359437307" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">

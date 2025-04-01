@@ -10,10 +10,10 @@
           "name": "shared_office365"
         }
       },
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "emcr_EmcrAppsDataverse"
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -49,7 +49,7 @@
           }
         },
         "Core Email Recipients (emcr_EmailRecipients)": {
-          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca;rand.park@gov.bc.ca",
+          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca;Geethu.Nair@quartech.com",
           "type": "String",
           "metadata": {
             "schemaName": "emcr_EmailRecipients",
@@ -79,7 +79,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -344,7 +344,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "UpdateOnlyRecord",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -385,7 +385,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "CreateRecord",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -412,7 +412,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "CreateRecord",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },

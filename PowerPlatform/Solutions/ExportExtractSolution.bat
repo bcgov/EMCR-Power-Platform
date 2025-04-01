@@ -59,13 +59,41 @@ echo Extracting managed solution...
 set EXTRACT_PATH_MANAGED=%EXPORT_PATH%\%SOLUTION_NAME%\Managed
 pac solution unpack --zipfile %ZIP_FILE_MANAGED% --folder %EXTRACT_PATH_MANAGED% --allowDelete true --allowWrite true --packagetype Managed
 
-:: Check if extraction of managed solution was successful
-if exist %EXTRACT_PATH_MANAGED% (
-    echo Managed solution extracted successfully to: %EXTRACT_PATH_MANAGED%
-) else (
+:: Check extraction success
+if not exist "%EXTRACT_PATH_MANAGED%" (
     echo ERROR: Managed solution extraction failed!
+    pause
+    exit /b
 )
+echo Managed solution extracted successfully to: %EXTRACT_PATH_MANAGED%
 
+:: Create deployment settings files using PAC CLI
+setlocal enabledelayedexpansion
+set ENVIRONMENTS=uat train prod
 
-echo Process completed.
+:: Generate a base deployment settings file
+set BASE_SETTINGS_FILE=%SOLUTION_DIR%\base.deploymentsettings.json
+pac solution create-settings --solution-zip "%EXPORT_PATH%\%SOLUTION_NAME%\%SOLUTION_NAME%".zip --settings-file "%EXPORT_PATH%\%SOLUTION_NAME%\%BASE_SETTINGS_FILE%"
+
+@REM if not exist "%BASE_SETTINGS_FILE%" (
+@REM     echo ERROR: Failed to create base deployment settings file!
+@REM     pause
+@REM     exit /b
+@REM )
+@REM echo Base deployment settings file created: %BASE_SETTINGS_FILE%
+
+@REM :: Copy base settings to each environment-specific file
+@REM for %%E in (%ENVIRONMENTS%) do (
+@REM     set DEPLOYMENT_FILE=%SOLUTION_DIR%\%%E.deploymentsettings.json
+@REM     copy /Y "%BASE_SETTINGS_FILE%" "!DEPLOYMENT_FILE!"
+    
+@REM     if exist "!DEPLOYMENT_FILE!" (
+@REM         echo Deployment settings file created: !DEPLOYMENT_FILE!
+@REM     ) else (
+@REM         echo ERROR: Failed to create deployment settings file for %%E!
+@REM     )
+@REM )
+
+echo Process completed successfully!
 pause
+

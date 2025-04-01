@@ -1,0 +1,10 @@
+{
+  "EnvironmentVariables": [],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "emcr_sharedcommondataserviceforapps_c9deb",
+      "ConnectionId": "shared-commondataser-6ef4b40e-65a6-41ad-948d-8ac663a9da56",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+    }
+  ]
+}

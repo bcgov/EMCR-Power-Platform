@@ -1,5 +1,5 @@
 <environmentvariabledefinition schemaname="emcr_PolygonEmailSubjectLine">
-  <defaultvalue>Test Polygon EEW Alert - not real</defaultvalue>
+  <defaultvalue>DEV Polygon EEW Alert - not real</defaultvalue>
   <displayname default="Polygon Email Subject Line">
     <label description="Polygon Email Subject Line" languagecode="1033" />
   </displayname>

@@ -1,0 +1,141 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "emcr_CoreMessageText",
+      "Value": "",
+      "Name": {
+        "Default": "Core Message Text",
+        "ByLcid": {
+          "1033": "Core Message Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EmailRecipients",
+      "Value": "",
+      "Name": {
+        "Default": "Core Email Recipients",
+        "ByLcid": {
+          "1033": "Core Email Recipients"
+        }
+      },
+      "TypeId": 100000000,
+      "Description": {
+        "Default": "List of Email Recipients",
+        "ByLcid": {
+          "1033": "List of Email Recipients"
+        }
+      },
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EmailSubjectLine",
+      "Value": "",
+      "Name": {
+        "Default": "Core Email Subject Line",
+        "ByLcid": {
+          "1033": "Core Email Subject Line"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_PolygonEmailRecipients",
+      "Value": "",
+      "Name": {
+        "Default": "Polygon Email Recipients",
+        "ByLcid": {
+          "1033": "Polygon Email Recipients"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_PolygonEmailSubjectLine",
+      "Value": "",
+      "DefaultValue": "DEV Polygon EEW Alert - not real",
+      "Name": {
+        "Default": "Polygon Email Subject Line",
+        "ByLcid": {
+          "1033": "Polygon Email Subject Line"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_PolygonMessageText",
+      "Value": "",
+      "Name": {
+        "Default": "Polygon Message Text",
+        "ByLcid": {
+          "1033": "Polygon Message Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_PolygonTeamsRecipients",
+      "Value": "",
+      "Name": {
+        "Default": "Polygon Teams Recipients",
+        "ByLcid": {
+          "1033": "Polygon Teams Recipients"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_PowerBIreportURL",
+      "Value": "",
+      "Name": {
+        "Default": "PowerBI report URL",
+        "ByLcid": {
+          "1033": "PowerBI report URL"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_TeamsRecipients",
+      "Value": "",
+      "Name": {
+        "Default": "Core Teams Recipients",
+        "ByLcid": {
+          "1033": "Core Teams Recipients"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    }
+  ],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "emcr_EmcrAppsMSTeams",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+    },
+    {
+      "LogicalName": "emcr_EmcrAppsOutlook",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    },
+    {
+      "LogicalName": "emcr_EmcrAppsPowerBI",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_powerbi"
+    },
+    {
+      "LogicalName": "emcr_sharedcommondataserviceforapps_c9deb",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+    }
+  ]
+}

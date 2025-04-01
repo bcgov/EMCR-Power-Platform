@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25032.00186">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25033.00174">
   <Entities />
   <Roles />
   <Workflows />
@@ -15,8 +15,8 @@
   <AppModules />
   <EntityDataProviders />
   <connectionreferences>
-    <connectionreference connectionreferencelogicalname="emcr_sharedcommondataserviceforapps_b4ec6">
-      <connectionreferencedisplayname>Microsoft Dataverse Crosswalk-b4ec6</connectionreferencedisplayname>
+    <connectionreference connectionreferencelogicalname="emcr_sharedcommondataserviceforapps_c9deb">
+      <connectionreferencedisplayname>EmcrApps - Dataverse</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>

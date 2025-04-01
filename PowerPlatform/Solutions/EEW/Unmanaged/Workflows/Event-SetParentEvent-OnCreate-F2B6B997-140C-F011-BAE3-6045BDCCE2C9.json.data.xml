@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{cfd1a3be-8003-f011-bae3-6045bdcce2c9}" Name="02. Score: BCM Program Established" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/02ScoreBCMProgramEstablished-CFD1A3BE-8003-F011-BAE3-6045BDCCE2C9.json</JsonFileName>
+<Workflow WorkflowId="{f2b6b997-140c-f011-bae3-6045bdcce2c9}" Name="Event - Set Parent Event - OnCreate" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/Event-SetParentEvent-OnCreate-F2B6B997-140C-F011-BAE3-6045BDCCE2C9.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -15,12 +15,13 @@
   <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IntroducedVersion>1.0.0.1</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ModernFlowType>0</ModernFlowType>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="02. Score: BCM Program Established" />
+    <LocalizedName languagecode="1033" description="Event - Set Parent Event - OnCreate" />
   </LocalizedNames>
 </Workflow>

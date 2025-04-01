@@ -4,7 +4,7 @@
       "shared_commondataserviceforapps": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_b4ec6"
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -69,7 +69,7 @@
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }

@@ -20,6 +20,7 @@
   <BusinessProcessType>0</BusinessProcessType>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <ProcessTriggerScope>1</ProcessTriggerScope>
+  <ModernFlowType>0</ModernFlowType>
   <PrimaryEntity>emcr_EMCRLocationChangeRequest</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Show Fields when Change Type = Regional District" />

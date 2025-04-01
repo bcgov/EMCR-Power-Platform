@@ -24,7 +24,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_name" />
+                        <control id="emcr_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="emcr_name" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -32,7 +32,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -40,7 +40,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_event" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_event" disabled="false" />
+                        <control id="emcr_event" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_event" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -48,7 +48,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_contour" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_contour" disabled="false" />
+                        <control id="emcr_contour" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_contour" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -56,7 +56,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_pgaunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgaunits" disabled="false" />
+                        <control id="emcr_pgaunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgaunits" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -64,7 +64,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_pgvunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgvunits" disabled="false" />
+                        <control id="emcr_pgvunits" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_pgvunits" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -72,7 +72,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_mmiunits" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_mmiunits" disabled="false" />
+                        <control id="emcr_mmiunits" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_mmiunits" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -80,15 +80,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_esrijson" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_esrijson" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{f0660277-5e4c-4007-b3be-d330dcbebafa}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                        <control id="emcr_wkt" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_wkt" disabled="false" />
+                        <control id="emcr_esrijson" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_esrijson" disabled="true" />
                       </cell>
                     </row>
                   </rows>

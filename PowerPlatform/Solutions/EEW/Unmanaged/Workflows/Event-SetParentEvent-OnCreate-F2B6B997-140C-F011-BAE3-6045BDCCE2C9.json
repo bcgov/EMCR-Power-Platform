@@ -1,0 +1,222 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_Alert_is_created": {
+          "metadata": {
+            "operationMetadataId": "afce9e3d-48f3-47e1-8e5c-b70fb9c2585c"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "emcr_alert",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filterexpression": "(emcr_version ne 0) and (emcr_topic eq 'eew/sys/gm-contour/data' or emcr_topic eq 'eew/sys/dm/data')",
+              "subscriptionRequest/runas": 3
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Find_an_Alert_with_the_same_EventID_and_Topic_and_Version_=_0_": {
+          "runAfter": {
+            "EventID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1f7a3f64-2183-434f-8f2a-b044ffec65fc"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emcr_alerts",
+              "fetchXml": "<fetch version=\"1.0\" mapping=\"logical\" savedqueryid=\"2dfc6220-2167-458d-acf3-a20a906b466d\">\n  <entity name=\"emcr_alert\">\n    <attribute name=\"emcr_alertid\" />\n    <attribute name=\"createdon\" />\n    <filter type=\"and\">\n      <condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />\n      <condition attribute=\"emcr_topic\" operator=\"eq\" value=\"@{outputs('Topic')}\" />\n      <condition attribute=\"emcr_eventid\" operator=\"eq\" value=\"@{outputs('EventID')}\" />\n      <condition attribute=\"emcr_version\" operator=\"eq\" value=\"0\" />\n    </filter>\n    <order attribute=\"createdon\" descending=\"true\" />\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Topic": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "808f1f5d-f455-4534-b4e7-64ee2f298235"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()?['body/emcr_topic']"
+        },
+        "EventID": {
+          "runAfter": {
+            "Topic": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0f70a892-fe65-4f1a-b450-a09607010f9a"
+          },
+          "type": "Compose",
+          "inputs": "@triggerOutputs()?['body/emcr_eventid']"
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Find_an_Alert_with_the_same_EventID_and_Topic_and_Version_=_0_')?['body/value']",
+          "actions": {
+            "ParentAlert": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "74f24047-229b-412d-a7c2-392d32a0ffde"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')"
+            },
+            "ParentAlertID": {
+              "runAfter": {
+                "ParentAlert": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fb205162-9fbb-49ae-a6d1-4b6ceebe493a"
+              },
+              "type": "Compose",
+              "inputs": "@outputs('ParentAlert').emcr_alertid"
+            },
+            "Set_variable": {
+              "runAfter": {
+                "ParentAlertID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4ad2a2f0-c13c-4645-ac23-8d5e28d46294"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "ParentEventGUID",
+                "value": "@{outputs('ParentAlertID')}"
+              }
+            }
+          },
+          "runAfter": {
+            "Find_an_Alert_with_the_same_EventID_and_Topic_and_Version_=_0_": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "04220151-82a3-4289-a978-25090fc9dc79"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "ce3a74cf-c1f3-49e5-88a5-dcc8c4e2d850"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ParentEventGUID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Check_if_the_parent_exists": {
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2fe44b28-99ed-4df3-af36-0050acfb8a0f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_alerts",
+                  "recordId": "@triggerOutputs()?['body/emcr_alertid']",
+                  "item/emcr_ParentEvent@odata.bind": "emcr_alerts(@{variables('ParentEventGUID')})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@length(variables('ParentEventGUID'))",
+                0
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "63e27338-18e7-4e56-85c1-0c9eec8127dc"
+          },
+          "type": "If"
+        },
+        "Compose": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2f461b5d-ce9f-466a-8de1-983babcaf30f"
+          },
+          "type": "Compose",
+          "inputs": "@length(variables('ParentEventGUID'))"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

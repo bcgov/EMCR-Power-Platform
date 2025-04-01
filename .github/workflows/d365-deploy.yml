@@ -68,6 +68,8 @@ jobs:
         tenant-id: ${{ vars.PP_TENANT_ID }}
         client-secret: ${{ secrets.PP_CLIENT_SECRET }}
         solution-file: ./artifacts/${{ inputs.solution-name }}.zip
+        use-deployment-settings-file: true
+        deployment-settings-file: PowerPlatform/Solutions/${{ inputs.solution-name }}/uat.deploymentsettings.json
         async: true
         max-async-wait: 60
         skip-lower-version: true

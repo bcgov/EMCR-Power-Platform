@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25032.186" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25032.00186">
+<ImportExportXml version="9.2.25032.186" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25033.00174">
   <SolutionManifest>
     <UniqueName>Crosswalk</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Crosswalk" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.4</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>EMCR</UniqueName>
@@ -87,6 +87,7 @@
       <RootComponent type="1" schemaName="emcr_regionaldistrict" behavior="0" />
       <RootComponent type="1" schemaName="emcr_wlrsregion" behavior="0" />
       <RootComponent type="1" schemaName="systemuser" behavior="1" />
+      <RootComponent type="20" id="{96e44d6d-470b-f011-bae3-6045bdcce2c9}" behavior="0" />
       <RootComponent type="20" id="{a0bf707d-a606-f011-bae2-7c1e52063d30}" behavior="0" />
       <RootComponent type="29" id="{03d6b14d-a006-f011-bae2-7ced8d04e0f6}" behavior="0" />
       <RootComponent type="29" id="{45b8cf8e-fa00-f011-bae3-6045bdf9a2eb}" behavior="0" />
@@ -95,7 +96,6 @@
       <RootComponent type="29" id="{8f0fec6e-fc00-f011-bae3-6045bdf9a2eb}" behavior="0" />
       <RootComponent type="29" id="{a2833021-fc00-f011-bae3-6045bdf9a2eb}" behavior="0" />
       <RootComponent type="29" id="{b5cc50bd-fa00-f011-bae3-6045bdf9a2eb}" behavior="0" />
-      <RootComponent type="29" id="{cfd1a3be-8003-f011-bae3-6045bdcce2c9}" behavior="0" />
       <RootComponent type="29" id="{e0304525-fa00-f011-bae3-6045bdf9a2eb}" behavior="0" />
       <RootComponent type="61" schemaName="emcr_changetypehandler" behavior="0" />
       <RootComponent type="62" schemaName="emcr_Crosswalk" behavior="0" />
@@ -103,20 +103,8 @@
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
-        <Required type="1" schemaName="emcr_readinessindexsurvey" displayName="Readiness Index Survey" solution="Active" />
-        <Dependent type="29" displayName="02. Score: BCM Program Established" id="{cfd1a3be-8003-f011-bae3-6045bdcce2c9}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="emcr_ministrybusinesscontinuityadvisor" displayName="Ministry Business Continuity Advisor" parentSchemaName="emcr_readinessindexsurvey" parentDisplayName="Readiness Index Survey" solution="Active" />
-        <Dependent type="29" displayName="02. Score: BCM Program Established" id="{cfd1a3be-8003-f011-bae3-6045bdcce2c9}" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
         <Dependent type="80" schemaName="emcr_Crosswalk" displayName="Crosswalk" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="emcr_sharedcommondataserviceforapps_c9deb" solution="Active" id.connectionreferencelogicalname="emcr_sharedcommondataserviceforapps_c9deb" />
-        <Dependent type="29" displayName="02. Score: BCM Program Established" id="{cfd1a3be-8003-f011-bae3-6045bdcce2c9}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.12)" id.uniquename="AppChannel">
