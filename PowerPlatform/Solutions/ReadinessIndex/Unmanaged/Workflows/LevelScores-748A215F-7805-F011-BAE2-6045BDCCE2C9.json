@@ -1,0 +1,157 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "21c65a29-0be6-4d5c-979e-b8cec2abf7d3"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_totalscorepercentage"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Update_a_row": {
+          "runAfter": {
+            "Level_5_Calculations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c951c80d-dc34-4da8-84da-2368995cc14a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emcr_readinessindexsurveies",
+              "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+              "item/emcr_level1foundational": "@outputs('Level_1_Calculations')",
+              "item/emcr_level2initialprogress": "@outputs('Level_2_Calculations')",
+              "item/emcr_level3moderateprogress": "@outputs('Level_3_Calculations')",
+              "item/emcr_level4substantialprogress": "@outputs('Level_4_Calculations')",
+              "item/emcr_level5objectiveachieved": "@outputs('Level_5_Calculations')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Level_1_Calculations": {
+          "runAfter": {
+            "Delay": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4be94956-52e3-446c-8ea2-bb52ba15f635"
+          },
+          "type": "Compose",
+          "inputs": "@mul(\r\n  div(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      add(\r\n                        if(equals(triggerOutputs()?['body/emcr_scorebcmprogramestablished'], null), 0, float(triggerOutputs()?['body/emcr_scorebcmprogramestablished'])),\r\n                        if(equals(triggerOutputs()?['body/emcr_scoreadvisor'], null), 0, float(triggerOutputs()?['body/emcr_scoreadvisor']))\r\n                      ),\r\n                      if(equals(triggerOutputs()?['body/emcr_scorebiaannualreview'], null), 0, float(triggerOutputs()?['body/emcr_scorebiaannualreview']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_scorenotificationandactivation'], null), 0, float(triggerOutputs()?['body/emcr_scorenotificationandactivation']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_scorecommunicationmethods'], null), 0, float(triggerOutputs()?['body/emcr_scorecommunicationmethods']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_scorebusinessimpactanalysis'], null), 0, float(triggerOutputs()?['body/emcr_scorebusinessimpactanalysis']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_scorebcporientationdiscussion'], null), 0, float(triggerOutputs()?['body/emcr_scorebcporientationdiscussion']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_scoremocannuallyreviewedupdated'], null), 0, float(triggerOutputs()?['body/emcr_scoremocannuallyreviewedupdated']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_scoremocintroduction'], null), 0, float(triggerOutputs()?['body/emcr_scoremocintroduction']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocplanreview'], null), 0, float(triggerOutputs()?['body/emcr_scoremocplanreview']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticaldependenciesidentified'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticaldependenciesidentified']))\r\n    ),\r\n    11\r\n  ),\r\n  100\r\n)\r\n"
+        },
+        "Level_2_Calculations": {
+          "runAfter": {
+            "Level_1_Calculations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9184ebe4-1895-4436-9c61-2bad6c910ecf"
+          },
+          "type": "Compose",
+          "inputs": "@mul(\r\n  div(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      add(\r\n                        if(equals(triggerOutputs()?['body/emcr_scorebcmdiscussedatexecutive'], null), 0, float(triggerOutputs()?['body/emcr_scorebcmdiscussedatexecutive'])),\r\n                        if(equals(triggerOutputs()?['body/emcr_scoreministrybcmnetwork'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrybcmnetwork']))\r\n                      ),\r\n                      if(equals(triggerOutputs()?['body/emcr_scorebiasapproved'], null), 0, float(triggerOutputs()?['body/emcr_scorebiasapproved']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_scorebcpsitetempprocedures'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpsitetempprocedures']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_scorealternatesitereadiness1'], null), 0, float(triggerOutputs()?['body/emcr_scorealternatesitereadiness1']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_scorerecoverystrategies'], null), 0, float(triggerOutputs()?['body/emcr_scorerecoverystrategies']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_scorebcpdrill'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpdrill']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_scoremocstaffing'], null), 0, float(triggerOutputs()?['body/emcr_scoremocstaffing']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_scoreics100'], null), 0, float(triggerOutputs()?['body/emcr_scoreics100']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocdrill'], null), 0, float(triggerOutputs()?['body/emcr_scoremocdrill']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scoreministrydependenciesevaluated'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrydependenciesevaluated']))\r\n    ),\r\n    11\r\n  ),\r\n  100\r\n)\r\n"
+        },
+        "Level_3_Calculations": {
+          "runAfter": {
+            "Level_2_Calculations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ae5473ef-062a-4c19-b055-d92374508c3e"
+          },
+          "type": "Compose",
+          "inputs": "@mul(\r\n  div(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      add(\r\n                        if(equals(triggerOutputs()?['body/emcr_scorebcmchampionsponsor'], null), 0, float(triggerOutputs()?['body/emcr_scorebcmchampionsponsor'])),\r\n                        if(equals(triggerOutputs()?['body/emcr_scoreexecutiveawareness'], null), 0, float(triggerOutputs()?['body/emcr_scoreexecutiveawareness']))\r\n                      ),\r\n                      if(equals(triggerOutputs()?['body/emcr_scorecriticalserviceslist'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalserviceslist']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_scoremanualprocess'], null), 0, float(triggerOutputs()?['body/emcr_scoremanualprocess']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_scorevitalrecords'], null), 0, float(triggerOutputs()?['body/emcr_scorevitalrecords']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_scorerecoveryprocedures'], null), 0, float(triggerOutputs()?['body/emcr_scorerecoveryprocedures']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_scorebcttabletop'], null), 0, float(triggerOutputs()?['body/emcr_scorebcttabletop']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_scoremocalternatesite2'], null), 0, float(triggerOutputs()?['body/emcr_scoremocalternatesite2']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_scorealtsitesetuptraining'], null), 0, float(triggerOutputs()?['body/emcr_scorealtsitesetuptraining']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremoctabletop'], null), 0, float(triggerOutputs()?['body/emcr_scoremoctabletop']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticalservicesdependenciesstrategies'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalservicesdependenciesstrategies']))\r\n    ),\r\n    11\r\n  ),\r\n  100\r\n)\r\n"
+        },
+        "Level_4_Calculations": {
+          "runAfter": {
+            "Level_3_Calculations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a43a368a-adcb-4c31-be0b-2ab5fbf4300e"
+          },
+          "type": "Compose",
+          "inputs": "@mul(\r\n  div(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      add(\r\n                        if(equals(triggerOutputs()?['body/emcr_scorebcmpolicyofstrategicplan'], null), 0, float(triggerOutputs()?['body/emcr_scorebcmpolicyofstrategicplan'])),\r\n                        if(equals(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware'], null), 0, float(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware']))\r\n                      ),\r\n                      if(equals(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview'], null), 0, float(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_scoreitdatarebuild'], null), 0, float(triggerOutputs()?['body/emcr_scoreitdatarebuild']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_scorestaffreduncancy'], null), 0, float(triggerOutputs()?['body/emcr_scorestaffreduncancy']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_scoreexercise'], null), 0, float(triggerOutputs()?['body/emcr_scoreexercise']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_scorebcpfunctional'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpfunctional']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_scoremocpositionsprocesses'], null), 0, float(triggerOutputs()?['body/emcr_scoremocpositionsprocesses']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocfunctional'], null), 0, float(triggerOutputs()?['body/emcr_scoremocfunctional']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticalvendorassessments'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalvendorassessments']))\r\n    ),\r\n    11\r\n  ),\r\n  100\r\n)\r\n"
+        },
+        "Level_5_Calculations": {
+          "runAfter": {
+            "Level_4_Calculations": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0c13a6c1-1dd1-4784-9d87-331f1a715dc2"
+          },
+          "type": "Compose",
+          "inputs": "@mul(\r\n  div(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      add(\r\n                        if(equals(triggerOutputs()?['body/emcr_scorebcmpolicyofstrategicplan'], null), 0, float(triggerOutputs()?['body/emcr_scorebcmpolicyofstrategicplan'])),\r\n                        if(equals(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware'], null), 0, float(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware']))\r\n                      ),\r\n                      if(equals(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview'], null), 0, float(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_scoreitdatarebuild'], null), 0, float(triggerOutputs()?['body/emcr_scoreitdatarebuild']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_scorestaffreduncancy'], null), 0, float(triggerOutputs()?['body/emcr_scorestaffreduncancy']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_scoreexercise'], null), 0, float(triggerOutputs()?['body/emcr_scoreexercise']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_scorebcpfunctional'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpfunctional']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_scoremocpositionsprocesses'], null), 0, float(triggerOutputs()?['body/emcr_scoremocpositionsprocesses']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocfunctional'], null), 0, float(triggerOutputs()?['body/emcr_scoremocfunctional']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticalvendorassessments'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalvendorassessments']))\r\n    ),\r\n    11\r\n  ),\r\n  100\r\n)\r\n"
+        },
+        "Delay": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "30e66f2b-c0bf-4fe4-8ea7-b2ff3f2d2764"
+          },
+          "type": "Wait",
+          "inputs": {
+            "interval": {
+              "count": 1,
+              "unit": "Minute"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

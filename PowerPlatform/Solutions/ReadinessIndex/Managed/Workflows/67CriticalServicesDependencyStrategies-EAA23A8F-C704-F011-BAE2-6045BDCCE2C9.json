@@ -1,0 +1,119 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "69b3abd2-1389-4689-bef1-ed13d8bf8ea9"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_haslossstrategy"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Set_Value_to_1": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1cb18d09-6f92-49d5-9756-e60e41b4cdf1"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_readinessindexsurveies",
+                  "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                  "item/emcr_scorecriticalservicesdependenciesstrategies": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Set_Value_to_0": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "0b2edce0-c0bf-408c-bdbc-d359c154f69f"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateOnlyRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "emcr_readinessindexsurveies",
+                    "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                    "item/emcr_scorecriticalservicesdependenciesstrategies": 0
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/emcr_haslossstrategy']",
+                  717350000
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2ff83ee8-434c-46e9-870d-d93786dd0ec3"
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

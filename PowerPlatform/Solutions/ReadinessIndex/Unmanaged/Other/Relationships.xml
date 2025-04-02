@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="emcr_readinessindexsurvey_Ministry_account" />
+  <EntityRelationship Name="emcr_readinessindexsurvey_Year_emcr_year" />
+  <EntityRelationship Name="FileAttachment_emcr_ReadinessIndexSurvey_emcr_UploadPlan" />
+  <EntityRelationship Name="lk_emcr_readinessindexsurvey_createdby" />
+  <EntityRelationship Name="lk_emcr_readinessindexsurvey_modifiedby" />
+  <EntityRelationship Name="lk_emcr_year_createdby" />
+  <EntityRelationship Name="lk_emcr_year_modifiedby" />
+  <EntityRelationship Name="organization_emcr_readinessindexsurvey" />
+  <EntityRelationship Name="organization_emcr_year" />
+</EntityRelationships>

@@ -1,0 +1,119 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "105a65b5-c9c5-4b7c-b7ef-ca3cbba6721a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_ismocleadershiptrained"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Set_Value_to_1": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "17411511-4fe8-4c88-bcc5-7d37869416b6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_readinessindexsurveies",
+                  "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                  "item/emcr_scoremocleadershiptraining": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "else": {
+            "actions": {
+              "Set_Value_to_0": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "c5b47708-95b2-4ee8-8cc1-0bf82b96b8ce"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateOnlyRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "emcr_readinessindexsurveies",
+                    "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                    "item/emcr_scoremocleadershiptraining": 0
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/emcr_ismocleadershiptrained']",
+                  717350000
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bae5f7f5-3bec-4a13-af68-21e151b39819"
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

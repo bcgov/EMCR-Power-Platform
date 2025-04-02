@@ -1,0 +1,88 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "43929e07-ae37-4c5f-9035-6e500466862d"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_totalscoreleadershippercentage,\nemcr_totalscorebcmpawarenesspercentage,\nemcr_totalscorecriticalservicespercentage,\nemcr_totalscorebcppercentage,\nemcr_totalscorerecoverystrategiespercentage,\nemcr_totalscorebctpercentage,\nemcr_totalscorebcepercentage,\nemcr_totalscorecrisismgmtpercentage,\nemcr_totalscoremocexercisespercentage,\nemcr_totalscoremoctrainingpercentage,\nemcr_totalscorescmpercentage,\nemcr_totalscoreapprovalpercentage"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Calculate_Total_Score": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c6254fe5-8736-4761-befb-adc4042c7a9e"
+          },
+          "type": "Compose",
+          "inputs": "@div(\r\n  add(\r\n    add(\r\n      add(\r\n        add(\r\n          add(\r\n            add(\r\n              add(\r\n                add(\r\n                  add(\r\n                    add(\r\n                      if(equals(triggerOutputs()?['body/emcr_totalscoreleadershippercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscoreleadershippercentage'])),\r\n                      if(equals(triggerOutputs()?['body/emcr_totalscorebcmpawarenesspercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorebcmpawarenesspercentage']))\r\n                    ),\r\n                    if(equals(triggerOutputs()?['body/emcr_totalscorecriticalservicespercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorecriticalservicespercentage']))\r\n                  ),\r\n                  if(equals(triggerOutputs()?['body/emcr_totalscorebcppercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorebcppercentage']))\r\n                ),\r\n                if(equals(triggerOutputs()?['body/emcr_totalscorerecoverystrategiespercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorerecoverystrategiespercentage']))\r\n              ),\r\n              if(equals(triggerOutputs()?['body/emcr_totalscorebctpercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorebctpercentage']))\r\n            ),\r\n            if(equals(triggerOutputs()?['body/emcr_totalscorebcepercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorebcepercentage']))\r\n          ),\r\n          if(equals(triggerOutputs()?['body/emcr_totalscorecrisismgmtpercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorecrisismgmtpercentage']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_totalscoremocexercisespercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscoremocexercisespercentage']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_totalscoremoctrainingpercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscoremoctrainingpercentage']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_totalscorescmpercentage'], null), 0, float(triggerOutputs()?['body/emcr_totalscorescmpercentage']))\r\n  ),\r\n  11\r\n)\r\n"
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "Calculate_Total_Score": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ed8e50fe-71c0-4235-a6c8-c4131101d019"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "emcr_readinessindexsurveies",
+              "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+              "item/emcr_totalscorepercentage": "@outputs('Calculate_Total_Score')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

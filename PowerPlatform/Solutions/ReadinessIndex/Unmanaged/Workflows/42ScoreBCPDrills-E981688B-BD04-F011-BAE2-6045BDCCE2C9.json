@@ -1,0 +1,184 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "runtimeSource": "embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_numberofbcpdrills",
+              "subscriptionRequest/name": "29764bf0-bc04-f011-bae2-6045bdcce2c9"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "46e1f5a5-f39c-4aad-a0af-69dda78e81a1"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "type": "If",
+          "expression": {
+            "and": [
+              {
+                "greaterOrEquals": [
+                  "@triggerOutputs()?['body/emcr_numberofbcpdrills']",
+                  1
+                ]
+              }
+            ]
+          },
+          "actions": {
+            "Set_Value": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "emcr_readinessindexsurveies",
+                  "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                  "item/emcr_scorebcpdrill": "@outputs('Perform_Calculation')"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "ea86b816-2297-4ac1-914f-bd16c05c3020"
+              }
+            }
+          },
+          "else": {
+            "actions": {
+              "Set_Value_to_0": {
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "parameters": {
+                    "entityName": "emcr_readinessindexsurveies",
+                    "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                    "item/emcr_scorebcpdrill": 0
+                  },
+                  "host": {
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                    "operationId": "UpdateOnlyRecord",
+                    "connectionName": "shared_commondataserviceforapps"
+                  }
+                },
+                "metadata": {
+                  "operationMetadataId": "6fd4d880-1d08-4623-b5e7-e1e2101b32a7"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Perform_Calculation": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a75af7fd-4a45-49e3-93b8-5edeb77e1080"
+          }
+        },
+        "Perform_Calculation": {
+          "type": "Compose",
+          "inputs": "@div(variables('Numerator'),variables('Denominator'))",
+          "runAfter": {
+            "Format_number_1": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Get_Numerator": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Numerator",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/emcr_numberofbcpdrills']"
+              }
+            ]
+          },
+          "runAfter": {}
+        },
+        "Get_Denominator": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Denominator",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/emcr_numberofbcps']"
+              }
+            ]
+          },
+          "runAfter": {
+            "Get_Numerator": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Format_numerator": {
+          "type": "Expression",
+          "kind": "FormatNumber",
+          "inputs": {
+            "number": "@variables('Numerator')",
+            "format": "F"
+          },
+          "runAfter": {
+            "Get_Denominator": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Format_number_1": {
+          "type": "Expression",
+          "kind": "FormatNumber",
+          "inputs": {
+            "number": "@variables('Denominator')",
+            "format": "F"
+          },
+          "runAfter": {
+            "Format_numerator": [
+              "Succeeded"
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

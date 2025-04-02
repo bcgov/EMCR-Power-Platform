@@ -1,0 +1,203 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "46e1f5a5-f39c-4aad-a0af-69dda78e81a1"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "emcr_biasreviewed"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Set_Value_to_1": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ea86b816-2297-4ac1-914f-bd16c05c3020"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_readinessindexsurveies",
+                  "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                  "item/emcr_scorebiaannualreview": "@outputs('Perform_Calculation')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Perform_Calculation": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_Value_to_0": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "6fd4d880-1d08-4623-b5e7-e1e2101b32a7"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps",
+                    "operationId": "UpdateOnlyRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "emcr_readinessindexsurveies",
+                    "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                    "item/emcr_scorebiaannualreview": 0
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "greaterOrEquals": [
+                  "@triggerOutputs()?['body/emcr_biasreviewed']",
+                  1
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a75af7fd-4a45-49e3-93b8-5edeb77e1080"
+          },
+          "type": "If"
+        },
+        "Perform_Calculation": {
+          "runAfter": {
+            "Format_denominator": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b4201e0a-13c3-4fc4-a7e6-5d00d34e4b0f"
+          },
+          "type": "Compose",
+          "inputs": "@div(variables('Numerator'),variables('Denominator'))"
+        },
+        "Get_Numerator": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "21e2023b-d4ea-447b-a986-4fedd35c0a29"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Numerator",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/emcr_biasreviewed']"
+              }
+            ]
+          }
+        },
+        "Get_Denominator": {
+          "runAfter": {
+            "Get_Numerator": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4c1d31b6-5fdd-4221-9f03-bc81bf599185"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Denominator",
+                "type": "float",
+                "value": "@triggerOutputs()?['body/emcr_biaquantity']"
+              }
+            ]
+          }
+        },
+        "Format_numerator": {
+          "runAfter": {
+            "Get_Denominator": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e99fc6f3-35c1-4bbe-ad33-c7e1f6339f95"
+          },
+          "type": "Expression",
+          "kind": "FormatNumber",
+          "inputs": {
+            "number": "@variables('Numerator')",
+            "format": "F"
+          }
+        },
+        "Format_denominator": {
+          "runAfter": {
+            "Format_numerator": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be339d38-0be1-4e0a-9558-1a8b6f3e5cce"
+          },
+          "type": "Expression",
+          "kind": "FormatNumber",
+          "inputs": {
+            "number": "@variables('Denominator')",
+            "format": "F"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

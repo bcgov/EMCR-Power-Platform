@@ -1,0 +1,2183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{c7f5b657-8714-4fc2-900e-a6d510318e38}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{28686d89-5b06-4e46-aa2c-efb010f73067}" IsUserDefined="1" name="General">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="_section_879" id="36861764-c069-42e6-9896-c30715ac41e9" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{fb6d3329-604f-4b5c-9df7-3c9125af5058}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a91a6164-8802-40db-a289-7055840f2fe5}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="1. What Ministry Are You Reporting For?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ministry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_ministry" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8d61ae73-e594-4f6a-90aa-746f3487c202}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_year" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="emcr_year" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="General_section_4" id="feb1791c-aa73-4ef3-9760-ae6871b16d76" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Leadership" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d59712c3-2d5b-4f22-a9af-702e8d185a94}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e023357d-97eb-4ab8-9e4d-ad30e33f7624}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="2. Does the ministry have a Ministry BCM Advisor?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ministrybusinesscontinuityadvisor" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ministrybusinesscontinuityadvisor" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c7ffede-e736-4c49-b46a-e937336c753b}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="3. Is Business Continuity Management Program (BCMP) discussed at the executive level?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_isbusinesscontinuitydiscussed" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_isbusinesscontinuitydiscussed" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{242a4cce-274c-4073-a38b-eaa63e64e244}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="4. Does the BCM program have an executive sponsor? " languagecode="1033" />
+                        </labels>
+                        <control id="emcr_hasexecutivesponsor" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_hasexecutivesponsor" disabled="false" uniqueid="{3aa3dcc4-84d6-2a0a-ad96-3d4986967c7c}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cb216e0b-aecc-4bd3-87c6-45b6eeb2fb2b}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="5. Has the ministry implemented a Business Continuity Management Program policy or strategic plan?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_isplanimplemented" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_isplanimplemented" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5d35110b-e9cb-4dff-bb96-fc99b4a523c7}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="6. Upload Plan" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_uploadplan" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="emcr_uploadplan" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{29586c1c-8afc-4a5e-9c95-6abbeea7f58f}" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="7. Does the ministry BCM program have a steering committee? " languagecode="1033" />
+                        </labels>
+                        <control id="emcr_hassteeringcommittee" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_hassteeringcommittee" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e618ea98-bec3-4e37-b4d6-3b58791b1bed}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="8. Leadership Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_leadershipcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_leadershipcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_3" id="498458ec-12f2-4cae-8f94-6284cf561533" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Awareness" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="General_section_5" id="faf10742-34d9-4a1b-be91-7b1cb4b64685" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Management Program Awareness" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{9221aa9b-24af-44c9-9cfd-068e79ec43b3}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1e43c224-5664-43a8-af01-43b09da994b2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="9. Has the Ministry Business Continuity Advisor received training from a Business Continuity Management Program certification body?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_trainingreceived" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_trainingreceived" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0ed5fa3e-435d-4781-bd3a-7e3e52d4f25a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="10. Is there an established network of plan owners and/or coordinators?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_establishedprogramstructure" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_establishedprogramstructure" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d0603d8e-7c28-4e02-927d-3dc46a2ab53a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="11. Are ministry executive aware of the BCM Program?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_isministryexecutiveaware" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_isministryexecutiveaware" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{0ea9110b-0aea-4489-9f78-2b89fd6deda0}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{892f1d80-dbaa-44a4-a8a6-ff95e9a2a116}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="12. Are Business Continuity team members aware of their roles?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_areteammembersaware" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_areteammembersaware" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6a838418-e2ba-4405-8879-cdd6cd89334d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="13. Is there an annual Business Continuity Management Program campaign to promote all staff awareness?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_annualawarenesscampaign" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_annualawarenesscampaign" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_190" id="cb1a9004-8fb0-4019-abf3-0dbce6573254" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{8555a465-e22a-4f76-befc-6ba74344c9a3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="14. Awareness Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_awarenesscomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_awarenesscomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_7" id="0167d5c4-d7a3-47f7-a5d2-2d3da3c58b3f" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Critical Services" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="General_section_5" id="cc2926f8-f7d9-4b0c-a25f-8a52ec8e658a" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Critical Services" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e3d38e58-addc-4c23-b1ed-378ffd23c570}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{9360f514-9b38-49a5-bd66-8b5a80f30151}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c2b19eda-0b08-41ac-9f22-d3add56950d0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="15. How many Business Impact Analyses (BIAs) does your ministry require?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_biaquantity" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_biaquantity" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7d549966-05fc-4411-b8ca-729777dcd09f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="16. How many Business Impact Analyses were reviewed and updated in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_biasreviewed" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_biasreviewed" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3a887e5-1608-4944-9f20-c1423013cbeb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="17. How many Business Impacts Analyses (BIAs) were approved or signed by required leadership?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_biasapproved" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_biasapproved" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{acf0fb59-a921-4fc2-a094-52ec74bcb445}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="18. Does the ministry have an up to date list of their critical services?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ministrylistuptodate" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ministrylistuptodate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{138991f2-78b4-4253-b393-3eda5bcb6eaa}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="19. Are critical services annually reviewed and signed off by Ministry Executive?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticalservicesannuallyreviewed" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_criticalservicesannuallyreviewed" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{24f10ce2-d151-4ef6-bc60-88950f64d85d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="20. Are critical service recovery strategies annually reviewed and signed off by Ministry Executive?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_recoveryservicesannuallyreviewed" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_recoveryservicesannuallyreviewed" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_820" id="b55413c4-11f7-4892-a89e-ffb2dbea4699" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{7dc37661-7dc4-4b0e-a2c2-f6c771d0eb55}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="21. Critical Services Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticalservicescomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_criticalservicescomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_11" id="3500cdfb-5773-416b-ad17-71a41eccbd7a" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="BCP" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="General_section_6" id="1b5c68bd-a5cb-4e60-8c0a-115073529c02" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Plan" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{836b9975-434c-498b-9aa7-75e52fb62b8b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3bc2f7ef-ef1b-43c4-91e2-92c971dd1317}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="22. Does the BCP include notification and activation procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_hasnotificationandactivationprocedures" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_hasnotificationandactivationprocedures" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c27fa561-260b-4c36-85e4-753acdac3f81}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="23. Does the BCP include cold or warm site set up procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_hassitetempprocedures" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_hassitetempprocedures" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{13e94614-aece-46e0-be4d-2eb50d8864ca}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Site Temp Procedure Description" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_hassitetempproceduresdescription" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_hassitetempproceduresdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4ca2dda9-7475-4568-948d-488386dab13c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="24. Does the BCP contain manual procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_containsmanualprocedures" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_containsmanualprocedures" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2fe3020e-7b6c-4270-98b6-7072be7a4678}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="25. Does the BCP contain instructions for recreating lost data?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_lostdatainstructions" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_lostdatainstructions" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{faafae1a-7c27-4803-814e-4ffce930a735}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="26. Has the ministry conducted a full-scale Business Continuity Plan (BCP) recovery exercise, integrating notification, activation, manual processes, and IT recovery, with documented lessons learned and improvements made?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_bcpfullscalerecovery" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_bcpfullscalerecovery" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_11_section_4" id="b48eb6c7-84e2-4868-8017-8424a711cd43" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{518246ee-1d6f-4c92-9fa3-31cd185181ce}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="27. BCP Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_bcpcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_bcpcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_8" id="caf72813-49f0-4d96-9401-8f22cf7979e7" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Recovery" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_5" id="ce761081-a3d7-4cc7-aaf0-c5048475e5ac" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Recovery Strategies" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{57cba382-0171-4a44-92f3-e5313699432e}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{06365e01-b007-4433-b9c8-b96ae185b64a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{ebdf2493-3dc2-4baf-b22a-2715f4859f1c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{50c9ffbf-771f-418b-af0f-1cc557ec679e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="31. Do BCP Recovery Team members have an alternate?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_isrecoveryalternateidentified" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_isrecoveryalternateidentified" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e39d509f-812d-4b16-a9ca-7e548b2f2c81}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="28. What methods of communication will be used after a disaster?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_communicationmethods" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="emcr_communicationmethods" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d9993263-8df4-409a-aa62-acd53dd75f36}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="29. Does the alternate site have essential infrastructure to maintain operations?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_altsitereadiness1" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="emcr_altsitereadiness1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{47e92b58-31c9-435c-a78e-925908b5b681}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="If you answered Other to question 29, please provide description" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_altsiteshavegeneratordescription" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_altsiteshavegeneratordescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e109f713-e023-4c18-972b-40188afc34d9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="30. Have the records and data required to support recovery been backed up to a source that is accessible if the network is unavailable?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_arerecordsbackedup" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_arerecordsbackedup" disabled="false" />
+                      </cell>
+                      <cell id="{69b12ebd-1fbb-444e-9aa9-a87521f82b9d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="32. Are IT Disaster Recovery (ITDR) plans in place for the ministry systems identified as critical, and do the Recovery Time Objectives (RTOs) of ministry critical systems align with the RTOs of the critical services dependent on them?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_itdrplansforcriticalsystems" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_itdrplansforcriticalsystems" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{bf6341d0-1b30-4e73-8974-776f30017f5c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{36a923e9-d781-41be-8893-7157fceb7dec}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="If you answered Other to question 32, please provide description" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_itdrplansforcriticalsystemsdescription" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_itdrplansforcriticalsystemsdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{3d41002c-ad48-4133-adb5-ae2d55dd9801}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{7d35ab92-728d-46d8-9be7-e3f6274006b4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="33. Recovery Strategies Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_recoverystrategiescomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_recoverystrategiescomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_10" id="cd81ceb5-559e-4d2c-841f-21db989ce1ef" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="BCT" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_3_section_1" id="c1e51cd8-d9db-45b4-8b5e-22e8ec34443e" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Training" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{04ba32ed-310c-4799-adcf-430fc32a9036}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{94fc0ab0-45c3-4a5d-ac9c-68efd3bbc675}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="34. Have coordinators and plan owners received Business Impact Analysis (BIA) training?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ownersbiatraining" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ownersbiatraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3fa97277-7d9b-4575-a5c5-a4eb9e8a52dc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="35. Have plan owners and coordinators received training on identifying and selecting recovery strategies?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_strategyselectiontraining" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_strategyselectiontraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d382c6ed-4185-4d6e-8f02-9a1a26b8472f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="36. Have plan owners and coordinators received training on writing recovery procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_recoveryproceduretraining" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_recoveryproceduretraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b2a1cd2-99aa-4ac1-b7c7-1e860806ad63}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="37. Have Coordinators received training on exercise design and delivery?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_exercisetraining" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_exercisetraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{91f51bca-0016-43ba-9a2b-afffa49e2cb8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="38. Have Business Continuity Coordinators and Plan Owners received the necessary training in Business Impact Analysis (BIA), Recovery Strategies, Recovery Procedures, and Exercise Design?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_bctitdr" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_bctitdr" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_373" id="137ec1e2-a71a-4524-875f-e4101c58f371" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{628c7053-561d-47d6-b139-c1dc97597071}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="39. Business Continuity Training Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_businesscontinuitytrainingcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_businesscontinuitytrainingcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_13" id="5cbf1f80-5839-45f5-8174-6ec635c6c1ba" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="BCE" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_3_section_5" id="21afc10d-f838-40ca-9bf4-8be2f1baedd4" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Exercises" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8d96a0e9-1f4d-454d-b63e-3596242584f1}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c735b182-fe93-436b-94b0-4aa3770cfc4a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="40. How many Business Continuity Plans (BCPs) does your ministry have?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberofbcps" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberofbcps" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cc2a67da-acbc-4d48-93e3-f82f4f17d261}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="41. How many Business Continuity Plan orientations occurred in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberoforientations" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberoforientations" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2f4013d4-c393-4818-8bd7-2f7c2dca2996}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="42. How many Business Continuity Plan drills were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberofbcpdrills" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberofbcpdrills" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{130f99eb-db97-4b26-81a6-a0e434d77de1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="43. How many Business Continuity Plan tabletop exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberoftabletopexercises" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberoftabletopexercises" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4c6e4e46-74b0-436a-b19a-334ba469b058}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="44. How many Business Continuity Plan functional exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberoffunctionalexercises" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberoffunctionalexercises" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d1b6f707-cd35-4a7f-b582-13c2746e868f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="45. How many Business Continuity Plan full scale exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_numberoffullscaleexercises" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_numberoffullscaleexercises" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_13_section_2" id="ee5bc43c-80dc-4df4-9697-053643b59f1f" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{c334ae0f-3d50-4efc-a5d8-cf2667f9647e}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="46. Business Continuity Exercises Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_businesscontinuityexercisescomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_businesscontinuityexercisescomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_5" id="127a56a8-d0e4-402a-9bde-9be457b6657f" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Crisis Management" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="General_section_7" id="22edc448-8e39-4279-b246-cb7f0d4d607f" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Crisis Management" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{df9f7d65-6439-4d91-abd6-02be37daf500}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3c59a62-f6a8-455c-a707-86a514524a5c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="47. Has the MOC Plan been annually reviewed and/or updated?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ismocannuallyreviewed" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ismocannuallyreviewed" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e66e5016-3cd4-43b6-901f-91e401052b90}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="48. Does the MOC Director have an alternate?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ismocalternateidentified" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ismocalternateidentified" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{01bb03ea-5971-44c6-9bdd-db8b13842256}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="49. Does the MOC alternate site have essential infrastructure, including setup procedures, power, water, internet, and connectivity solutions, to support operations?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocaltsiteinfrastructure" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="emcr_mocaltsiteinfrastructure" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c779d446-674d-4e1d-a5fe-b5c9b6c88de1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="50. Does the MOC have a Crisis Communication Plan?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_moccrisiscommunicationplan" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_moccrisiscommunicationplan" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{43020e36-358f-4179-9daa-e36f80dd26d5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="51. Does the MOC have a plan for addressing staffing issues?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocstaffingplan" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_mocstaffingplan" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_253" id="ec8c999a-a218-4f2f-95db-2949e9a0e6d4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{ad3a031d-28b3-4921-9fb4-8ee4bcdc3934}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="52. Crisis Management Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_crisismanagementcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_crisismanagementcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="f9d48655-5fa5-4bd8-b479-f86ea46aa8b0" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="MOC Training" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_2_section_3" id="8237ef5f-0aa3-4e15-a70b-1b6b33f51041" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Ministry Operations Centre Training" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a0f8a250-aa0a-4098-9a4a-fb07d1c0293b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{88f5460f-c3ae-49e2-a69c-9a3124ec0ad9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="53. Is an MOC overview available to staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocoverviewavailable" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_mocoverviewavailable" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{af065e97-c0e7-4da2-81fd-5f7e77fb3f9e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="54. Has ICS 100 been offered to BCM/MOC staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_isics100offered" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_isics100offered" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{89cdc532-86ef-494f-928b-6a85bd7699d9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="55. Is training on the MOC alternate site available to staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocactivationtraining" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_mocactivationtraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2cb362c1-1f81-4415-8a81-2f8c87b6a5f3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="56. Have MOC staff been trained on their positions and processes?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ismocstafftrained" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ismocstafftrained" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{97f2c224-2a5b-41ec-b4b2-2cc2ea4dea80}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="57. Have MOC Leadership (MOC Director and Alternates) been trained?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ismocleadershiptrained" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ismocleadershiptrained" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_2_section_4" id="7722d3f0-cf96-4485-81e3-dfac69ca0253" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{e7bd9383-ad23-4841-9ef9-a6162cb273cc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="58. MOC Training Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_moctrainingcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_moctrainingcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_12" id="5a0e8424-39d0-410f-9fad-fafaffea18ea" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="MOC Exercises" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_2_section_1" id="91baaadd-2973-48bc-98d9-d34c6611f16b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Ministry Operations Centre Exercises" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{34a8bc0f-0761-4d2e-9cc3-f033b99e5b24}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cdbfaac4-1eed-4e33-8ac9-0fbfad72d993}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="59. Has an MOC orientation been provided to MOC staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocstafforientation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_mocstafforientation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a221e964-6aa7-4ada-9911-4db5a48bedfc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="60. Has an MOC Communications Drill been conducted?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_moccommunicationsdrill" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_moccommunicationsdrill" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{55af3aea-4c52-4408-bf02-9cb1cf972f6b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="61. Has an MOC Tabletop Exercise been conducted?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_moctabletopconducted" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_moctabletopconducted" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{503997a0-f1d3-4872-9d19-29eb29daccea}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="62. Has a Functional MOC Exercise occurred?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_havemocexercisesoccurred" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_havemocexercisesoccurred" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a6b611f1-527b-4c7c-9498-9ddac0253921}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="63. Has the MOC participated in a full-scale or cross government exercise?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocfullscaleparticipation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_mocfullscaleparticipation" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_12_section_2" id="49b69854-e501-4bde-9b0e-517ade9549dc" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{c3fd44a7-d06f-4463-9c20-a0f87738f2ca}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="64. MOC Exercises Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_mocexercisescomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_mocexercisescomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_6" id="5d5b0d17-cf77-4878-8233-aa3434b5670e" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="SCM" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="General_section_8" id="091eed16-a3cd-4b62-b4fe-5595e6d5f623" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Supply Chain Management" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{ac1df11a-fb93-4516-a3f2-2ac2a7e89f81}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{29acb8b5-803e-46d1-a8e1-d275268b846c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fdc4ba10-d326-41f5-9de7-123ab9940228}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="65. Have critical dependencies been identified?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticaldependenciesidentified" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_criticaldependenciesidentified" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{170c1ce8-492f-4696-bcb7-3bc9753b23af}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="66. Have critical dependencies been prioritized based on risk?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticaldependenciesprioritized" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_criticaldependenciesprioritized" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{0972582d-0db3-4faf-a49e-8e4ff6d12226}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{499c1d20-ddfb-473a-b9ba-5b6d8a97e511}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="67. Are strategies in place for the loss of critical vendors and partners?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_haslossstrategy" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_haslossstrategy" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{d63adb8a-27a2-48d4-a32c-a92cd64a6c7f}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fced19c2-3957-4cc4-9ad3-7a3256408be5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="68. Do critical vendors participate in an annual plan review or assessment?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_criticalvendorannualplanparticipation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_criticalvendorannualplanparticipation" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{eefb4312-3ec2-484c-8fd2-d4e6bfd886e9}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ef990f95-1aab-445a-b196-a372ac1b50ca}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="69. Has the ministry conducted a full-scale resilience test of critical dependencies, including vendors, partners, and supply chains, with documented improvements?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scmintegrated" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_scmintegrated" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{81cde031-2d3d-4ff0-bc4b-0b5e430047c4}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_179" id="07ebf947-bb5d-4f1b-826f-739cab74c3e9" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{af3ba643-b7e8-4484-8c6f-3a1db2e24a2e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="70. Supply Chain Management Comments" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_supplychainmanagementcomments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_supplychainmanagementcomments" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_4" id="24ed55fe-45bd-4e8b-91a1-34c8df842c03" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Completion" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_4_section_1" id="5c99adb5-fc48-461b-bf73-dd829e125ce0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Completion" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{fa62803c-b072-4f69-8136-4bb7387e2db1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Is Survey Completed?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_issurveycompleted" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_issurveycompleted" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{0d96b526-99f3-41ee-a703-a6464b2d25f2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7e170758-751a-44bf-93c6-42bdcd8a49f0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="71. Has your ministry executive approved the survey results?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_ministryexecapproval" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_ministryexecapproval" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_9" id="0a2ea975-ce1c-4854-8f0c-cadca1abfb1d" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Scorecard" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="tab_9_section_1" id="21c6f998-6f66-4429-87ab-a75e3331191f" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Leadership" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{7a7efea3-6e21-4ded-ad6c-4f5fae02db51}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="2. BCM Program Established" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcmprogramestablished" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcmprogramestablished" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{de6822bb-c7fd-42cf-b2ca-ac1e06ded945}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="3. BCM Discussed At Executive" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcmdiscussedatexecutive" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcmdiscussedatexecutive" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9488b599-d084-4a04-919a-163fa1b8b7e8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="4. BCM Champion/Sponsor" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcmchampionsponsor" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcmchampionsponsor" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b3a47406-fc6e-4895-81a1-2d7a9de3b111}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="5. BCM Policy or Strategic Plan" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcmpolicyorstrategicplan" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcmpolicyorstrategicplan" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1bc19cdd-bc4e-4996-b912-72e8332356d3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="7. BCM Steering Committee" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcmsteeringcommittee" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcmsteeringcommittee" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_4" id="43b31e0d-93e2-4326-9db0-e6cf9e4a4bcc" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Critical Services" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{4c09b1db-88e4-42ce-b666-191888b8820c}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="15. How many Business Impact Analyses (BIAs) does your ministry require?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebia" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebia" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9069409a-bfa5-423f-8c0e-38218c002513}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="16. How many Business Impact Analyses were reviewed and updated in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebiaannualreview" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebiaannualreview" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3d91e7a6-aa8e-4a70-9957-09121fb44def}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="17. How many Business Impacts Analyses (BIAs) were approved or signed by required leadership?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebiasapproved" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebiasapproved" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bb0b40e8-445f-4097-b8a9-8261980c863a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="18. Does the ministry have an up to date list of their critical services?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecriticalservceslist" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecriticalservceslist" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{29b37f3c-7f35-47c7-8570-5c528c3d7ee7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="19. Are critical services annually reviewed and signed off by Ministry Executive?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreannualcriticalservicesreview" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreannualcriticalservicesreview" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{201ebb05-3708-4969-93cf-8fd8ca45cf9a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="20. Are critical service recovery strategies annually reviewed and signed off by Ministry Executive?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreannualstrategyreview" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreannualstrategyreview" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_6" id="74fd8c68-9507-4b4c-87ca-46ffad9ab9e6" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Recovery Strategies" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{f82daffd-3af4-44a0-b926-e84b7c8f8027}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="28. What methods of communication will be used after a disaster?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecommunicationmethods" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecommunicationmethods" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83c3e1d8-b143-4c84-a019-3fc99daff0cd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="29. Does the alternate site have essential infrastructure to maintain operations?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorealternatesitereadiness1" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorealternatesitereadiness1" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{10c26a38-3454-46e4-86f5-e9499b12b04e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="30. Have the records and data required to support recovery been backed up to a source that is accessible if the network is unavailable?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorevitalrecords" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorevitalrecords" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ee9c45c7-0a41-434e-bdef-808256dcf869}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="31. Do BCP Recovery Team members have an alternate?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorestaffredundancy" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorestaffredundancy" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f97fff8b-972a-40ad-b403-917b9008ba4c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="32. Are IT Disaster Recovery (ITDR) plans in place for the ministry systems identified as critical?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreitdrplans1" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreitdrplans1" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_9" id="8f1fc92f-a4b3-4302-82af-8ea422c3741c" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Exercises" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{01bcba0c-e7a0-41ec-975d-56760ff42489}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="40. How many Business Continuity Plans (BCPs) does your ministry have?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebusinesscontinuityplans" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebusinesscontinuityplans" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3979a043-e77f-4805-93be-cef2cde5b513}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="41. How many Business Continuity Plan orientations occurred in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcporientationdiscussion" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcporientationdiscussion" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7271f872-a356-424f-874d-a772c4e908d1}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="42. How many Business Continuity Plan drills were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcpdrill" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcpdrill" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{be09b3c6-7557-4f26-8e1e-56652b394945}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="43. How many Business Continuity Plan tabletop exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcptabletop" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcptabletop" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f9452625-852f-4876-be84-f11de4eb79b3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="44. How many Business Continuity Plan functional exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcpfunctional" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcpfunctional" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b2d29905-799b-414e-a84e-ed4632e95f15}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="45. How many Business Continuity Plan full scale exercises were conducted in 2025?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcpfullscale" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcpfullscale" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_10" id="25837a22-1aa8-415c-8344-8a1d86b59a49" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="MOC Training" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{aa31dc01-da34-4413-b5e3-6eb69786140d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="53.  Has an MOC overview available to staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocintroduction" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocintroduction" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{33a87513-3791-4c8e-acd8-787d6fb79c0b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="54. Has ICS 100 been offered to BCM/MOC staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreics100" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreics100" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3e7aa955-7007-4f2c-99fe-31d6fb27b339}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="55. Is training on the MOC alternate site available to staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorealtsitesetuptraining" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorealtsitesetuptraining" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{086cc4a8-65a8-4225-931c-1f0b96e1a089}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="56. Have MOC staff been trained on their positions and processes?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocpositionsprocesses" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocpositionsprocesses" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bf3b8ca3-fe41-4e1e-8ca3-e267b8738f7f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="57. Have MOC Leadership (MOC Director and Alternates) been trained?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocleadershiptraining" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocleadershiptraining" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_11" id="dd8ce66d-af5a-4527-82d4-806f02936fa0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="SCM" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{e0ee3870-a7e8-4637-9083-9d70b1c7bd51}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="65. Have critical dependencies been identified?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecriticaldependenciesidentified" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecriticaldependenciesidentified" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{28622717-14cd-41fb-85f8-a1b9761dccf9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="66. Have critical dependencies been prioritized based on risk?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreministrydependenciesevaluated" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreministrydependenciesevaluated" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5978c229-57f3-44d0-afb8-b57e1eddf93a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="67. Are strategies in place for the loss of critical vendors and partners?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecriticalservicesdependenciesstrategies" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecriticalservicesdependenciesstrategies" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4241c9e4-1549-490a-83e9-c85d73de04a6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="68. Do critical vendors participate in an annual plan review or assessment?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecriticalvendorassessments" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecriticalvendorassessments" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f0f1a07c-4a02-4685-adf2-1b1d717a69ac}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="69. Has the ministry conducted a full-scale resilience test of critical dependencies, including vendors, partners, and supply chains, with documented improvements?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorecsmintegrated" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorecsmintegrated" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_13" id="eeaa87d2-a7f4-4f51-a82f-50eb76482aa5" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_9_section_2" id="dceaca83-1f5c-4b6c-b25c-a97c5bf334ac" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="BCM Awareness" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{9f7de579-9ea8-42bc-ba09-3ae8eb941355}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="9. Advisor" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreadvisor" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreadvisor" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aa2c4547-c61e-4e47-baaf-8f5dfcda63cb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="10. Ministry BCM Network" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreministrybcmnetwork" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreministrybcmnetwork" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d7a4512b-0fd2-4fa8-ade4-737322511525}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="11. Executive Awareness" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreexecutiveawareness" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreexecutiveawareness" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2d87a08b-7953-4ac8-ab4a-72095948471c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="12. All BCP &amp; MOC Teams Aware" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreallbcpmocteamsaware" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreallbcpmocteamsaware" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6dedfaae-d0ab-488c-ac75-53f32cd633e0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="13. All Staff Aware" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreallstaffaware" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreallstaffaware" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_5" id="f79730f3-2859-4d7d-8dff-36b007026d9c" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="BCP" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{d8b2582e-9372-4065-83a3-a6bc7c04ff91}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="22. Does the BCP include notification and activation procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorenotificationandactivation" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorenotificationandactivation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9a10faae-d8c3-40fc-b9d1-8afe702a1f97}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="23. Does the BCP include cold or warm site set up procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcpsitetempprocedures" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcpsitetempprocedures" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d4607ca2-adca-4af7-b9d6-fa6c2e5a63d2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="24. Does the BCP contain manual procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremanualprocess" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremanualprocess" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a3441246-368b-4a6c-aa77-f25c421e426e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="25. Does the BCP contain instructions for recreating lost data?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreitdatarebuild" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreitdatarebuild" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a2f9dc85-8d50-4642-a69f-72afd2ef42e8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="26. Has the ministry conducted a full-scale Business Continuity Plan (BCP) recovery exercise, integrating notification, activation, manual processes, and IT recovery, with documented lessons learned and improvements made?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebcpfullscalerecovery" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebcpfullscalerecovery" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_7" id="42e9749c-e03d-453a-87a4-d5b441b6b6be" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Business Continuity Training" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{bcab3499-46b1-4280-81b7-29bbdb9de081}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="34. Have coordinators and plan owners received Business Impact Analysis (BIA) training?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebusinessimpactanalysis" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebusinessimpactanalysis" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c66d6709-05da-459a-aea5-eecbe2993deb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="35. Have plan owners and coordinators received training on identifying and selecting recovery strategies?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorerecoverystrategies" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorerecoverystrategies" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b08bca41-11a6-49a4-b96b-2f91a422cb98}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="36. Have plan owners and coordinators received training on writing recovery procedures?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorerecoveryprocedures" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorerecoveryprocedures" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c2bcca50-8bd6-4692-a8fb-8e36975695db}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="37. Have Coordinators received training on exercise design and delivery?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreexercise" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreexercise" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f71d460b-a6f2-47cf-a9d4-99c7cb1eccfb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="38. Have Business Continuity Coordinators and Plan Owners received the necessary training in Business Impact Analysis (BIA), Recovery Strategies, Recovery Procedures, and Exercise Design?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scorebctitdr" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scorebctitdr" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_8" id="632727ab-5851-4412-bb6c-fa8a84e9e880" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Crisis Mgmt" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{afa974ab-3729-4c1c-a67a-c053b9319cf5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="47. Has the MOC Plan been annually reviewed and/or updated?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocannuallyreviewedupdated" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocannuallyreviewedupdated" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b204e6c1-2456-4825-bf53-f966ea61d8f0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="48. Does the MOC Director have an alternate?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocstaffing" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocstaffing" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{634a2026-9267-470d-9e6f-ab360927b488}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="49. Does the MOC alternate site have essential infrastructure, including setup procedures, power, water, internet, and connectivity solutions, to support operations?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocalternatesite2" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocalternatesite2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c1f57f2-ac00-448a-848a-4886c4cbb44f}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="50. Does the MOC have a Crisis Communication Plan?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreministrycrisiscommunicationplan" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreministrycrisiscommunicationplan" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9502285d-f1ca-4c89-8c7f-38621a845b91}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="51. Does the MOC have a plan for addressing staffing issues?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoreministryworkforcemgmt" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoreministryworkforcemgmt" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_12" id="48e85221-73d3-4e79-ab3a-0f320eeb5f38" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="MOC Exercises" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{d993448a-18d4-42e4-be06-576595a1bc37}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="59. Has an MOC orientation been provided to MOC staff?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocplanreview" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocplanreview" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a31b4229-a5b3-4f41-8d2e-a72124fb5ffc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="60. Has an MOC Communications Drill been conducted?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocdrill" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocdrill" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1c46df4a-df17-41e6-9914-550ad72b21d4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="61. Has an MOC Tabletop Exercise been conducted?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremoctabletop" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremoctabletop" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c4c0157-e472-4ef5-b976-c9f7f9995528}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="62. Has a Functional MOC Exercise occurred?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocfunctional" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocfunctional" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8edb1d9a-b13e-4abb-ba54-d54500aef553}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="63. Has the MOC participated in a full-scale or cross government exercise?" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_scoremocintegrated" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_scoremocintegrated" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_9_section_14" id="90fab75c-9642-4d4f-be4d-7ffb7a3b948a" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Completion" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{b6776e6c-9fc6-4ec3-974d-cd3d9976851b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_readytoprocess" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="emcr_readytoprocess" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_14" id="955087fb-9e62-48c5-8d8c-5fbdbbc2db69" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Section Score" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_14_section_1" id="e031051b-912e-49ff-8664-af1864e5b8db" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="111" labelwidth="115">
+                  <labels>
+                    <label description="Section Scorecard" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f56cc3d8-29dd-4bf6-a59c-00def578e168}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoreleadership" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoreleadership" disabled="false" />
+                      </cell>
+                      <cell id="{ada2a3f5-a3ff-4963-98b9-a640a0d6716d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoreleadershippercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoreleadershippercentage" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{be42c57b-18d6-4d11-a180-7afa1cca2752}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebcmpawareness" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_totalscorebcmpawareness" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{f008bd2c-c7fb-44e7-9df1-557f6b6ee853}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{93b96666-1331-44d6-9aef-13af818553a0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorecriticalservices" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorecriticalservices" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{3881d1c1-dffa-41e4-a6d5-727df2140450}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{af9cf470-b23b-4341-80c3-8bf334aa0eb6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebcp" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebcp" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{237653db-2d62-456f-8fb8-425dfb945178}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5d028a42-1abc-47c8-b3fd-ea3664c7d89a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorerecoverystrategies" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorerecoverystrategies" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{6b7a1c1c-8f5d-4a16-af4c-7297a58a65de}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fd63f58a-432d-4ade-8e40-5404018fac70}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebct" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebct" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{dd9627c9-1cb6-40fb-8d02-c917dc30513c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{53949f81-a7ea-494a-8a8f-eff0e3702188}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{6031261a-671a-4479-9ffb-3f2613da25a2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{73b339d7-88c4-436e-8c43-e33595835963}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{98e79cf2-012b-45f2-9ab1-93bae1df6fc8}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{049a8475-b96f-4448-9b25-d78a3999c333}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{41aea980-79e8-4a8d-a238-0357da3425ec}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebcmpawarenesspercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebcmpawarenesspercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{013795a5-9b5e-4caf-b9a2-de924fe04554}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{06071cde-4a92-4952-a29b-3bc9f14a4a31}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{c1bacb0c-e8b7-4f1e-928f-2eec7ca346a7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorecriticalservicespercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorecriticalservicespercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{0413aa1b-5996-4b69-8969-b90a272558de}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{961264ca-dbff-4573-9221-463737b80deb}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{47e58c14-bb80-4ad4-8e29-aecda190e183}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebcppercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebcppercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{76a14d0b-630b-44fd-819c-f4bcaca19b13}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{b9128018-11d6-4a45-bd75-317e2e7b7c86}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{bef5695c-b3fb-4445-97a9-ccaae35dc176}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorerecoverystrategiespercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorerecoverystrategiespercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{80ba0447-d9de-4b2d-b105-d6af2f8d6f74}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{4bdd0a99-b0df-49b0-b3a2-232434c98220}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{110fef17-9319-4555-8a50-268e35dca26a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebctpercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebctpercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{e9195e62-e233-478b-b76c-0b90064f5f38}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{1f9e8dc4-82fd-401a-b104-d47c814b04ad}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{d9e5822b-6c65-4372-8be9-a18a01964358}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebcepercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebcepercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{83871606-6816-456a-82e4-589ea9f88e73}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{383d616a-d229-4f5b-8b6a-6e423d8ed1a1}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{ec0324db-4ee8-43f2-96e8-32c0d3008a23}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorecrisismgmtpercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorecrisismgmtpercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{5e5e3bd2-25d1-46e4-a18e-8c88f4192996}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5e145c24-5af3-4cfb-a689-431d6dd05070}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorebce" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorebce" disabled="false" />
+                      </cell>
+                      <cell id="{c7cc5277-fc8c-4bcf-9251-6da78b187b99}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoremocexercisespercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoremocexercisespercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{7a0940c2-a800-465a-b099-4d57559f858b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{de7fad93-174c-43ea-a63e-76a956ae0a46}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorecrisismgmt" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorecrisismgmt" disabled="false" />
+                      </cell>
+                      <cell id="{003b797f-4724-4af6-8728-738285095b65}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoremoctrainingpercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoremoctrainingpercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{dcad65a7-09e7-4ed4-916b-111f4464473c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0841e408-5757-4a74-be38-8bfcb7249830}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoremocexercises" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoremocexercises" disabled="false" />
+                      </cell>
+                      <cell id="{ce3f9525-8d94-48ad-b98f-4123547979a3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorescmpercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorescmpercentage" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{cf2b9e38-c37b-49ec-a496-b435d49e6339}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{357092a1-e042-4996-bee9-d20e0b752025}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscoremoctraining" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscoremoctraining" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{545b15f0-e2a3-43b2-9d43-532e9381766e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{26f80d29-eae8-44aa-b763-a86372bc1d7d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6390d9a3-1dcd-42b6-a391-c094ffd02cdc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_totalscorescm" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorescm" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{a7dfc22e-135c-4606-b1cf-0f9023504f05}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{21cc1a56-3ca0-4430-83db-c3119e2c5a61}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_15" id="54a806eb-2e47-49ad-b350-9b5b26ced1eb" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Level Score" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_15_section_1" id="eaa7c295-4365-470e-a375-f8aafe39da17" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Level Score" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{80c372c4-c54c-47b8-81cb-5e97404f5372}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_level1foundational" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_level1foundational" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{42c1b61b-182f-46dc-a33d-258fc2ca5efe}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_level2initialprogress" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_level2initialprogress" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0273fc65-5d61-46e7-b894-6ee8797bbf8d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_level3moderateprogress" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_level3moderateprogress" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{676e1068-4dd0-4d5b-a7ea-b97af2d3e28b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_level4substantialprogress" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_level4substantialprogress" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5282af90-c394-4e2c-b7b2-c5171292719b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_level5objectiveachieved" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_level5objectiveachieved" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{53f56033-cb32-4a3e-a5e2-345c7e7170b6}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{77ec8967-4438-405c-8593-2b0f531840bf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{821ea894-d942-4613-b977-7847736aeee9}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b2f5059a-4085-4459-ad35-4cd2c3740733}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{cac3fbb9-c48b-485f-b751-f65e76bb6893}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Total Score" languagecode="1033" />
+              </labels>
+              <control id="header_emcr_totalscorepercentage" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="emcr_totalscorepercentage" disabled="false" />
+            </cell>
+            <cell id="{90368f2c-aaef-496b-95f9-a35d9327ee72}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+            </cell>
+            <cell id="{165ed699-9678-42c5-aae8-92a3a71541ce}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{078c3c3b-e40f-4787-a3e5-4fdf16420f89}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{72697720-ab5c-4d20-99c7-6278550741ed}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d94f8858-bb69-41d9-bb3b-87ab2160bb4f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7e083e77-4a38-4f43-b057-b127847d19eb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Readiness Index Main Form" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

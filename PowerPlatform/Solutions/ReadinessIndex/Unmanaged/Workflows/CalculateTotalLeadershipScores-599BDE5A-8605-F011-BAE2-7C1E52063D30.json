@@ -1,0 +1,253 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "fdcf43b0-920b-4917-811c-c065a7858119"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "emcr_readinessindexsurvey",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "conditions": []
+        }
+      },
+      "actions": {
+        "Condition": {
+          "actions": {
+            "Delay_2": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "11ed3a37-c356-40a5-987f-7dc4b88b6de6"
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 20,
+                  "unit": "Second"
+                }
+              }
+            },
+            "Total_Score_Leadership": {
+              "runAfter": {
+                "Delay_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "71672a46-d317-4624-afea-f9c690af8d30"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorebcmprogramestablished'], null),0,float(triggerOutputs()?['body/emcr_scorebcmprogramestablished'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scorebcmdiscussedatexecutive'], null),0,float(triggerOutputs()?['body/emcr_scorebcmdiscussedatexecutive']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorebcmchampionsponsor'], null),0,float(triggerOutputs()?['body/emcr_scorebcmchampionsponsor']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scorebcmpolicyorstrategicplan'], null),0,float(triggerOutputs()?['body/emcr_scorebcmpolicyorstrategicplan']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scorebcmsteeringcommittee'], null),0,float(triggerOutputs()?['body/emcr_scorebcmsteeringcommittee']))\r\n)\r\n"
+            },
+            "Total_Score_BCM_Awareness": {
+              "runAfter": {
+                "Total_Score_Leadership": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "de0dee06-71e4-40a0-b04b-85f00e904050"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scoreadvisor'], null),0,float(triggerOutputs()?['body/emcr_scoreadvisor'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scoreministrybcmnetwork'], null),0,float(triggerOutputs()?['body/emcr_scoreministrybcmnetwork']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scoreexecutiveawareness'], null),0,float(triggerOutputs()?['body/emcr_scoreexecutiveawareness']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware'], null),0,float(triggerOutputs()?['body/emcr_scoreallbcpmocteamsaware']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scoreallstaffaware'], null),0,float(triggerOutputs()?['body/emcr_scoreallstaffaware']))\r\n)\r\n"
+            },
+            "Total_Score_Critical_Services": {
+              "runAfter": {
+                "Total_Score_BCM_Awareness": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9e57a4ca-8312-4bf6-9074-c5668148527a"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorebiaannualreview'], null), 0, float(triggerOutputs()?['body/emcr_scorebiaannualreview'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scorebiasapproved'], null), 0, float(triggerOutputs()?['body/emcr_scorebiasapproved']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticalserviceslist'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalserviceslist']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview'], null), 0, float(triggerOutputs()?['body/emcr_scoreannualcriticalservicesreview']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scoreannualstrategyreview'], null), 0, float(triggerOutputs()?['body/emcr_scoreannualstrategyreview']))\r\n)\r\n"
+            },
+            "Total_Score_BCP": {
+              "runAfter": {
+                "Total_Score_Critical_Services": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d160a418-8980-4368-94ae-e371fce06ee3"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorenotificationandactivation'], null), 0, float(triggerOutputs()?['body/emcr_scorenotificationandactivation'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scorebcpsitetempprocedures'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpsitetempprocedures']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scoremanualprocess'], null), 0, float(triggerOutputs()?['body/emcr_scoremanualprocess']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreitdatarebuild'], null), 0, float(triggerOutputs()?['body/emcr_scoreitdatarebuild']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scorebcpfullscalerecovery'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpfullscalerecovery']))\r\n)\r\n"
+            },
+            "Total_Score_Recovery_Strategies": {
+              "runAfter": {
+                "Total_Score_BCP": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "78dd590b-ec3a-447d-b3ea-ae81906568ab"
+              },
+              "type": "Compose",
+              "inputs": "@\r\n  add(\r\n    add(\r\n      add(\r\n        add(\r\n          if(equals(triggerOutputs()?['body/emcr_scorecommunicationmethods'], null), 0, float(triggerOutputs()?['body/emcr_scorecommunicationmethods'])),\r\n          if(equals(triggerOutputs()?['body/emcr_scorealternatesitereadiness1'], null), 0, float(triggerOutputs()?['body/emcr_scorealternatesitereadiness1']))\r\n        ),\r\n        if(equals(triggerOutputs()?['body/emcr_scorevitalrecords'], null), 0, float(triggerOutputs()?['body/emcr_scorevitalrecords']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorestaffredundancy'], null), 0, float(triggerOutputs()?['body/emcr_scorestaffredundancy']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreitdrplans1'], null), 0, float(triggerOutputs()?['body/emcr_scoreitdrplans1']))\r\n)\r\n"
+            },
+            "Total_Score_BCT": {
+              "runAfter": {
+                "Total_Score_Recovery_Strategies": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "734c2bab-e315-4705-9c51-fe30f9a780ac"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorebusinessimpactanalysis'], null), 0, float(triggerOutputs()?['body/emcr_scorebusinessimpactanalysis'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scorerecoverystrategies'], null), 0, float(triggerOutputs()?['body/emcr_scorerecoverystrategies']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorerecoveryprocedures'], null), 0, float(triggerOutputs()?['body/emcr_scorerecoveryprocedures']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreexercise'], null), 0, float(triggerOutputs()?['body/emcr_scoreexercise']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scorebctitdr'], null), 0, float(triggerOutputs()?['body/emcr_scorebctitdr']))\r\n)\r\n"
+            },
+            "Total_Score_BCE": {
+              "runAfter": {
+                "Total_Score_BCT": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c1edb78a-347a-40bf-ab26-bd1174f10788"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorebcporientationdiscussion'], null), 0, float(triggerOutputs()?['body/emcr_scorebcporientationdiscussion'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scoredrill'], null), 0, float(triggerOutputs()?['body/emcr_scoredrill']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorebcptabletop'], null), 0, float(triggerOutputs()?['body/emcr_scorebcptabletop']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scorebcpfunctional'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpfunctional']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scorebcpfullscale'], null), 0, float(triggerOutputs()?['body/emcr_scorebcpfullscale']))\r\n)\r\n"
+            },
+            "Total_Score_Crisis_Mgmt": {
+              "runAfter": {
+                "Total_Score_BCE": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "894dc5d0-2f82-4fc7-b653-00b2845e4dc1"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocannuallyreviewedupdated'], null), 0, float(triggerOutputs()?['body/emcr_scoremocannuallyreviewedupdated'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocstaffing'], null), 0, float(triggerOutputs()?['body/emcr_scoremocstaffing']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scoremocalternatesite2'], null), 0, float(triggerOutputs()?['body/emcr_scoremocalternatesite2']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrycrisiscommunicationplan']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scoreministryworkforcemgmt'], null), 0, float(triggerOutputs()?['body/emcr_scoreministryworkforcemgmt']))\r\n)\r\n"
+            },
+            "Total_Score_MOC_Training": {
+              "runAfter": {
+                "Total_Score_Crisis_Mgmt": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7cef3d05-734f-4542-97d6-74f3c4fa4f0b"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocintroduction'], null),0,float(triggerOutputs()?['body/emcr_scoremocintroduction'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scorescoreics100'], null),0,float(triggerOutputs()?['body/emcr_scorescoreics100']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorealtsitesetuptraining'], null),0,float(triggerOutputs()?['body/emcr_scorealtsitesetuptraining']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoremocpositionsprocesses'], null),0,float(triggerOutputs()?['body/emcr_scoremocpositionsprocesses']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scoremocleadershiptraining'], null),0,float(triggerOutputs()?['body/emcr_scoremocleadershiptraining']))\r\n)\r\n"
+            },
+            "Total_Score_MOC_Exercises": {
+              "runAfter": {
+                "Total_Score_MOC_Training": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "74766b63-edd6-44f0-aa38-fb31acd99b60"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocplanreview'], null),0,float(triggerOutputs()?['body/emcr_scoremocplanreview'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scoremocdrill'], null),0,float(triggerOutputs()?['body/emcr_scoremocdrill']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scoremoctabletop'], null),0,float(triggerOutputs()?['body/emcr_scoremoctabletop']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scoremocfunctional'], null),0,float(triggerOutputs()?['body/emcr_scoremocfunctional']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scoremocintegrated'], null),0,float(triggerOutputs()?['body/emcr_scoremocintegrated']))\r\n)\r\n"
+            },
+            "Total_Score_SCM": {
+              "runAfter": {
+                "Total_Score_MOC_Exercises": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3e5c7628-3b14-44d3-b18a-8b9e8fe533cf"
+              },
+              "type": "Compose",
+              "inputs": "@add(\r\n  add(\r\n    add(\r\n      add(\r\n        if(equals(triggerOutputs()?['body/emcr_scorecriticaldependenciesidentified'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticaldependenciesidentified'])),\r\n        if(equals(triggerOutputs()?['body/emcr_scoreministrydependenciesevaluated'], null), 0, float(triggerOutputs()?['body/emcr_scoreministrydependenciesevaluated']))\r\n      ),\r\n      if(equals(triggerOutputs()?['body/emcr_scorecriticalservicesdependenciesstrategies'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalservicesdependenciesstrategies']))\r\n    ),\r\n    if(equals(triggerOutputs()?['body/emcr_scorecriticalvendorassessments'], null), 0, float(triggerOutputs()?['body/emcr_scorecriticalvendorassessments']))\r\n  ),\r\n  if(equals(triggerOutputs()?['body/emcr_scorecsmintegrated'], null), 0, float(triggerOutputs()?['body/emcr_scorecsmintegrated']))\r\n)\r\n"
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Total_Score_SCM": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5bc320b8-ec29-4eec-99bd-563af2de45cd"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "emcr_readinessindexsurveies",
+                  "recordId": "@triggerOutputs()?['body/emcr_readinessindexsurveyid']",
+                  "item/emcr_totalscoreapproval": "@triggerOutputs()?['body/emcr_scoreministryexecapproval']",
+                  "item/emcr_totalscorebce": "@outputs('Total_Score_BCE')",
+                  "item/emcr_totalscorebcmpawareness": "@outputs('Total_Score_BCM_Awareness')",
+                  "item/emcr_totalscorebcp": "@outputs('Total_Score_BCP')",
+                  "item/emcr_totalscorebct": "@outputs('Total_Score_BCT')",
+                  "item/emcr_totalscorecrisismgmt": "@outputs('Total_Score_Crisis_Mgmt')",
+                  "item/emcr_totalscorecriticalservices": "@outputs('Total_Score_Critical_Services')",
+                  "item/emcr_totalscoreleadership": "@outputs('Total_Score_Leadership')",
+                  "item/emcr_totalscoremocexercises": "@outputs('Total_Score_MOC_Exercises')",
+                  "item/emcr_totalscoremoctraining": "@outputs('Total_Score_MOC_Training')",
+                  "item/emcr_totalscorerecoverystrategies": "@outputs('Total_Score_Recovery_Strategies')",
+                  "item/emcr_totalscorescm": "@outputs('Total_Score_SCM')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/statuscode']",
+              717350002
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b8eb8d12-c3b2-43eb-8a83-45b3d1fb23f6"
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

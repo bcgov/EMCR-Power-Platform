@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{7a46c9d1-04fa-ef11-bae1-7ced8d04e0f6}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="emcr_name" select="1" icon="1" preview="1">
+        <row name="result" id="emcr_readinessindexsurveyid">
+          <cell name="emcr_name" width="200" />
+          <cell name="emcr_ministry" width="100" />
+          <cell name="emcr_year" width="100" />
+          <cell name="emcr_annualawarenesscampaign" width="206" />
+          <cell name="emcr_altsiteshavegenerator" width="182" />
+          <cell name="emcr_altsiteshavegeneratordescription" width="250" />
+          <cell name="emcr_altsitesindependentconnectivity" width="238" />
+          <cell name="emcr_altsitesindependentconnectivitydescription" width="306" />
+          <cell name="emcr_arerecordsbackedup" width="177" />
+          <cell name="emcr_areteammembersaware" width="192" />
+          <cell name="emcr_awarenesscomments" width="165" />
+          <cell name="emcr_bcpcomments" width="131" />
+          <cell name="emcr_biaquantity" width="117" />
+          <cell name="emcr_biasapproved" width="130" />
+          <cell name="emcr_biasreviewed" width="130" />
+          <cell name="emcr_businesscontinuityexercises" width="211" />
+          <cell name="emcr_businesscontinuityexercisescomments" width="275" />
+          <cell name="emcr_businesscontinuitytrainingcomments" width="269" />
+          <cell name="emcr_communicationmethods" width="183" />
+          <cell name="emcr_containsmanualprocedures" width="202" />
+          <cell name="emcr_crisismanagementcomments" width="214" />
+          <cell name="emcr_uploadplan" width="110" />
+          <cell name="emcr_criticaldependenciesidentified" width="222" />
+          <cell name="emcr_criticaldependenciesprioritized" width="227" />
+          <cell name="emcr_criticalservicesannuallyreviewed" width="248" />
+          <cell name="emcr_criticalservicescomments" width="198" />
+          <cell name="emcr_criticalvendorannualplanparticipation" width="275" />
+          <cell name="emcr_dortosmatch" width="133" />
+          <cell name="emcr_dortosmatchdescription" width="202" />
+          <cell name="emcr_establishedprogramstructure" width="212" />
+          <cell name="emcr_exercisetraining" width="140" />
+          <cell name="emcr_finalapproval" width="126" />
+          <cell name="emcr_hasexecutivesponsor" width="171" />
+          <cell name="emcr_haslossstrategy" width="142" />
+          <cell name="emcr_hasnotificationandactivationprocedures" width="285" />
+          <cell name="emcr_hassitetempprocedures" width="188" />
+          <cell name="emcr_hassitetempproceduresdescription" width="257" />
+          <cell name="emcr_hassteeringcommittee" width="178" />
+          <cell name="emcr_havemocexercisesoccurred" width="218" />
+          <cell name="emcr_isbusinesscontinuitydiscussed" width="228" />
+          <cell name="emcr_isescalated" width="108" />
+          <cell name="emcr_isics100offered" width="146" />
+          <cell name="emcr_isministryexecutiveaware" width="201" />
+          <cell name="emcr_ismocalternateidentified" width="200" />
+          <cell name="emcr_ismocannuallyreviewed" width="201" />
+          <cell name="emcr_ismocleadershiptrained" width="198" />
+          <cell name="emcr_ismocstafftrained" width="163" />
+          <cell name="emcr_isplanimplemented" width="156" />
+          <cell name="emcr_isrecoveryalternateidentified" width="221" />
+          <cell name="emcr_itdrplansforcriticalsystems" width="226" />
+          <cell name="emcr_itdrplansforcriticalsystemsdescription" width="291" />
+          <cell name="emcr_leadershipcomments" width="167" />
+          <cell name="emcr_lostdatainstructions" width="165" />
+          <cell name="emcr_ministrybusinesscontinuityadvisor" width="254" />
+          <cell name="emcr_ministryexecapproval" width="177" />
+          <cell name="emcr_ministrylistuptodate" width="183" />
+          <cell name="emcr_mocactivationtraining" width="186" />
+          <cell name="emcr_mocaltsiteconnectivity" width="195" />
+          <cell name="emcr_mocaltsitegenerator" width="179" />
+          <cell name="emcr_mocaltsiteprocedure" width="179" />
+          <cell name="emcr_moccommunicationsdrill" width="201" />
+          <cell name="emcr_moccrisiscommunicationplan" width="231" />
+          <cell name="emcr_mocexercisescomments" width="194" />
+          <cell name="emcr_mocfullscaleparticipation" width="207" />
+          <cell name="emcr_mocoverviewavailable" width="188" />
+          <cell name="emcr_mocstafforientation" width="170" />
+          <cell name="emcr_mocstaffingplan" width="149" />
+          <cell name="emcr_moctabletopconducted" width="189" />
+          <cell name="emcr_moctrainingcomments" width="188" />
+          <cell name="emcr_numberofbcps" width="137" />
+          <cell name="emcr_numberofdrills" width="137" />
+          <cell name="emcr_numberoffullscaleexercises" width="219" />
+          <cell name="emcr_numberoffunctionalexercises" width="222" />
+          <cell name="emcr_numberoforientations" width="174" />
+          <cell name="emcr_numberoftabletopexercises" width="211" />
+          <cell name="emcr_ownersbiatraining" width="163" />
+          <cell name="emcr_recoveryproceduretraining" width="206" />
+          <cell name="emcr_recoveryservicesannuallyreviewed" width="260" />
+          <cell name="createdby" width="104" />
+          <cell name="createdon" width="105" />
+          <cell name="emcr_recoverystrategiescomments" width="217" />
+          <cell name="statuscode" width="119" />
+          <cell name="emcr_strategyselectiontraining" width="194" />
+          <cell name="emcr_supplychainmanagementcomments" width="258" />
+          <cell name="emcr_trainingreceived" width="144" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="emcr_readinessindexsurvey">
+          <attribute name="emcr_name" />
+          <attribute name="emcr_readinessindexsurveyid" />
+          <attribute name="emcr_ministry" />
+          <attribute name="emcr_year" />
+          <attribute name="emcr_annualawarenesscampaign" />
+          <attribute name="emcr_altsiteshavegenerator" />
+          <attribute name="emcr_altsiteshavegeneratordescription" />
+          <attribute name="emcr_altsitesindependentconnectivity" />
+          <attribute name="emcr_altsitesindependentconnectivitydescription" />
+          <attribute name="emcr_arerecordsbackedup" />
+          <attribute name="emcr_areteammembersaware" />
+          <attribute name="emcr_awarenesscomments" />
+          <attribute name="emcr_bcpcomments" />
+          <attribute name="emcr_biaquantity" />
+          <attribute name="emcr_biasapproved" />
+          <attribute name="emcr_biasreviewed" />
+          <attribute name="emcr_businesscontinuityexercises" />
+          <attribute name="emcr_businesscontinuityexercisescomments" />
+          <attribute name="emcr_businesscontinuitytrainingcomments" />
+          <attribute name="emcr_communicationmethods" />
+          <attribute name="emcr_containsmanualprocedures" />
+          <attribute name="emcr_crisismanagementcomments" />
+          <attribute name="emcr_uploadplan" />
+          <attribute name="emcr_criticaldependenciesidentified" />
+          <attribute name="emcr_criticaldependenciesprioritized" />
+          <attribute name="emcr_criticalservicesannuallyreviewed" />
+          <attribute name="emcr_criticalservicescomments" />
+          <attribute name="emcr_criticalvendorannualplanparticipation" />
+          <attribute name="emcr_dortosmatch" />
+          <attribute name="emcr_dortosmatchdescription" />
+          <attribute name="emcr_establishedprogramstructure" />
+          <attribute name="emcr_exercisetraining" />
+          <attribute name="emcr_finalapproval" />
+          <attribute name="emcr_hasexecutivesponsor" />
+          <attribute name="emcr_haslossstrategy" />
+          <attribute name="emcr_hasnotificationandactivationprocedures" />
+          <attribute name="emcr_hassitetempprocedures" />
+          <attribute name="emcr_hassitetempproceduresdescription" />
+          <attribute name="emcr_hassteeringcommittee" />
+          <attribute name="emcr_havemocexercisesoccurred" />
+          <attribute name="emcr_isbusinesscontinuitydiscussed" />
+          <attribute name="emcr_isescalated" />
+          <attribute name="emcr_isics100offered" />
+          <attribute name="emcr_isministryexecutiveaware" />
+          <attribute name="emcr_ismocalternateidentified" />
+          <attribute name="emcr_ismocannuallyreviewed" />
+          <attribute name="emcr_ismocleadershiptrained" />
+          <attribute name="emcr_ismocstafftrained" />
+          <attribute name="emcr_isplanimplemented" />
+          <attribute name="emcr_isrecoveryalternateidentified" />
+          <attribute name="emcr_itdrplansforcriticalsystems" />
+          <attribute name="emcr_itdrplansforcriticalsystemsdescription" />
+          <attribute name="emcr_leadershipcomments" />
+          <attribute name="emcr_lostdatainstructions" />
+          <attribute name="emcr_ministrybusinesscontinuityadvisor" />
+          <attribute name="emcr_ministryexecapproval" />
+          <attribute name="emcr_ministrylistuptodate" />
+          <attribute name="emcr_mocactivationtraining" />
+          <attribute name="emcr_mocaltsiteconnectivity" />
+          <attribute name="emcr_mocaltsitegenerator" />
+          <attribute name="emcr_mocaltsiteprocedure" />
+          <attribute name="emcr_moccommunicationsdrill" />
+          <attribute name="emcr_moccrisiscommunicationplan" />
+          <attribute name="emcr_mocexercisescomments" />
+          <attribute name="emcr_mocfullscaleparticipation" />
+          <attribute name="emcr_mocoverviewavailable" />
+          <attribute name="emcr_mocstafforientation" />
+          <attribute name="emcr_mocstaffingplan" />
+          <attribute name="emcr_moctabletopconducted" />
+          <attribute name="emcr_moctrainingcomments" />
+          <attribute name="emcr_numberofbcps" />
+          <attribute name="emcr_numberofdrills" />
+          <attribute name="emcr_numberoffullscaleexercises" />
+          <attribute name="emcr_numberoffunctionalexercises" />
+          <attribute name="emcr_numberoforientations" />
+          <attribute name="emcr_numberoftabletopexercises" />
+          <attribute name="emcr_ownersbiatraining" />
+          <attribute name="emcr_recoveryproceduretraining" />
+          <attribute name="emcr_recoveryservicesannuallyreviewed" />
+          <attribute name="createdby" />
+          <attribute name="createdon" />
+          <attribute name="emcr_recoverystrategiescomments" />
+          <attribute name="statuscode" />
+          <attribute name="emcr_strategyselectiontraining" />
+          <attribute name="emcr_supplychainmanagementcomments" />
+          <attribute name="emcr_trainingreceived" />
+          <filter type="and">
+            <condition attribute="createdby" operator="eq-userid" />
+          </filter>
+          <order attribute="createdon" descending="true" />
+          <order attribute="emcr_name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Canvas App View All Fields" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
