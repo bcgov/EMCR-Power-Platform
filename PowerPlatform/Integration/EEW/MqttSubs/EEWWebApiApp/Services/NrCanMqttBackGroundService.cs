@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using System.Runtime.CompilerServices;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace EEWWebApiApp.Services
 {
@@ -31,6 +32,9 @@ namespace EEWWebApiApp.Services
         private int _connectionFailureCount = 0;
         private const int MaxConnectionFailures = 3;
         private int _currentBrokerIndex = 0;
+        private readonly object _lock = new object();
+        private string hostName;
+        private string ipAddress;
 
         public NrCanMqttBackGroundService(IConfiguration configuration, IHostApplicationLifetime applicationLifetime, ILogger<NrCanMqttBackGroundService> logger)
         {
@@ -41,6 +45,11 @@ namespace EEWWebApiApp.Services
             _mqttSettings = configuration.GetSection("MQTTSettings")?.Get<MQTTSettings>();
             _d365Settings = configuration.GetSection("D365Settings")?.Get<D365Settings>();
             _crmHelper = new CRMHelper(_d365Settings);
+
+            hostName = Dns.GetHostName();
+            ipAddress = Dns.GetHostAddresses(hostName)
+                                  .FirstOrDefault(addr => addr.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)?
+                                  .ToString();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -70,7 +79,7 @@ namespace EEWWebApiApp.Services
             }
             finally
             {
-                _logger.LogInformation("ExecuteAsync has stopped.");
+                _logger.LogInformation("EMCR MQTT subsription service started.");
             }
         }
 
@@ -99,10 +108,13 @@ namespace EEWWebApiApp.Services
                                 string certificatePath = testMode ? "./data/test.pem" : "./data/partners.pem";
 
                                 // Determine which broker to use
-                                if (_connectionFailureCount >= MaxConnectionFailures)
+                                lock (_lock)
                                 {
-                                    _currentBrokerIndex = (_currentBrokerIndex + 1) % _mqttSettings.Brokers.Length; ;
-                                    _connectionFailureCount = 0;
+                                    if (_connectionFailureCount >= MaxConnectionFailures)
+                                    {
+                                        _currentBrokerIndex = (_currentBrokerIndex + 1) % _mqttSettings.Brokers.Length; ;
+                                        _connectionFailureCount = 0;
+                                    }
                                 }
                                 _mqttClientOptions = new MqttClientOptionsBuilder()
                                     .WithTcpServer(testMode ? "test.mosquitto.org" : _mqttSettings.Brokers[_currentBrokerIndex], _mqttSettings.Port)
@@ -118,8 +130,10 @@ namespace EEWWebApiApp.Services
                                 {
                                     _logger.LogInformation("The MQTT client is connected.");
 
-                                    _connectionFailureCount = 0; // Reset failure count on successful connection
-
+                                    lock (_lock)
+                                    {
+                                        _connectionFailureCount = 0; // Reset failure count on successful connection
+                                    }
                                     if (!isSubscribed)
                                     {
                                         isSubscribed = await SubscribeToTopics(isSubscribed, cancellationToken);
@@ -128,7 +142,10 @@ namespace EEWWebApiApp.Services
                                 else
                                 {
                                     _logger.LogError("Failed to connect to MQTT broker. Reason: {Reason}", connAck.ResultCode);
-                                    _connectionFailureCount++;
+                                    lock (_lock)
+                                    {
+                                        _connectionFailureCount++;
+                                    }
                                 }
                             }
                         }
@@ -137,7 +154,10 @@ namespace EEWWebApiApp.Services
                     {
                         _logger.LogError(ex, "An error occurred while connecting to MQTT broker.");
                         isSubscribed = false;
-                        _connectionFailureCount++;
+                        lock (_lock)
+                        {
+                            _connectionFailureCount++;
+                        }
 
                         JObject jNRCan = new JObject()
                         {
@@ -200,97 +220,234 @@ namespace EEWWebApiApp.Services
         {
             _mqttClient.ApplicationMessageReceivedAsync += async e =>
             {
-                JObject jNRCan = new JObject()
+                JObject jNRCan = new JObject
                 {
                     ["topic"] = e.ApplicationMessage.Topic,
                     ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload),
                     ["receivedtime"] = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff")
                 };
 
-                if (e.ApplicationMessage.Topic == _mqttSettings.EEWOverallHealth && _connectionFailureCount > 0)
+                if (e.ApplicationMessage.Topic == _mqttSettings.EEWOverallHealth && Interlocked.CompareExchange(ref _connectionFailureCount, 0, 0) > 0)
                 {
-                    _logger.LogInformation($"Connection error happened, monitor health of servers.");
+                    _logger.LogInformation("Connection error happened, monitor health of servers.");
                     await CreateNrCanHealthRecord(jNRCan);
                 }
                 else if (e.ApplicationMessage.Topic != _mqttSettings.EEWOverallHealth)
                 {
-                    var originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-                    if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPolygonTopic
-                    && (_d365Settings.LoggingLevel == LoggingLevel.Polygon || _d365Settings.LoggingLevel == LoggingLevel.All))
+                    try
                     {
-                        try
-                        {
-                            //string filePath = "./data/polygon.xml"; // Replace with your XML file path
-                            //originalXml = File.ReadAllText(filePath);
-                            // Deserialize XML to class
-                            var eventMessage = XmlHelper.DeserializeEventMessagePolygon(originalXml);
-                            jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
-                            jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
-                            jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
-                            jNRCan["id"] = eventMessage.CoreInfo.Id;
-                            jNRCan["version"] = eventMessage.version;
-                            jNRCan["timestamp"] = eventMessage.timestamp;
+                        string originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
-                            // Serialize class back to XML
-                            var serializedXml = XmlHelper.SerializeToXml(eventMessage);
-                            // Compare original and serialized XML
-                            XmlHelper.CompareXml(originalXml, serializedXml);
-                        }
-                        catch (Exception ex)
+                        // Handle different topics with corresponding logic
+                        switch (e.ApplicationMessage.Topic)
                         {
-                            _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+                            case var topic when topic == _mqttSettings.GroundMotionPolygonTopic &&
+                                                (_d365Settings.LoggingLevel == LoggingLevel.Polygon || _d365Settings.LoggingLevel == LoggingLevel.All):
+                                ProcessPolygonTopic(originalXml, jNRCan);
+                                break;
+
+                            case var topic when topic == _mqttSettings.GroundMotionPointsTopic &&
+                                                (_d365Settings.LoggingLevel == LoggingLevel.Point || _d365Settings.LoggingLevel == LoggingLevel.All):
+                                ProcessPointsTopic(originalXml, jNRCan);
+                                break;
+
+                            case var topic when topic == _mqttSettings.CoreXmlTopic &&
+                                                (_d365Settings.LoggingLevel == LoggingLevel.General ||
+                                                 _d365Settings.LoggingLevel == LoggingLevel.All ||
+                                                 _d365Settings.LoggingLevel == LoggingLevel.Polygon):
+                                ProcessCoreXmlTopic(originalXml, jNRCan);
+                                break;
+                        }
+
+                        if (IsWithinRange(double.Parse(jNRCan["latitude"]?.ToString()), double.Parse(jNRCan["longitude"]?.ToString())))
+                        {
+                            if (IsTechnicalAlert(double.Parse(jNRCan["magnitude"]?.ToString())))
+                            {
+                                await CreateNrCanAlertRecord(jNRCan);
+                            }
+                            else if (IsPublicAlert(double.Parse(jNRCan["magnitude"]?.ToString())))
+                            {
+                                await Task.Delay(500);
+                                jNRCan["weatherwiresenttime"] = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                                await CreateNrCanAlertRecord(jNRCan);
+                            }
+                            else
+                            {
+                                _logger.LogInformation("Event magnitude is less than 4.");
+                            }
+                            await CreateNrCanAlertRecord(jNRCan);
+                        }
+                        else
+                        {
+                            _logger.LogInformation("Event is not within the specified range.");
                         }
                     }
-                    else if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPointsTopic
-                    && (_d365Settings.LoggingLevel == LoggingLevel.Point || _d365Settings.LoggingLevel == LoggingLevel.All))
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            var eventMessage = XmlHelper.DeserializeEventMessageMap(originalXml);
-                            jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
-                            jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
-                            jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
-                            jNRCan["id"] = eventMessage.CoreInfo.Id;
-                            jNRCan["version"] = eventMessage.version;
-                            jNRCan["timestamp"] = eventMessage.timestamp;
-
-                            var serializedXml = XmlHelper.SerializeToXml(eventMessage);
-                            XmlHelper.CompareXml(originalXml, serializedXml);
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogInformation($"Error during XML conversion: {ex.Message}");
-                        }
+                        _logger.LogError($"Error processing message: {ex.Message}");
                     }
-                    else if (e.ApplicationMessage.Topic == _mqttSettings.CoreXmlTopic
-                    && (_d365Settings.LoggingLevel == LoggingLevel.General || _d365Settings.LoggingLevel == LoggingLevel.All
-                        || _d365Settings.LoggingLevel == LoggingLevel.Polygon))
-                    {
-                        try
-                        {
-                            var eventMessage = XmlHelper.DeserializeEventMessageDm(originalXml);
-                            jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
-                            jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
-                            jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
-                            jNRCan["id"] = eventMessage.CoreInfo.Id;
-                            jNRCan["version"] = eventMessage.version;
-                            jNRCan["timestamp"] = eventMessage.timestamp;
-
-                            var serializedXml = XmlHelper.SerializeToXml(eventMessage);
-                            XmlHelper.CompareXml(originalXml, serializedXml);
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogInformation($"Error during XML conversion: {ex.Message}");
-                        }
-                    };
-
-                    jNRCan["weatherwiresenttime"] = DateTime.UtcNow.AddMilliseconds(500).ToString("yyyy-MM-dd HH:mm:ss.fff");
-                    await Task.Delay(500); // Pause the code for 0.5 second
-                    await CreateNrCanAlertRecord(jNRCan);
                 }
             };
         }
+
+        private void ProcessPolygonTopic(string originalXml, JObject jNRCan)
+        {
+            try
+            {
+                var eventMessage = XmlHelper.DeserializeEventMessagePolygon(originalXml);
+                jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+                jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+                jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+                jNRCan["id"] = eventMessage.CoreInfo.Id;
+                jNRCan["version"] = eventMessage.version;
+                jNRCan["timestamp"] = eventMessage.timestamp;
+
+                var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+                XmlHelper.CompareXml(originalXml, serializedXml);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error during Polygon XML processing: {ex.Message}");
+            }
+        }
+
+        private void ProcessPointsTopic(string originalXml, JObject jNRCan)
+        {
+            try
+            {
+                var eventMessage = XmlHelper.DeserializeEventMessageMap(originalXml);
+                jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+                jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+                jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+                jNRCan["id"] = eventMessage.CoreInfo.Id;
+                jNRCan["version"] = eventMessage.version;
+                jNRCan["timestamp"] = eventMessage.timestamp;
+
+                var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+                XmlHelper.CompareXml(originalXml, serializedXml);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error during map point XML processing: {ex.Message}");
+            }
+        }
+
+        private void ProcessCoreXmlTopic(string originalXml, JObject jNRCan)
+        {
+            try
+            {
+                var eventMessage = XmlHelper.DeserializeEventMessageDm(originalXml);
+                jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+                jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+                jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+                jNRCan["id"] = eventMessage.CoreInfo.Id;
+                jNRCan["version"] = eventMessage.version;
+                jNRCan["timestamp"] = eventMessage.timestamp;
+
+                var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+                XmlHelper.CompareXml(originalXml, serializedXml);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error during core XML processing: {ex.Message}");
+            }
+        }
+
+        //private void ProcessEEWMessages()
+        //{
+        //    _mqttClient.ApplicationMessageReceivedAsync += async e =>
+        //    {
+        //        JObject jNRCan = new JObject()
+        //        {
+        //            ["topic"] = e.ApplicationMessage.Topic,
+        //            ["payload"] = Encoding.UTF8.GetString(e.ApplicationMessage.Payload),
+        //            ["receivedtime"] = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        //        };
+
+        //        if (e.ApplicationMessage.Topic == _mqttSettings.EEWOverallHealth && _connectionFailureCount > 0)
+        //        {
+        //            _logger.LogInformation($"Connection error happened, monitor health of servers.");
+        //            await CreateNrCanHealthRecord(jNRCan);
+        //        }
+        //        else if (e.ApplicationMessage.Topic != _mqttSettings.EEWOverallHealth)
+        //        {
+        //            var originalXml = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+        //            if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPolygonTopic
+        //            && (_d365Settings.LoggingLevel == LoggingLevel.Polygon || _d365Settings.LoggingLevel == LoggingLevel.All))
+        //            {
+        //                try
+        //                {
+        //                    //string filePath = "./data/polygon.xml"; // Replace with your XML file path
+        //                    //originalXml = File.ReadAllText(filePath);
+        //                    // Deserialize XML to class
+        //                    var eventMessage = XmlHelper.DeserializeEventMessagePolygon(originalXml);
+        //                    jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+        //                    jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+        //                    jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+        //                    jNRCan["id"] = eventMessage.CoreInfo.Id;
+        //                    jNRCan["version"] = eventMessage.version;
+        //                    jNRCan["timestamp"] = eventMessage.timestamp;
+
+        //                    // Serialize class back to XML
+        //                    var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+        //                    // Compare original and serialized XML
+        //                    XmlHelper.CompareXml(originalXml, serializedXml);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+        //                }
+        //            }
+        //            else if (e.ApplicationMessage.Topic == _mqttSettings.GroundMotionPointsTopic
+        //            && (_d365Settings.LoggingLevel == LoggingLevel.Point || _d365Settings.LoggingLevel == LoggingLevel.All))
+        //            {
+        //                try
+        //                {
+        //                    var eventMessage = XmlHelper.DeserializeEventMessageMap(originalXml);
+        //                    jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+        //                    jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+        //                    jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+        //                    jNRCan["id"] = eventMessage.CoreInfo.Id;
+        //                    jNRCan["version"] = eventMessage.version;
+        //                    jNRCan["timestamp"] = eventMessage.timestamp;
+
+        //                    var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+        //                    XmlHelper.CompareXml(originalXml, serializedXml);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+        //                }
+        //            }
+        //            else if (e.ApplicationMessage.Topic == _mqttSettings.CoreXmlTopic
+        //            && (_d365Settings.LoggingLevel == LoggingLevel.General || _d365Settings.LoggingLevel == LoggingLevel.All
+        //                || _d365Settings.LoggingLevel == LoggingLevel.Polygon))
+        //            {
+        //                try
+        //                {
+        //                    var eventMessage = XmlHelper.DeserializeEventMessageDm(originalXml);
+        //                    jNRCan["magnitude"] = eventMessage.CoreInfo.Mag.Value;
+        //                    jNRCan["latitude"] = eventMessage.CoreInfo.Lat.Value;
+        //                    jNRCan["longitude"] = eventMessage.CoreInfo.Lon.Value;
+        //                    jNRCan["id"] = eventMessage.CoreInfo.Id;
+        //                    jNRCan["version"] = eventMessage.version;
+        //                    jNRCan["timestamp"] = eventMessage.timestamp;
+
+        //                    var serializedXml = XmlHelper.SerializeToXml(eventMessage);
+        //                    XmlHelper.CompareXml(originalXml, serializedXml);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    _logger.LogInformation($"Error during XML conversion: {ex.Message}");
+        //                }
+        //            };
+
+        //            jNRCan["weatherwiresenttime"] = DateTime.UtcNow.AddMilliseconds(500).ToString("yyyy-MM-dd HH:mm:ss.fff");
+        //            await Task.Delay(500); // Pause the code for 0.5 second
+        //            await CreateNrCanAlertRecord(jNRCan);
+        //        }
+        //    };
+        //}
 
         private async Task UsingStaticSampleData(CancellationToken cancellationToken)
         {
@@ -352,6 +509,7 @@ namespace EEWWebApiApp.Services
 
                 if (exist)
                 {
+                    _logger.LogInformation("The same alert was already logged");
                     return;
                 }
 
@@ -367,13 +525,15 @@ namespace EEWWebApiApp.Services
                     ["emcr_receivedtime"] = DateTime.Parse(jNRCan["receivedtime"].ToString()),
                     ["emcr_receivedtimeseconds"] = DateTime.TryParse(jNRCan["receivedtime"]?.ToString(),
                         out var receivedTime) ? (receivedTime.Second + (receivedTime.Millisecond / 1000m)) : 0,
-                    ["emcr_weatherwiresenttime"] = DateTime.Parse(jNRCan["weatherwiresenttime"]?.ToString()),
-                    ["emcr_weatherwiresenttimeseconds"] = DateTime.TryParse(jNRCan["weatherwiresenttime"]?.ToString(),
-                        out var weatherTime) ? (weatherTime.Second + (weatherTime.Millisecond / 1000m)) : 0,
+                    ["emcr_weatherwiresenttime"] = jNRCan["weatherwiresenttime"] != null ? DateTime.Parse(jNRCan["weatherwiresenttime"].ToString()) : (DateTime?)null,
+                    ["emcr_weatherwiresenttimeseconds"] = jNRCan["weatherwiresenttime"] != null && DateTime.TryParse(jNRCan["weatherwiresenttime"].ToString(), out var weatherTime)
+                        ? (weatherTime.Second + (weatherTime.Millisecond / 1000m))
+                        : (decimal?)null,
                     ["emcr_timestamp"] = DateTime.Parse(jNRCan["timestamp"]?.ToString()),
                     ["emcr_timestampseconds"] = DateTime.TryParse(jNRCan["timestamp"]?.ToString(),
                         out var timestamp) ? (timestamp.Second + (timestamp.Millisecond / 1000m)) : 0,
-                    ["emcr_message"] = jNRCan["payload"]
+                    ["emcr_message"] = jNRCan["payload"],
+                    ["emcr_memo"] = hostName + " - " + ipAddress
                 };
 
                 var result = await _crmHelper.CreateRecordAsync("emcr_alerts", newNRCan);
@@ -391,6 +551,20 @@ namespace EEWWebApiApp.Services
             }
         }
 
+        public bool IsWithinRange(double latitude, double longitude)
+        {
+            return latitude > 45 && latitude < 70 && longitude < -110 && longitude > -140;
+        }
+
+        public bool IsTechnicalAlert( double maginitude)
+        {
+            return maginitude >= 4 & maginitude < 5;
+        }
+
+        public bool IsPublicAlert(double maginitude)
+        {
+            return maginitude >= 5;
+        }
         public async Task CreateNrCanHealthRecord(JObject jNRCan)
         {
             try

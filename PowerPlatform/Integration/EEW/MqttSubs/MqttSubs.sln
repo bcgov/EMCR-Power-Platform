@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EEWWebApiApp", "EEWWebApiApp\EEWWebApiApp.csproj", "{3436BB8B-8049-4B84-8AC1-1543FC99E899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emcr.Eew.Plugin", "..\..\..\..\Emcr.Eew.Plugin\Emcr.Eew.Plugin.csproj", "{7516B555-8416-4959-96B0-4ED22B520BE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3436BB8B-8049-4B84-8AC1-1543FC99E899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3436BB8B-8049-4B84-8AC1-1543FC99E899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3436BB8B-8049-4B84-8AC1-1543FC99E899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7516B555-8416-4959-96B0-4ED22B520BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7516B555-8416-4959-96B0-4ED22B520BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7516B555-8416-4959-96B0-4ED22B520BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7516B555-8416-4959-96B0-4ED22B520BE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
