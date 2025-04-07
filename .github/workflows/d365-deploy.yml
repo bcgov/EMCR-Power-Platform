@@ -32,7 +32,7 @@ jobs:
         path: ./artifacts/${{ inputs.solution-name }}.zip
 
 
-  deploy:
+  deploy-uat:
     name: Deploy - EMCR-UAT
     runs-on: windows-latest
     needs: build
@@ -52,14 +52,6 @@ jobs:
     - name: Install Power Platform CLI
       uses: microsoft/powerplatform-actions/actions-install@v1
 
-    # - name: Authenticate with Power Platform
-    #   uses: microsoft/powerplatform-actions/authenticate@v1
-    #   with:
-    #     environment-url: ${{ vars.PP_ENV_URL }}
-    #     client-id: ${{ vars.PP_APP_ID }}
-    #     tenant-id: ${{ vars.PP_TENANT_ID }}
-    #     client-secret: ${{ secrets.PP_CLIENT_SECRET }}
-
     - name: Deploy Solution
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
@@ -70,6 +62,40 @@ jobs:
         solution-file: ./artifacts/${{ inputs.solution-name }}.zip
         use-deployment-settings-file: true
         deployment-settings-file: PowerPlatform/Solutions/${{ inputs.solution-name }}/uat.deploymentsettings.json
+        async: true
+        max-async-wait: 60
+        skip-lower-version: true
+
+  deploy-train:
+    name: Deploy - EMCR-TRAIN
+    runs-on: windows-latest
+    needs: build
+    environment: 
+      name: EMCR-TRAIN 
+      url: ${{ vars.PP_ENV_URL }}
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Download Solution Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.solution-name }}
+        path: ./artifacts
+
+    - name: Install Power Platform CLI
+      uses: microsoft/powerplatform-actions/actions-install@v1
+
+    - name: Deploy Solution
+      uses: microsoft/powerplatform-actions/import-solution@v1
+      with:
+        environment-url: ${{ vars.PP_ENV_URL }}
+        app-id: ${{ vars.PP_APP_ID }}
+        tenant-id: ${{ vars.PP_TENANT_ID }}
+        client-secret: ${{ secrets.PP_CLIENT_SECRET }}
+        solution-file: ./artifacts/${{ inputs.solution-name }}.zip
+        use-deployment-settings-file: true
+        deployment-settings-file: PowerPlatform/Solutions/${{ inputs.solution-name }}/train.deploymentsettings.json
         async: true
         max-async-wait: 60
         skip-lower-version: true
