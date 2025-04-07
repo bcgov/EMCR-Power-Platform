@@ -119,22 +119,22 @@
   "ConnectionReferences": [
     {
       "LogicalName": "emcr_EmcrAppsMSTeams",
-      "ConnectionId": "",
+      "ConnectionId": "shared-teams-18bff75a-11bd-40fd-8aaf-0f7431847a5a",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_teams"
     },
     {
       "LogicalName": "emcr_EmcrAppsOutlook",
-      "ConnectionId": "",
+      "ConnectionId": "shared-office365-f47a3177-4308-44f2-82a2-8f28a2b3c830",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
       "LogicalName": "emcr_EmcrAppsPowerBI",
-      "ConnectionId": "",
+      "ConnectionId": "6578c1eebb9449b58f61a2f3f5f22c3c",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_powerbi"
     },
     {
       "LogicalName": "emcr_sharedcommondataserviceforapps_c9deb",
-      "ConnectionId": "",
+      "ConnectionId": "shared-commondataser-6ef4b40e-65a6-41ad-948d-8ac663a9da56",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     }
   ]

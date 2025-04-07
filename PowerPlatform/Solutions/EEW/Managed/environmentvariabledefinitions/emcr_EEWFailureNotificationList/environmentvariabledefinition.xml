@@ -1,0 +1,10 @@
+<environmentvariabledefinition schemaname="emcr_EEWFailureNotificationList">
+  <displayname default="EEW Failure Notification List">
+    <label description="EEW Failure Notification List" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.11</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

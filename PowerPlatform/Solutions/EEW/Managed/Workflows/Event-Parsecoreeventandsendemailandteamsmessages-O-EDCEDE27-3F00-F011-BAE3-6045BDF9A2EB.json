@@ -1,45 +1,45 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_office365_1": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "emcr_EmcrAppsOutlook"
-        },
-        "api": {
-          "name": "shared_office365"
-        }
-      },
       "shared_commondataserviceforapps_1": {
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
         "connection": {
           "connectionReferenceLogicalName": "emcr_sharedcommondataserviceforapps_c9deb"
         },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
+        "runtimeSource": "embedded"
       },
       "shared_teams_1": {
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_teams"
+        },
         "connection": {
           "connectionReferenceLogicalName": "emcr_EmcrAppsMSTeams"
         },
+        "runtimeSource": "embedded"
+      },
+      "shared_office365_1": {
         "api": {
-          "name": "shared_teams"
-        }
+          "name": "shared_office365"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "emcr_EmcrAppsOutlook"
+        },
+        "runtimeSource": "embedded"
       }
     },
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
-        "$connections": {
-          "defaultValue": {},
-          "type": "Object"
-        },
         "$authentication": {
           "defaultValue": {},
           "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
         },
         "Core Message Text (emcr_CoreMessageText)": {
           "defaultValue": "This is an EEW earthquake warning from EEW. There has been an earthquake with the below parameters:",
@@ -57,32 +57,45 @@
           }
         },
         "Core Teams Recipients (emcr_TeamsRecipients)": {
-          "defaultValue": "EEW EarthQuake Teams Alerts Test,EEW EarthQuake alert group 2",
+          "defaultValue": "EEW EarthQuake Teams Alerts Test;EEW EarthQuake alert group 2",
           "type": "String",
           "metadata": {
             "schemaName": "emcr_TeamsRecipients"
           }
         },
         "Core Email Subject Line (emcr_EmailSubjectLine)": {
-          "defaultValue": "Test Core EEW Alert - not real",
+          "defaultValue": "DEV Core EEW Alert - not real",
           "type": "String",
           "metadata": {
             "schemaName": "emcr_EmailSubjectLine"
+          }
+        },
+        "EEW Failure Notification List (emcr_EEWFailureNotificationList)": {
+          "defaultValue": "alen.george@gov.bc.ca;geethu.nair@gov.bc.ca;Geethu.Nair@quartech.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_EEWFailureNotificationList"
+          }
+        },
+        "EEW Teams Failure Text (emcr_EEWTeamsFailureText)": {
+          "defaultValue": "Failed to send teams notification! ",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_EEWTeamsFailureText"
+          }
+        },
+        "EEW Email Failure Text (emcr_EEWEmailFailureText)": {
+          "defaultValue": "Unable to send email notification",
+          "type": "String",
+          "metadata": {
+            "schemaName": "emcr_EEWEmailFailureText"
           }
         }
       },
       "triggers": {
         "When_a_core_alert_is_created": {
-          "metadata": {
-            "operationMetadataId": "1db10160-8cfe-4650-b4e8-089d59f626f6"
-          },
           "type": "OpenApiConnectionWebhook",
           "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "SubscribeWebhookTrigger",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
             "parameters": {
               "subscriptionRequest/message": 1,
               "subscriptionRequest/entityname": "emcr_alert",
@@ -90,264 +103,21 @@
               "subscriptionRequest/filterexpression": "(emcr_topic eq 'eew/sys/dm/data')",
               "subscriptionRequest/runas": 3
             },
-            "authentication": "@parameters('$authentication')"
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps_1"
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "1db10160-8cfe-4650-b4e8-089d59f626f6"
           }
         }
       },
       "actions": {
-        "Event_XML": {
-          "runAfter": {},
-          "metadata": {
-            "operationMetadataId": "9768945c-9c8a-4e2b-b946-822e8d31871a"
-          },
-          "type": "Compose",
-          "inputs": "@triggerOutputs()?['body/emcr_message']"
-        },
-        "Alert_Category": {
-          "runAfter": {
-            "Event_XML": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "54db68bd-20cf-475e-9e34-bcee27b5a580"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)')\r\n"
-        },
-        "Magnitude": {
-          "runAfter": {
-            "Message_type_Status_Reason": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "f945fdd6-27d0-4e2e-bce7-7d99a662e398"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/mag)')"
-        },
-        "Alert_Status": {
-          "runAfter": {
-            "Number_of_Stations": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "b7978675-4d26-4b92-98cd-028f165fb2de"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)')"
-        },
-        "TimeStamp": {
-          "runAfter": {
-            "Alert_Status": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "87689220-7e90-4d1b-b72c-4db51ae4a723"
-          },
-          "type": "Compose",
-          "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/@timestamp)'), 'yyyy-MM-dd hh:mm tt')\r\n"
-        },
-        "Magnitude_Uncertainty": {
-          "runAfter": {
-            "Magnitude": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "0514986e-8c74-4890-bcf8-215ff5db6cbb"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/mag_uncer)')"
-        },
-        "Latitude": {
-          "runAfter": {
-            "Magnitude_Uncertainty": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "d1f46a47-78ee-4ed6-8e33-29e2effadfcf"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat)')"
-        },
-        "Latitude_Uncertainty": {
-          "runAfter": {
-            "Latitude": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "aa7f810b-de26-40fd-8df6-cc9a6fcd40ca"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat_uncer)')"
-        },
-        "Longitude": {
-          "runAfter": {
-            "Latitude_Uncertainty": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "ea9f23e8-2b79-41ba-97d6-267ccaec73ca"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon)')"
-        },
-        "Longitude_Uncertainty": {
-          "runAfter": {
-            "Longitude": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "55fa1fb2-5f39-4f25-a2a4-ee360d971137"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon_uncer)')"
-        },
-        "Depth": {
-          "runAfter": {
-            "Longitude_Uncertainty": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "1babecdf-9cda-45c9-aa8c-5873235488f0"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth)')"
-        },
-        "Depth_Uncertainty": {
-          "runAfter": {
-            "Depth": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "b161b64c-98eb-46bf-9914-0ae21bd59558"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth_uncer)')"
-        },
-        "OriginTime": {
-          "runAfter": {
-            "Depth_Uncertainty": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "79a479ce-ac47-4942-9997-22cb42e248b2"
-          },
-          "type": "Compose",
-          "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/orig_time)'), 'yyyy-MM-dd hh:mm tt')\r\n"
-        },
-        "OriginTime_Uncertainty": {
-          "runAfter": {
-            "OriginTime": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "e223398b-150d-4ece-bbd6-acfc1c01063b"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/orig_time_uncer)')"
-        },
-        "Likelihood": {
-          "runAfter": {
-            "OriginTime_Uncertainty": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "71165c6c-c8b0-433d-959d-e462c59def06"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/likelihood)')"
-        },
-        "Number_of_Stations": {
-          "runAfter": {
-            "Likelihood": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "78d7e331-d291-474c-9880-542bfc6e803c"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/num_stations)')"
-        },
-        "Version": {
-          "runAfter": {
-            "Dynamics_Alert_Category": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "35958f5f-43a8-4685-9dc6-c0599cc81c59"
-          },
-          "type": "Compose",
-          "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/@version)')\r\n"
-        },
-        "Message_type_Status_Reason": {
-          "runAfter": {
-            "Version": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "b87bbeab-be40-4d30-a387-a84b930e134c"
-          },
-          "type": "Compose",
-          "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'new'), 1, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'update'), 717350001, null))"
-        },
-        "Send_an_email_for_core_emails": {
-          "runAfter": {
-            "Apply_to_each_teams_recipient": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "25519ee9-a7ad-4561-9bd7-1cf906d66ce3"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_office365_1",
-              "operationId": "SendEmailV2",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
-            },
-            "parameters": {
-              "emailMessage/To": "@parameters('Core Email Recipients (emcr_EmailRecipients)')",
-              "emailMessage/Subject": "@{triggerOutputs()?['body/emcr_name']} @{parameters('Core Email Subject Line (emcr_EmailSubjectLine)')}",
-              "emailMessage/Body": "<p><span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span><br>\n@{parameters('Core Message Text (emcr_CoreMessageText)')}<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPulic Alert Issued = N/A - Not Enough Information<br>\nAlert Status = @{outputs('Alert_Status')}<br>\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/- &nbsp;@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = @{outputs('Latitude')} &nbsp;+/- &nbsp;@{outputs('Latitude_Uncertainty')}<br>\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span></p>",
-              "emailMessage/Importance": "High"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
         "Update_dynamics_values_for_core_events": {
-          "runAfter": {
-            "Send_an_email_for_core_emails": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "970785af-40e8-4ba7-af03-e0586e0f3ff6"
-          },
           "type": "OpenApiConnection",
           "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "UpdateOnlyRecord",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
             "parameters": {
               "entityName": "emcr_alerts",
               "recordId": "@triggerOutputs()?['body/emcr_alertid']",
@@ -370,187 +140,590 @@
               "item/statuscode": "@outputs('Message_type_Status_Reason')",
               "item/emcr_type": 717350000
             },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Create_Notification_History_for_Teams": {
-          "runAfter": {
-            "Update_dynamics_values_for_core_events": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "b1125ab4-b593-4991-bf7b-77ca6675d40c"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "CreateRecord",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "emcr_notificationhistories",
-              "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
-              "item/emcr_name": "Teams Alert for @{triggerOutputs()?['body/emcr_name']}",
-              "item/emcr_notificationcontent": "***Warning***Earthquake***Warning\n@{parameters('Core Message Text (emcr_CoreMessageText)')}\n\nAlert Number = @{triggerOutputs()?['body/emcr_name']}\nAlert Category = @{outputs('Alert_Category')}\nAlert Type = Technical Alert\nPulic Alert Issued = N/A - Not Enough Information\nAlert Status = @{outputs('Alert_Status')}\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}\nMagnitude = @{outputs('Magnitude')} +/-  @{outputs('Magnitude_Uncertainty')}\nLatitude = @{outputs('Latitude')}  +/-  @{outputs('Latitude_Uncertainty')}\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}\nLikelihood = @{outputs('Likelihood')}\n***Warning***Earthquake***Warning",
-              "item/emcr_notificationtype": 717350001,
-              "item/emcr_recipients": "@parameters('Core Teams Recipients (emcr_TeamsRecipients)')"
-            },
-            "authentication": "@parameters('$authentication')"
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "connectionName": "shared_commondataserviceforapps_1"
+            }
+          },
+          "runAfter": {
+            "Get_Environment_Variables": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "970785af-40e8-4ba7-af03-e0586e0f3ff6"
           }
         },
-        "Create_Notification_History_for_Email": {
-          "runAfter": {
-            "Create_Notification_History_for_Teams": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "2e68914a-dbd0-4830-8d69-8535e63f0540"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "CreateRecord",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "emcr_notificationhistories",
-              "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
-              "item/emcr_name": "Email Alert for @{triggerOutputs()?['body/emcr_name']}",
-              "item/emcr_notificationcontent": "***Warning***Earthquake***Warning\n@{parameters('Core Message Text (emcr_CoreMessageText)')}\n\nAlert Number = @{triggerOutputs()?['body/emcr_name']}\nAlert Category = @{outputs('Alert_Category')}\nAlert Type = Technical Alert\nPulic Alert Issued = N/A - Not Enough Information\nAlert Status = @{outputs('Alert_Status')}\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}\nMagnitude = @{outputs('Magnitude')} +/-  @{outputs('Magnitude_Uncertainty')}\nLatitude = @{outputs('Latitude')}  +/-  @{outputs('Latitude_Uncertainty')}\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}\nLikelihood = @{outputs('Likelihood')}\n***Warning***Earthquake***Warning",
-              "item/emcr_notificationtype": 717350000,
-              "item/emcr_recipients": "@parameters('Core Email Recipients (emcr_EmailRecipients)')"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Dynamics_Alert_Category": {
-          "runAfter": {
-            "Alert_Category": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "247f7bce-dde4-44cb-9f50-06249011b01d"
-          },
-          "type": "Compose",
-          "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'live'), 717350000, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'test'), 717350001, null))"
-        },
-        "Get_Team_Recipient_List": {
-          "runAfter": {
-            "TimeStamp": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "8bbf1197-e62d-45b8-85e8-0b8b36771d1e"
-          },
-          "type": "Compose",
-          "inputs": "@parameters('Core Teams Recipients (emcr_TeamsRecipients)')"
-        },
-        "Array_of_Team_Recipients": {
-          "runAfter": {
-            "Get_Team_Recipient_List": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "f2c9358a-b103-4ef4-95aa-684c57df2a25"
-          },
-          "type": "Compose",
-          "inputs": "@split(outputs('Get_Team_Recipient_List'), ',')"
-        },
-        "List_all_chats": {
-          "runAfter": {
-            "Array_of_Team_Recipients": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "3c735ce4-e4a0-4e39-8977-a457f71a7110"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_teams_1",
-              "operationId": "GetChats",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
-            },
-            "parameters": {
-              "chatType": "group",
-              "topic": "all"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Apply_to_each_teams_recipient": {
-          "foreach": "@outputs('Array_of_Team_Recipients')",
+        "Try_Teams_Notification": {
+          "type": "Scope",
           "actions": {
-            "Filter_the_recipient_ID": {
-              "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "a79e89b1-cac9-4305-82e2-9680edc2a076"
-              },
-              "type": "Query",
-              "inputs": {
-                "from": "@outputs('List_all_chats')?['body/value']",
-                "where": "@equals(item()?['topic'], items('Apply_to_each_teams_recipient'))"
-              }
-            },
-            "Get_ChatID_of_current_item": {
-              "runAfter": {
-                "Filter_the_recipient_ID": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "d87d2aea-08af-4464-8898-7b4256022f8b"
-              },
-              "type": "Compose",
-              "inputs": "@first(body('Filter_the_recipient_ID'))['Id']"
-            },
-            "Post_message_in_current_chat": {
-              "runAfter": {
-                "Get_ChatID_of_current_item": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "26b8ee15-ed8b-45f0-a231-7f9046baa31d"
-              },
+            "List_all_chats": {
               "type": "OpenApiConnection",
               "inputs": {
-                "host": {
-                  "connectionName": "shared_teams_1",
-                  "operationId": "PostMessageToConversation",
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
-                },
                 "parameters": {
-                  "poster": "User",
-                  "location": "Group chat",
-                  "body/recipient": "@outputs('Get_ChatID_of_current_item')",
-                  "body/messageBody": "<p><span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span><br>\n@{parameters('Core Message Text (emcr_CoreMessageText)')}<br>\n<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPulic Alert Issued = N/A - Not Enough Information<br>\nAlert Status = @{outputs('Alert_Status')}<br>\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/- &nbsp;@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = @{outputs('Latitude')} &nbsp;+/- &nbsp;@{outputs('Latitude_Uncertainty')}<br>\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span></p>"
+                  "chatType": "group",
+                  "topic": "all"
                 },
-                "authentication": "@parameters('$authentication')"
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                  "operationId": "GetChats",
+                  "connectionName": "shared_teams_1"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "3c735ce4-e4a0-4e39-8977-a457f71a7110"
+              }
+            },
+            "Apply_to_each_teams_recipient": {
+              "type": "Foreach",
+              "foreach": "@outputs('Array_of_Team_Recipients')",
+              "actions": {
+                "Filter_the_recipient_ID": {
+                  "type": "Query",
+                  "inputs": {
+                    "from": "@outputs('List_all_chats')?['body/value']",
+                    "where": "@equals(item()?['topic'], items('Apply_to_each_teams_recipient'))"
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a79e89b1-cac9-4305-82e2-9680edc2a076"
+                  }
+                },
+                "Get_ChatID_of_current_item": {
+                  "type": "Compose",
+                  "inputs": "@first(body('Filter_the_recipient_ID'))['Id']",
+                  "runAfter": {
+                    "Filter_the_recipient_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d87d2aea-08af-4464-8898-7b4256022f8b"
+                  }
+                },
+                "Post_message_in_current_chat": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "poster": "User",
+                      "location": "Group chat",
+                      "body/recipient": "@outputs('Get_ChatID_of_current_item')",
+                      "body/messageBody": "<p><span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span><br>\n@{parameters('Core Message Text (emcr_CoreMessageText)')}<br>\n<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPulic Alert Issued = N/A - Not Enough Information<br>\nAlert Status = @{outputs('Alert_Status')}<br>\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/- &nbsp;@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = @{outputs('Latitude')} &nbsp;+/- &nbsp;@{outputs('Latitude_Uncertainty')}<br>\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span></p>"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+                      "operationId": "PostMessageToConversation",
+                      "connectionName": "shared_teams_1"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  },
+                  "runAfter": {
+                    "Get_ChatID_of_current_item": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "26b8ee15-ed8b-45f0-a231-7f9046baa31d"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_all_chats": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "40fca520-2553-4b1d-9b6c-55dafcd89557"
+              }
+            },
+            "Create_Notification_History_for_Teams": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "emcr_notificationhistories",
+                  "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
+                  "item/emcr_name": "Teams Alert for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_notificationcontent": "***Warning***Earthquake***Warning\n@{parameters('Core Message Text (emcr_CoreMessageText)')}\n\nAlert Number = @{triggerOutputs()?['body/emcr_name']}\nAlert Category = @{outputs('Alert_Category')}\nAlert Type = Technical Alert\nPulic Alert Issued = N/A - Not Enough Information\nAlert Status = @{outputs('Alert_Status')}\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}\nMagnitude = @{outputs('Magnitude')} +/-  @{outputs('Magnitude_Uncertainty')}\nLatitude = @{outputs('Latitude')}  +/-  @{outputs('Latitude_Uncertainty')}\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}\nLikelihood = @{outputs('Likelihood')}\n***Warning***Earthquake***Warning",
+                  "item/emcr_notificationtype": 717350001,
+                  "item/emcr_recipients": "@parameters('Core Teams Recipients (emcr_TeamsRecipients)')"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps_1"
+                }
+              },
+              "runAfter": {
+                "Apply_to_each_teams_recipient": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b1125ab4-b593-4991-bf7b-77ca6675d40c"
               }
             }
           },
           "runAfter": {
-            "List_all_chats": [
+            "Get_Environment_Variables": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "40fca520-2553-4b1d-9b6c-55dafcd89557"
+            "operationMetadataId": "4887d2b7-e801-4e4a-bfa1-6fb04496d063"
+          }
+        },
+        "Catch_Team_Exceptions": {
+          "type": "Scope",
+          "actions": {
+            "Log_Teams_failure_to_EEW_Failure_Logs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "emcr_eewfailurelogs",
+                  "item/emcr_name": "Teams Failure for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_details": "Unable to send core notification via Teams for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_eewfailuretype": 717350005,
+                  "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps_1"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "caf8201f-40a9-4325-87ff-f8c9085d4726"
+              }
+            },
+            "Send_an_email_(V2)": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "emailMessage/To": "@parameters('EEW Failure Notification List (emcr_EEWFailureNotificationList)')",
+                  "emailMessage/Subject": "@{triggerOutputs()?['body/emcr_name']} EEW Core Teams Communication Failure",
+                  "emailMessage/Body": "<p>@{parameters('EEW Teams Failure Text (emcr_EEWTeamsFailureText)')}<br>\n<br>\n<br>\nEvent: @{triggerOutputs()?['body/emcr_name']}<br>\nEvent ID : @{triggerOutputs()?['body/emcr_eventid']}<br>\nVersion: @{triggerOutputs()?['body/emcr_version']}<br>\nRecipients: @{parameters('Core Teams Recipients (emcr_TeamsRecipients)')}</p>",
+                  "emailMessage/Importance": "Normal"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                  "operationId": "SendEmailV2",
+                  "connectionName": "shared_office365_1"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Log_Teams_failure_to_EEW_Failure_Logs": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "20a36047-5f6b-4672-84ff-5655bf6b9d7e"
+              }
+            }
           },
-          "type": "Foreach"
+          "runAfter": {
+            "Try_Teams_Notification": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "649110cb-3d01-414e-8133-135871f296f6"
+          }
+        },
+        "Try_Email_Notification": {
+          "type": "Scope",
+          "actions": {
+            "Send_an_email_for_core_emails": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "emailMessage/To": "@parameters('Core Email Recipients (emcr_EmailRecipients)')",
+                  "emailMessage/Subject": "@{triggerOutputs()?['body/emcr_name']} @{parameters('Core Email Subject Line (emcr_EmailSubjectLine)')}",
+                  "emailMessage/Body": "<p><span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span><br>\n@{parameters('Core Message Text (emcr_CoreMessageText)')}<br>\n<br>\nAlert Number = @{triggerOutputs()?['body/emcr_name']}<br>\nAlert Category = @{outputs('Alert_Category')}<br>\nAlert Type = Technical Alert<br>\nPulic Alert Issued = N/A - Not Enough Information<br>\nAlert Status = @{outputs('Alert_Status')}<br>\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}<br>\nMagnitude = @{outputs('Magnitude')} +/- &nbsp;@{outputs('Magnitude_Uncertainty')}<br>\nLatitude = @{outputs('Latitude')} &nbsp;+/- &nbsp;@{outputs('Latitude_Uncertainty')}<br>\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}<br>\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}<br>\nLikelihood = @{outputs('Likelihood')}<br>\n<span style=\"color: rgb(226,80,65)\"><strong>***Warning***Earthquake***Warning</strong></span></p>",
+                  "emailMessage/Importance": "High"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                  "operationId": "SendEmailV2",
+                  "connectionName": "shared_office365_1"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "25519ee9-a7ad-4561-9bd7-1cf906d66ce3"
+              }
+            },
+            "Create_Notification_History_for_Email": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "emcr_notificationhistories",
+                  "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})",
+                  "item/emcr_name": "Email Alert for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_notificationcontent": "***Warning***Earthquake***Warning\n@{parameters('Core Message Text (emcr_CoreMessageText)')}\n\nAlert Number = @{triggerOutputs()?['body/emcr_name']}\nAlert Category = @{outputs('Alert_Category')}\nAlert Type = Technical Alert\nPulic Alert Issued = N/A - Not Enough Information\nAlert Status = @{outputs('Alert_Status')}\nOrigin Time= @{outputs('OriginTime')} +/- @{outputs('OriginTime_Uncertainty')}\nMagnitude = @{outputs('Magnitude')} +/-  @{outputs('Magnitude_Uncertainty')}\nLatitude = @{outputs('Latitude')}  +/-  @{outputs('Latitude_Uncertainty')}\nLongitude = @{outputs('Longitude')} +/- @{outputs('Longitude_Uncertainty')}\nDepth = @{outputs('Depth')} +/- @{outputs('Depth_Uncertainty')}\nLikelihood = @{outputs('Likelihood')}\n***Warning***Earthquake***Warning",
+                  "item/emcr_notificationtype": 717350000,
+                  "item/emcr_recipients": "@parameters('Core Email Recipients (emcr_EmailRecipients)')"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps_1"
+                }
+              },
+              "runAfter": {
+                "Send_an_email_for_core_emails": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2e68914a-dbd0-4830-8d69-8535e63f0540"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Environment_Variables": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "90a7fa7b-f74f-4601-adb3-c3f5b7970d4a"
+          }
+        },
+        "Catch_Email_Exceptions": {
+          "type": "Scope",
+          "actions": {
+            "Log_Email_Failure_to_EEW_failure_Logs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "emcr_eewfailurelogs",
+                  "item/emcr_name": "Email Failure for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_details": "Unable to send core notification via Email for @{triggerOutputs()?['body/emcr_name']}",
+                  "item/emcr_eewfailuretype": 717350004,
+                  "item/emcr_Event@odata.bind": "emcr_alerts(@{triggerOutputs()?['body/emcr_alertid']})"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps_1"
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "ce125092-5f56-43ea-be83-fc8183511828"
+              }
+            },
+            "Send_an_email_(V2)_2": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "emailMessage/To": "@parameters('EEW Failure Notification List (emcr_EEWFailureNotificationList)')",
+                  "emailMessage/Subject": "@{triggerOutputs()?['body/emcr_name']} EEW Core Email Communication Failure",
+                  "emailMessage/Body": "<p>@{parameters('EEW Email Failure Text (emcr_EEWEmailFailureText)')}<br>\n<br>\nEvent: @{triggerOutputs()?['body/emcr_name']}<br>\nEvent ID : @{triggerOutputs()?['body/emcr_eventid']}<br>\nVersion: @{triggerOutputs()?['body/emcr_version']}<br>\nRecipients: @{parameters('Core Email Recipients (emcr_EmailRecipients)')}</p>",
+                  "emailMessage/Importance": "Normal"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                  "operationId": "SendEmailV2",
+                  "connectionName": "shared_office365_1"
+                },
+                "retryPolicy": {
+                  "type": "none"
+                }
+              },
+              "runAfter": {
+                "Log_Email_Failure_to_EEW_failure_Logs": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9a9695de-c965-49f4-aef4-b2a0752d6b80"
+              }
+            }
+          },
+          "runAfter": {
+            "Try_Email_Notification": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "50ecfaf8-d3d7-4131-94f8-079f07171db3"
+          }
+        },
+        "Parse_Message_XML": {
+          "type": "Scope",
+          "actions": {
+            "Event_XML": {
+              "type": "Compose",
+              "inputs": "@triggerOutputs()?['body/emcr_message']",
+              "metadata": {
+                "operationMetadataId": "9768945c-9c8a-4e2b-b946-822e8d31871a"
+              }
+            },
+            "Alert_Category": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)')\r\n",
+              "runAfter": {
+                "Event_XML": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "54db68bd-20cf-475e-9e34-bcee27b5a580"
+              }
+            },
+            "Dynamics_Alert_Category": {
+              "type": "Compose",
+              "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'live'), 717350000, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@category)'), 'test'), 717350001, null))",
+              "runAfter": {
+                "Alert_Category": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "247f7bce-dde4-44cb-9f50-06249011b01d"
+              }
+            },
+            "Version": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/@version)')\r\n",
+              "runAfter": {
+                "Dynamics_Alert_Category": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "35958f5f-43a8-4685-9dc6-c0599cc81c59"
+              }
+            },
+            "Message_type_Status_Reason": {
+              "type": "Compose",
+              "inputs": "@if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'new'), 1, if(equals(xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)'), 'update'), 717350001, null))",
+              "runAfter": {
+                "Version": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b87bbeab-be40-4d30-a387-a84b930e134c"
+              }
+            },
+            "Magnitude": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/mag)')",
+              "runAfter": {
+                "Message_type_Status_Reason": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f945fdd6-27d0-4e2e-bce7-7d99a662e398"
+              }
+            },
+            "Magnitude_Uncertainty": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/mag_uncer)')",
+              "runAfter": {
+                "Magnitude": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0514986e-8c74-4890-bcf8-215ff5db6cbb"
+              }
+            },
+            "Latitude": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat)')",
+              "runAfter": {
+                "Magnitude_Uncertainty": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d1f46a47-78ee-4ed6-8e33-29e2effadfcf"
+              }
+            },
+            "Latitude_Uncertainty": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lat_uncer)')",
+              "runAfter": {
+                "Latitude": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "aa7f810b-de26-40fd-8df6-cc9a6fcd40ca"
+              }
+            },
+            "Longitude": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon)')",
+              "runAfter": {
+                "Latitude_Uncertainty": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ea9f23e8-2b79-41ba-97d6-267ccaec73ca"
+              }
+            },
+            "Longitude_Uncertainty": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/lon_uncer)')",
+              "runAfter": {
+                "Longitude": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "55fa1fb2-5f39-4f25-a2a4-ee360d971137"
+              }
+            },
+            "Depth": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth)')",
+              "runAfter": {
+                "Longitude_Uncertainty": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1babecdf-9cda-45c9-aa8c-5873235488f0"
+              }
+            },
+            "Depth_Uncertainty": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/depth_uncer)')",
+              "runAfter": {
+                "Depth": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b161b64c-98eb-46bf-9914-0ae21bd59558"
+              }
+            },
+            "OriginTime": {
+              "type": "Compose",
+              "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/core_info/orig_time)'), 'yyyy-MM-dd hh:mm tt')\r\n",
+              "runAfter": {
+                "Depth_Uncertainty": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "79a479ce-ac47-4942-9997-22cb42e248b2"
+              }
+            },
+            "OriginTime_Uncertainty": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/orig_time_uncer)')",
+              "runAfter": {
+                "OriginTime": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e223398b-150d-4ece-bbd6-acfc1c01063b"
+              }
+            },
+            "Likelihood": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/likelihood)')",
+              "runAfter": {
+                "OriginTime_Uncertainty": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "71165c6c-c8b0-433d-959d-e462c59def06"
+              }
+            },
+            "Number_of_Stations": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'number(/event_message/core_info/num_stations)')",
+              "runAfter": {
+                "Likelihood": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "78d7e331-d291-474c-9880-542bfc6e803c"
+              }
+            },
+            "Alert_Status": {
+              "type": "Compose",
+              "inputs": "@xpath(xml(outputs('Event_XML')), 'string(/event_message/@message_type)')",
+              "runAfter": {
+                "Number_of_Stations": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "b7978675-4d26-4b92-98cd-028f165fb2de"
+              }
+            },
+            "TimeStamp": {
+              "type": "Compose",
+              "inputs": "@formatDateTime(xpath(xml(outputs('Event_XML')), 'string(/event_message/@timestamp)'), 'yyyy-MM-dd hh:mm tt')\r\n",
+              "runAfter": {
+                "Alert_Status": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "87689220-7e90-4d1b-b72c-4db51ae4a723"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "405f90e5-8943-4bbf-84e9-753b154f0ad7"
+          }
+        },
+        "Get_Environment_Variables": {
+          "type": "Scope",
+          "actions": {
+            "Get_Team_Recipient_List": {
+              "type": "Compose",
+              "inputs": "@parameters('Core Teams Recipients (emcr_TeamsRecipients)')",
+              "metadata": {
+                "operationMetadataId": "8bbf1197-e62d-45b8-85e8-0b8b36771d1e"
+              }
+            },
+            "Array_of_Team_Recipients": {
+              "type": "Compose",
+              "inputs": "@split(outputs('Get_Team_Recipient_List'), ';')",
+              "runAfter": {
+                "Get_Team_Recipient_List": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f2c9358a-b103-4ef4-95aa-684c57df2a25"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_Message_XML": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "081b5e72-3a98-4ccd-be6c-0274535aa5cd"
+          }
         }
       }
     },
-    "templateName": ""
+    "templateName": null
   },
   "schemaVersion": "1.0.0.0"
 }

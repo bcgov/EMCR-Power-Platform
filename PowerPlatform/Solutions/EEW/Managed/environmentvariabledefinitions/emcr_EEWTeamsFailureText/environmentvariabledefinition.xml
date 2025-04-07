@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="emcr_EEWTeamsFailureText">
+  <defaultvalue>Failed to send teams notification! </defaultvalue>
+  <displayname default="EEW Teams Failure Text">
+    <label description="EEW Teams Failure Text" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.11</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

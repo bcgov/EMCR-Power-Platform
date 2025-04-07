@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25032.186" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25033.00174">
+<ImportExportXml version="9.2.25032.186" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25032.186" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.25034.00182">
   <SolutionManifest>
     <UniqueName>EEW</UniqueName>
     <LocalizedNames>
       <LocalizedName description="EEW" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.9</Version>
+    <Version>1.0.0.13</Version>
     <Managed>1</Managed>
     <Publisher>
       <UniqueName>EMCR</UniqueName>
@@ -83,8 +83,9 @@
       <RootComponent type="1" schemaName="emcr_notificationhistory" behavior="0" />
       <RootComponent type="1" schemaName="emcr_nrcanadanotification" behavior="0" />
       <RootComponent type="1" schemaName="emcr_polygon" behavior="0" />
+      <RootComponent type="20" id="{4204593d-7311-f011-998a-6045bdcce2c9}" behavior="0" />
       <RootComponent type="20" id="{a1b42a39-c2f7-ef11-bae2-6045bdcce2c9}" behavior="0" />
-      <RootComponent type="20" id="{a430bd9f-f50b-f011-bae3-6045bdcce2c9}" behavior="0" />
+      <RootComponent type="20" id="{ed546627-390f-f011-998a-6045bdcce2c9}" behavior="0" />
       <RootComponent type="29" id="{40f53a00-c1fe-ef11-bae3-7ced8d04e0f6}" behavior="0" />
       <RootComponent type="29" id="{48a652e6-dafa-ef11-bae2-6045bdcce2c9}" behavior="0" />
       <RootComponent type="29" id="{d53ff723-2c01-f011-bae3-7c1e52063d30}" behavior="0" />
@@ -115,14 +116,14 @@
         <Dependent type="80" schemaName="emcr_EarthquakeEarlyWarning" displayName="Earthquake Early Warning" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="Service/_imgs/Incident/Origin/2OriginIcon.svg" displayName="Service/_imgs/Incident/Origin/2OriginIcon.svg" solution="msdynce_ServicePatch201911 (9.0.25031.1007)">
-          <package appName="msdynce_Service" version="9.0.25031.1007">msdynce_ServiceAnchor (9.0.25031.1007)</package>
+        <Required type="61" schemaName="Service/_imgs/Incident/Origin/2OriginIcon.svg" displayName="Service/_imgs/Incident/Origin/2OriginIcon.svg" solution="msdynce_ServicePatch201911 (9.0.25033.4002)">
+          <package appName="msdynce_Service" version="9.0.25033.4002">msdynce_ServiceAnchor (9.0.25033.4002)</package>
         </Required>
         <Dependent type="1" schemaName="emcr_nrcanadanotification" displayName="NR Canada Notification" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="Service/_imgs/Incident/Origin/2OriginIcon.svg" displayName="Service/_imgs/Incident/Origin/2OriginIcon.svg" solution="msdynce_ServicePatch201911 (9.0.25031.1007)">
-          <package appName="msdynce_Service" version="9.0.25031.1007">msdynce_ServiceAnchor (9.0.25031.1007)</package>
+        <Required type="61" schemaName="Service/_imgs/Incident/Origin/2OriginIcon.svg" displayName="Service/_imgs/Incident/Origin/2OriginIcon.svg" solution="msdynce_ServicePatch201911 (9.0.25033.4002)">
+          <package appName="msdynce_Service" version="9.0.25033.4002">msdynce_ServiceAnchor (9.0.25033.4002)</package>
         </Required>
         <Dependent type="61" schemaName="Service/_imgs/Incident/Origin/2OriginIcon.svg" displayName="Service/_imgs/Incident/Origin/2OriginIcon.svg" />
       </MissingDependency>

@@ -13,6 +13,44 @@
       "IsRequired": false
     },
     {
+      "SchemaName": "emcr_EEWEmailFailureText",
+      "Value": "",
+      "DefaultValue": "Unable to send email notification",
+      "Name": {
+        "Default": "EEW Email Failure Text",
+        "ByLcid": {
+          "1033": "EEW Email Failure Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWFailureNotificationList",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Failure Notification List",
+        "ByLcid": {
+          "1033": "EEW Failure Notification List"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWTeamsFailureText",
+      "Value": "",
+      "DefaultValue": "Failed to send teams notification! ",
+      "Name": {
+        "Default": "EEW Teams Failure Text",
+        "ByLcid": {
+          "1033": "EEW Teams Failure Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
       "SchemaName": "emcr_EmailRecipients",
       "Value": "",
       "Name": {
