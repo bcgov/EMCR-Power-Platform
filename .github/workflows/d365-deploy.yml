@@ -103,7 +103,7 @@ jobs:
   deploy-prod:
     name: Deploy - EMCR-PROD
     runs-on: windows-latest
-    needs: build
+    needs: deploy-train
     environment: 
       name: EMCR-PROD 
       url: ${{ vars.PP_ENV_URL }}
