@@ -9,3 +9,4 @@ PowerPlatform/Integration/EEW/MqttSubs/EEWWebApiApp/EEWWebApiApp.csproj.user
 /PowerPlatform/Integration/EEW/MqttSubs/packages
 /Emcr.Eew.Plugin/bin/Debug
 /Emcr.Eew.Plugin/obj
+/PowerPlatform/Integration/EEW/MqttSubs/EEWWebApiApp/Data/partners.pem

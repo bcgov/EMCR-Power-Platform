@@ -12,6 +12,7 @@ builder.Services.AddLogging();
 // Register background service with dependency injection
 builder.Services.AddSingleton<NrCanMqttBackGroundService>();  // Use Singleton if needed elsewhere
 builder.Services.AddHostedService(provider => provider.GetRequiredService<NrCanMqttBackGroundService>());
+builder.WebHost.UseOpenShiftIntegration(_ => _.CertificateMountPoint = "/var/run/secrets/service-cert");
 
 var app = builder.Build();
 
