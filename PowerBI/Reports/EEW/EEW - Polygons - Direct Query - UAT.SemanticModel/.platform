@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "EEW - Polygons - Direct Query - UAT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c1cc32c5-3687-4b5f-9438-cd638f007227"
+  }
+}

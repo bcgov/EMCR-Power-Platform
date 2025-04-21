@@ -1,0 +1,519 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"emcr_polygon\",\"Environment\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "emcr_polygon.origintime": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "emcr_polygon",
+                    "ConceptualProperty": "OriginTime"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Origin Time (UTC)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Environment",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"emcruat.crm3.dynamics.com\" meta [IsParameterQuery=true, List={\"emcrdev.crm3.dynamics.com\", \"emcruat.crm3.dynamics.com\", \"emcrtrn.crm3.dynamics.com\", \"emcrprod.crm3.dynamics.com\"}, DefaultValue=..., Type=\"Text\", IsParameterQueryRequired=false]",
+        "kind": "m",
+        "lineageTag": "cf627682-3c54-440e-8fd9-9e63969215b9"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "emcr_polygon",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Polygon",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isNullable": false,
+            "lineageTag": "d03f07ed-784e-4b2d-959c-5f6e6f067a22",
+            "sourceColumn": "emcr_polygonid",
+            "sourceProviderType": "nchar",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Created On",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "a95212b8-bc19-4cfa-917c-fe4a6e2a8fed",
+            "sourceColumn": "createdon",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Modified On",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "18784df6-a1a1-40c8-99b5-b23255406657",
+            "sourceColumn": "modifiedon",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isNullable": false,
+            "lineageTag": "eca7f950-c375-47cf-bbcd-c9f01a04266e",
+            "sourceColumn": "statecode",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "statecodename",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aeab20d2-bc67-453b-a8a7-c08bbaecb24c",
+            "sourceColumn": "statecodename",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Status Reason",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b8d47738-e8d1-4848-abc7-3c4f38c53dd9",
+            "sourceColumn": "statuscode",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "statuscodename",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "532bba08-0648-4fe5-a0b5-5d431c2b8bc6",
+            "sourceColumn": "statuscodename",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c254122d-de01-4505-ace0-09f0673c10c7",
+            "sourceColumn": "emcr_name",
+            "sourceProviderType": "nvarchar(850)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emcr_event",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "63aaab64-c564-4d11-8ad1-d635bf702780",
+            "sourceColumn": "emcr_event",
+            "sourceProviderType": "nchar",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Event",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1cb3ca43-335a-4bf5-abc8-e3d4e0a48e70",
+            "sourceColumn": "emcr_eventname",
+            "sourceProviderType": "nvarchar(850)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Contour",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "52d71353-a19c-4019-bdbf-1dfac58d3640",
+            "sourceColumn": "emcr_contour",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "PGV Units",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "cf4bcd43-d951-43ff-b272-a06e91b4d256",
+            "sourceColumn": "emcr_pgvunits",
+            "sourceProviderType": "decimal(38, 0)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "PGA Units",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6e3d464c-1c2a-4663-b544-f12bf068d347",
+            "sourceColumn": "emcr_pgaunits",
+            "sourceProviderType": "decimal(38, 0)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "MMI Units",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "53a2bf38-86ea-41a8-879d-de7568f97099",
+            "sourceColumn": "emcr_mmiunits",
+            "sourceProviderType": "int",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ESRI JSON",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a25963c8-925c-4e97-a242-8886c4b50d04",
+            "sourceColumn": "emcr_esrijson",
+            "sourceProviderType": "nvarchar(4000)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emcr_alert.statuscodename",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "14bc0514-7994-4657-9281-10981913e2ea",
+            "sourceColumn": "emcr_alert.statuscodename",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emcr_alert.emcr_categoryname",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "74928e4c-928f-46ca-bff0-b4a1ef50039a",
+            "sourceColumn": "emcr_alert.emcr_categoryname",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emcr_alert.emcr_magnitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "78b03125-fd63-4307-890b-83a596e86a4e",
+            "sourceColumn": "emcr_alert.emcr_magnitude",
+            "sourceProviderType": "decimal(38, 4)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "emcr_alert.emcr_magnitudeuncertainty",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0428d022-6450-46ed-a65f-6c7c08a552b9",
+            "sourceColumn": "emcr_alert.emcr_magnitudeuncertainty",
+            "sourceProviderType": "decimal(38, 4)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "emcr_alert.emcr_typename",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "71826b51-7d73-4b33-a6e9-2b7b681853e3",
+            "sourceColumn": "emcr_alert.emcr_typename",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "emcr_alert.emcr_publicalertissuedname",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1e07bdde-ee63-443b-afb7-69b7c9e574aa",
+            "sourceColumn": "emcr_alert.emcr_publicalertissuedname",
+            "sourceProviderType": "nvarchar(75)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PublicAlertIssued",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "if(emcr_polygon[emcr_alert.emcr_publicalertissuedname] = \"Likely Not Issued - [5 > Magnitude ≥ 4 and MMI ≥ III]\", \"Likely Not Issued\", emcr_polygon[emcr_alert.emcr_publicalertissuedname])",
+            "isDataTypeInferred": true,
+            "lineageTag": "6c090bf6-d3b5-4ea0-bae2-1dc356761f8e",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "emcr_alert.emcr_createdonseconds",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3a2b797f-7f3c-4383-b171-8d0b6f3b1fee",
+            "sourceColumn": "emcr_alert.emcr_createdonseconds",
+            "sourceProviderType": "decimal(38, 3)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "emcr_alert.emcr_originaltimeuncertaintyunitssec",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4aa231d1-e66e-4898-a8db-b72fb1b0d54b",
+            "sourceColumn": "emcr_alert.emcr_originaltimeuncertaintyunitssec",
+            "sourceProviderType": "decimal(38, 4)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "emcr_alert.emcr_originaltimeunitsutc",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDateTimeCustom\":true}"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd hh:nn:ss AM/PM",
+            "lineageTag": "61c9b2f0-ab66-47ff-b2b9-4b707b36736c",
+            "sourceColumn": "emcr_alert.emcr_originaltimeunitsutc",
+            "sourceProviderType": "datetime2",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "9033a54e-cc6b-4391-abee-ce5941078343",
+        "measures": [
+          {
+            "name": "Magnitude",
+            "expression": "FORMAT(FIRSTNONBLANK(emcr_polygon[emcr_alert.emcr_magnitude], emcr_polygon[emcr_alert.emcr_magnitude]), \"##.####\") & \" +/- \" & FORMAT(FIRSTNONBLANK(emcr_polygon[emcr_alert.emcr_magnitudeuncertainty], emcr_polygon[emcr_alert.emcr_magnitudeuncertainty]), \"#0.####\")",
+            "lineageTag": "9f557fc6-94cc-41c9-b606-6e4b9f7de087"
+          },
+          {
+            "name": "OriginTime",
+            "expression": "format(FIRSTNONBLANK(emcr_polygon[emcr_alert.emcr_originaltimeunitsutc], emcr_polygon[emcr_alert.emcr_originaltimeunitsutc]) + TIME(0,0,FIRSTNONBLANK(emcr_polygon[emcr_alert.emcr_createdonseconds], emcr_polygon[emcr_alert.emcr_createdonseconds])), \"yyyy-mm-dd hh:nn:ss AM/PM\") & \" +/- \" & FORMAT(FIRSTNONBLANK(emcr_polygon[emcr_alert.emcr_originaltimeuncertaintyunitssec], emcr_polygon[emcr_alert.emcr_originaltimeuncertaintyunitssec]), \"#0.####\") ",
+            "lineageTag": "28d7e1dc-7f0b-4373-8924-22ae5941a0b4"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "emcr_polygon",
+            "mode": "directQuery",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = CommonDataService.Database(Environment),  // Reference the parameter \"Environment\"",
+                "    dbo_emcr_polygon = Source{[Schema=\"dbo\", Item=\"emcr_polygon\"]}[Data],",
+                "    #\"Expanded emcr_alert\" = Table.ExpandRecordColumn(dbo_emcr_polygon, \"emcr_alert\", {\"statuscodename\", \"emcr_categoryname\", \"emcr_createdonseconds\", \"emcr_magnitude\", \"emcr_magnitudeuncertainty\", \"emcr_originaltimeuncertaintyunitssec\", \"emcr_originaltimeunitsutc\", \"emcr_publicalertissuedname\", \"emcr_typename\"}, {\"emcr_alert.statuscodename\", \"emcr_alert.emcr_categoryname\", \"emcr_alert.emcr_createdonseconds\", \"emcr_alert.emcr_magnitude\", \"emcr_alert.emcr_magnitudeuncertainty\", \"emcr_alert.emcr_originaltimeuncertaintyunitssec\", \"emcr_alert.emcr_originaltimeunitsutc\", \"emcr_alert.emcr_publicalertissuedname\", \"emcr_alert.emcr_typename\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded emcr_alert\",{\"emcr_polygonid\", \"createdon\", \"modifiedon\", \"statecode\", \"statecodename\", \"statuscode\", \"statuscodename\", \"emcr_name\", \"emcr_contour\", \"emcr_esrijson\", \"emcr_event\", \"emcr_mmiunits\", \"emcr_pgaunits\", \"emcr_pgvunits\", \"emcr_eventname\", \"emcr_alert.statuscodename\", \"emcr_alert.emcr_categoryname\", \"emcr_alert.emcr_createdonseconds\", \"emcr_alert.emcr_magnitude\", \"emcr_alert.emcr_magnitudeuncertainty\", \"emcr_alert.emcr_originaltimeuncertaintyunitssec\", \"emcr_alert.emcr_originaltimeunitsutc\", \"emcr_alert.emcr_publicalertissuedname\", \"emcr_alert.emcr_typename\"})",
+                "in",
+                "    #\"Removed Other Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

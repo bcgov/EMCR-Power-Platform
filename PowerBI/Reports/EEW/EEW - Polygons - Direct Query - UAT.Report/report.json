@@ -1,0 +1,118 @@
+{
+  "config": "{\"version\":\"5.61\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.61\",\"type\":2},\"customTheme\":{\"name\":\"DMS7989136429715745.json\",\"version\":\"5.61\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"visible\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "filters": "[{\"name\":\"a38ebe2e40856202c4ae\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"emcr_polygon\"}},\"Property\":\"Event\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"emcr_polygon\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Event\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Alert-01011'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"isHiddenInViewMode\":true}]",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "BC_EMCR_H_RGB_Rev_copy030680670220433193.png",
+            "path": "BC_EMCR_H_RGB_Rev_copy030680670220433193.png",
+            "type": 100
+          },
+          {
+            "name": "DMS7989136429715745.json",
+            "path": "DMS7989136429715745.json",
+            "type": 201
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Event Map",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "e78e2075ce84dda32c5e",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"15de6de99c7c94952126\",\"layouts\":[{\"id\":0,\"position\":{\"x\":407.53558091557204,\"y\":0,\"z\":3002,\"width\":659.9723187005458,\"height\":96.26824746037134,\"tabOrder\":3002}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"Earthquake Early Warning Alert Map\",\"textStyle\":{\"fontSize\":\"28pt\",\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 96.27,
+          "width": 659.97,
+          "x": 407.54,
+          "y": 0.00,
+          "z": 3002.00
+        },
+        {
+          "config": "{\"name\":\"338c533f305b08f50a78\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":3001,\"width\":351.219512195122,\"height\":100.09756097560977,\"tabOrder\":3001}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"BC_EMCR_H_RGB_Rev_copy030680670220433193.png\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 100.10,
+          "width": 351.22,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 3001.00
+        },
+        {
+          "config": "{\"name\":\"39028cc7adbc6d277a90\",\"layouts\":[{\"id\":0,\"position\":{\"x\":939.1538342848326,\"y\":452.5128838142262,\"z\":3000,\"width\":327.3766394074988,\"height\":182.01635550069435,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(emcr_polygon.MMI Units)\"},{\"queryRef\":\"Sum(emcr_polygon.PGA Units)\"},{\"queryRef\":\"Sum(emcr_polygon.PGV Units)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"emcr_polygon\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"MMI Units\"},\"Name\":\"Sum(emcr_polygon.MMI Units)\",\"NativeReferenceName\":\"MMI Units\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"PGA Units\"},\"Name\":\"Sum(emcr_polygon.PGA Units)\",\"NativeReferenceName\":\"PGA Units\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"PGV Units\"},\"Name\":\"Sum(emcr_polygon.PGV Units)\",\"NativeReferenceName\":\"PGV Units\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"MMI Units\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"total\":[{\"properties\":{\"totals\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"76.77957749218153D\"}}}},\"selector\":{\"metadata\":\"Sum(emcr_polygon.PGV Units)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"78.35252719905488D\"}}}},\"selector\":{\"metadata\":\"Sum(emcr_polygon.PGA Units)\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"131.21546883377115D\"}}}},\"selector\":{\"metadata\":\"Sum(emcr_polygon.MMI Units)\"}}],\"columnHeaders\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Right'\"}}}}}],\"values\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}}}},{\"properties\":{},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"Sum(emcr_polygon.MMI Units)\"}}],\"columnFormatting\":[{\"properties\":{\"dataBars\":{\"positiveColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#EB6969'\"}}}}},\"negativeColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'minColor'\"}}}}},\"axisColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'foreground'\"}}}}},\"reverseDirection\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"hideText\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"totalMatchingOption\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}}}},\"selector\":{\"metadata\":\"Sum(emcr_polygon.MMI Units)\"}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 182.02,
+          "width": 327.38,
+          "x": 939.15,
+          "y": 452.51,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"5a931f1576921a09eaaf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":938.4615384615385,\"y\":110.76923076923076,\"z\":3003,\"width\":327.6923076923077,\"height\":327.6923076923077,\"tabOrder\":3003}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Min(emcr_polygon.Event)\"},{\"queryRef\":\"Min(emcr_polygon.emcr_alert.emcr_typename)\"},{\"queryRef\":\"Min(emcr_polygon.emcr_alert.emcr_categoryname)\"},{\"queryRef\":\"Min(emcr_polygon.emcr_alert.statuscodename)\"},{\"queryRef\":\"emcr_polygon.NewMagnitude\"},{\"queryRef\":\"Min(emcr_polygon.PublicAlertIssued)\"},{\"queryRef\":\"emcr_polygon.OriginTime\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"emcr_polygon\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Event\"}},\"Function\":3},\"Name\":\"Min(emcr_polygon.Event)\",\"NativeReferenceName\":\"Event\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"emcr_alert.emcr_typename\"}},\"Function\":3},\"Name\":\"Min(emcr_polygon.emcr_alert.emcr_typename)\",\"NativeReferenceName\":\"Alert Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"emcr_alert.statuscodename\"}},\"Function\":3},\"Name\":\"Min(emcr_polygon.emcr_alert.statuscodename)\",\"NativeReferenceName\":\"Alert Status\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"PublicAlertIssued\"}},\"Function\":3},\"Name\":\"Min(emcr_polygon.PublicAlertIssued)\",\"NativeReferenceName\":\"Public Alert Issued\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Magnitude\"},\"Name\":\"emcr_polygon.NewMagnitude\",\"NativeReferenceName\":\"Magnitude\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"OriginTime\"},\"Name\":\"emcr_polygon.OriginTime\",\"NativeReferenceName\":\"Origin Time (UTC)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"emcr_alert.emcr_categoryname\"}},\"Function\":3},\"Name\":\"Min(emcr_polygon.emcr_alert.emcr_categoryname)\",\"NativeReferenceName\":\"Alert Category\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"Event\"}},\"Function\":3}}}]},\"columnProperties\":{\"Min(emcr_polygon.emcr_alert.emcr_typename)\":{\"displayName\":\"Alert Type\"},\"Min(emcr_polygon.emcr_alert.statuscodename)\":{\"displayName\":\"Alert Status\"},\"Min(emcr_polygon.PublicAlertIssued)\":{\"displayName\":\"Public Alert Issued\"},\"Min(emcr_polygon.emcr_alert.emcr_categoryname)\":{\"displayName\":\"Alert Category\"},\"emcr_polygon.OriginTime\":{\"displayName\":\"Origin Time (UTC)\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"layout\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"maxTiles\":{\"expr\":{\"Literal\":{\"Value\":\"8L\"}}},\"style\":{\"expr\":{\"Literal\":{\"Value\":\"'Table'\"}}},\"customizeLines\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"borderWidth\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"gridlineWidth\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'top'\"}}}}}],\"value\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"textWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"17D\"}}},\"horizontalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}}},\"selector\":{\"metadata\":\"Min(emcr_polygon.Event)\"}}],\"label\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"Min(emcr_polygon.Event)\"}}],\"fillCustom\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"id\":\"default\"}}],\"padding\":[{\"properties\":{\"paddingSelection\":{\"expr\":{\"Literal\":{\"Value\":\"'Custom'\"}}},\"topMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottomMargin\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}},\"selector\":{\"id\":\"default\"}}],\"spacing\":[{\"properties\":{\"verticalSpacing\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}}},\"selector\":{\"id\":\"default\"}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.2}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 327.69,
+          "width": 327.69,
+          "x": 938.46,
+          "y": 110.77,
+          "z": 3003.00
+        },
+        {
+          "config": "{\"name\":\"69a75dfe03b45ae8c520\",\"layouts\":[{\"id\":0,\"position\":{\"x\":939.1538342848326,\"y\":643.3772565962042,\"z\":3004,\"width\":327.3766394074988,\"height\":58.1441135627218,\"tabOrder\":3004}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Note: Earthquake information is subject to modification. Modifications will be issued through updated alerts.\",\"textStyle\":{\"fontSize\":\"8pt\"}}]}]}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 58.14,
+          "width": 327.38,
+          "x": 939.15,
+          "y": 643.38,
+          "z": 3004.00
+        },
+        {
+          "config": "{\"name\":\"7c0f1f4393e1ef8e5bbe\",\"layouts\":[{\"id\":0,\"position\":{\"x\":952.4409448818898,\"y\":556.8503937007874,\"z\":3005,\"width\":289.76377952755905,\"height\":68.03149606299213,\"tabOrder\":3005}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"MMI (Modified Mercalli Intensity)\",\"textStyle\":{\"fontSize\":\"8pt\"}}]},{\"textRuns\":[{\"value\":\"PGA (Peak Ground Acceleration)\",\"textStyle\":{\"fontSize\":\"8pt\"}}]},{\"textRuns\":[{\"value\":\"PGV (Peak Ground Velocity)\",\"textStyle\":{\"fontSize\":\"8pt\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 68.03,
+          "width": 289.76,
+          "x": 952.44,
+          "y": 556.85,
+          "z": 3005.00
+        },
+        {
+          "config": "{\"name\":\"8e2d8fc9c8296dea2e02\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16.37795275590551,\"y\":110.86614173228347,\"z\":0,\"width\":903.3070866141733,\"height\":590.8661417322835,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"esriVisual\",\"projections\":{\"Location\":[{\"queryRef\":\"emcr_polygon.ESRI JSON\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"emcr_polygon\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"ESRI JSON\"},\"Name\":\"emcr_polygon.ESRI JSON\",\"NativeReferenceName\":\"ESRI JSON\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"mapTools\":[{\"properties\":{\"basemaps\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"mapObject\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"'{\\\"portalUrl\\\":\\\"https://www.arcgis.com\\\",\\\"version\\\":\\\"2.4\\\",\\\"isAuthorNamedUser\\\":false,\\\"map\\\":{\\\"webmap\\\":{\\\"is3d\\\":false,\\\"itemData\\\":{\\\"operationalLayers\\\":[{\\\"id\\\":\\\"MyLayer\\\",\\\"visibility\\\":true,\\\"opacity\\\":1,\\\"minScale\\\":0,\\\"maxScale\\\":0,\\\"refreshInterval\\\":0,\\\"title\\\":\\\"ESRI JSON\\\",\\\"objectIdField\\\":\\\"objectId\\\",\\\"type\\\":\\\"DataLayer\\\",\\\"layerType\\\":\\\"ArcGISFeatureLayer\\\",\\\"popupEnabled\\\":true,\\\"disablePopup\\\":false,\\\"visible\\\":true,\\\"geometryType\\\":\\\"polygon\\\",\\\"source\\\":[{\\\"attributes\\\":{},\\\"geometry\\\":{\\\"rings\\\":[],\\\"type\\\":\\\"polygon\\\",\\\"spatialReference\\\":{\\\"latestWkid\\\":3857,\\\"wkid\\\":102100}}}],\\\"spatialReference\\\":{\\\"latestWkid\\\":3857,\\\"wkid\\\":102100},\\\"esriMaps\\\":{\\\"customProps\\\":null,\\\"isTimeEnabled\\\":\\\"false\\\",\\\"clusterInfo\\\":null,\\\"filteredRenderer\\\":null,\\\"lastShareInfo\\\":null},\\\"timeInfo\\\":null,\\\"showLabels\\\":false,\\\"featureCollection\\\":{\\\"layers\\\":[{\\\"popupInfo\\\":{\\\"popupElements\\\":[{\\\"type\\\":\\\"fields\\\",\\\"fieldInfos\\\":[{\\\"fieldName\\\":\\\"emcr_polygon_ESRI_20JSON\\\",\\\"isEditable\\\":false,\\\"label\\\":\\\"ESRI JSON\\\",\\\"tooltip\\\":\\\"\\\",\\\"visible\\\":true},{\\\"fieldName\\\":\\\"ROW_ID\\\",\\\"format\\\":{\\\"digitSeparator\\\":true,\\\"places\\\":0},\\\"isEditable\\\":false,\\\"label\\\":\\\"ROW_ID\\\",\\\"tooltip\\\":\\\"\\\",\\\"visible\\\":true}]}],\\\"expressionInfos\\\":[],\\\"fieldInfos\\\":[{\\\"fieldName\\\":\\\"emcr_polygon_ESRI_20JSON\\\",\\\"isEditable\\\":false,\\\"label\\\":\\\"ESRI JSON\\\",\\\"tooltip\\\":\\\"\\\",\\\"visible\\\":true},{\\\"fieldName\\\":\\\"ROW_ID\\\",\\\"format\\\":{\\\"digitSeparator\\\":true,\\\"places\\\":0},\\\"isEditable\\\":false,\\\"label\\\":\\\"ROW_ID\\\",\\\"tooltip\\\":\\\"\\\",\\\"visible\\\":true}],\\\"title\\\":\\\"\\\",\\\"actions\\\":[]},\\\"layerDefinition\\\":{\\\"objectIdField\\\":\\\"objectId\\\",\\\"fields\\\":[{\\\"alias\\\":\\\"objectId\\\",\\\"editable\\\":false,\\\"name\\\":\\\"objectId\\\",\\\"nullable\\\":false,\\\"type\\\":\\\"esriFieldTypeOID\\\"},{\\\"alias\\\":\\\"ESRI JSON\\\",\\\"editable\\\":true,\\\"length\\\":-1,\\\"name\\\":\\\"emcr_polygon_ESRI_20JSON\\\",\\\"nullable\\\":true,\\\"type\\\":\\\"esriFieldTypeString\\\"},{\\\"alias\\\":\\\"ROW_ID\\\",\\\"editable\\\":true,\\\"name\\\":\\\"ROW_ID\\\",\\\"nullable\\\":true,\\\"type\\\":\\\"esriFieldTypeInteger\\\"}],\\\"geometryType\\\":\\\"polygon\\\",\\\"drawingInfo\\\":{\\\"renderer\\\":{\\\"type\\\":\\\"simple\\\",\\\"symbol\\\":{\\\"type\\\":\\\"esriSFS\\\",\\\"color\\\":null,\\\"outline\\\":{\\\"type\\\":\\\"esriSLS\\\",\\\"color\\\":[246,0,0,204],\\\"width\\\":1,\\\"style\\\":\\\"esriSLSSolid\\\"},\\\"style\\\":\\\"esriSFSSolid\\\"}},\\\"transparency\\\":0},\\\"featureReduction\\\":null,\\\"minScale\\\":0,\\\"maxScale\\\":0,\\\"definitionExpression\\\":null,\\\"elevationInfo\\\":null,\\\"name\\\":\\\"ESRI JSON\\\",\\\"type\\\":\\\"DataLayer\\\",\\\"locationProvider\\\":{\\\"type\\\":\\\"jsongeometry\\\",\\\"lookupFields\\\":[{\\\"lookupField\\\":\\\"shapeFieldName\\\",\\\"outField\\\":\\\"emcr_polygon_ESRI_20JSON\\\"}],\\\"sourceSR\\\":\\\"GEOGCS[\\\\\\\"GCS_WGS_1984\\\\\\\",DATUM[\\\\\\\"D_WGS_1984\\\\\\\",SPHEROID[\\\\\\\"WGS_1984\\\\\\\",6378137.0,298.257223563]],PRIMEM[\\\\\\\"Greenwich\\\\\\\",0.0],UNIT[\\\\\\\"Degree\\\\\\\",0.0174532925199433]]\\\",\\\"targetSR\\\":102100},\\\"queryParameters\\\":{\\\"tableId\\\":\\\"\\\"}},\\\"featureSet\\\":{\\\"features\\\":[{\\\"attributes\\\":{},\\\"geometry\\\":{\\\"rings\\\":[],\\\"type\\\":\\\"polygon\\\",\\\"spatialReference\\\":{\\\"latestWkid\\\":3857,\\\"wkid\\\":102100}}}]}}]}}],\\\"tables\\\":[],\\\"baseMap\\\":{\\\"baseMapLayers\\\":[{\\\"id\\\":\\\"VectorTile_3287\\\",\\\"opacity\\\":1,\\\"title\\\":\\\"OpenStreetMap\\\",\\\"visibility\\\":true,\\\"layerType\\\":\\\"VectorTileLayer\\\",\\\"styleUrl\\\":\\\"https://cdn.arcgis.com/sharing/rest/content/items/0df19d2d940b47658857cc2fc9623840/resources/styles/root.json\\\"}],\\\"title\\\":\\\"OpenStreetMap\\\",\\\"origItemId\\\":\\\"c29cfb7875fc4b97b58ba6987c460862\\\"},\\\"version\\\":\\\"2.26\\\",\\\"authoringApp\\\":\\\"ArcGIS for Power BI\\\",\\\"bookmarks\\\":[],\\\"initialState\\\":{\\\"viewpoint\\\":{\\\"targetGeometry\\\":{\\\"spatialReference\\\":{\\\"latestWkid\\\":3857,\\\"wkid\\\":102100},\\\"xmin\\\":-14028473.891677266,\\\"ymin\\\":6222512.330064328,\\\"xmax\\\":-13487299.731418362,\\\"ymax\\\":6572899.6677234825}}}}},\\\"webmapExtensions\\\":{\\\"format\\\":2}},\\\"embedCheckPassed\\\":true}'\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualTooltip\":[{\"properties\":{\"section\":{\"expr\":{\"Literal\":{\"Value\":\"'6e45d08cc7079d791b55'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"62D\"}}},\"themedBackground\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"null\"}}}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"border\":[{\"properties\":{\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[{\"name\":\"e438a980b69b7c917189\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"emcr_polygon\"}},\"Property\":\"ESRI JSON\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":true},{\"name\":\"57a5a93c9b529d065736\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"emcr_polygon\"}},\"Property\":\"MMI Units\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":true},{\"name\":\"10e68335d4b8554c812b\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"emcr_polygon\"}},\"Property\":\"PGA Units\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":true},{\"name\":\"ad5806e60342b46c1d70\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"emcr_polygon\"}},\"Property\":\"PGV Units\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":true}]",
+          "height": 590.87,
+          "width": 903.31,
+          "x": 16.38,
+          "y": 110.87,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "DMS7989136429715745.json"
+}

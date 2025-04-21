@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 89.333335876464844,
-        "y": 9.3333330154418945
+        "x": 62,
+        "y": 0
       },
       "nodes": [
         {
@@ -36,19 +36,6 @@
         },
         {
           "location": {
-            "x": 30,
-            "y": 687.94010917734192
-          },
-          "nodeIndex": "Ministry",
-          "nodeLineageTag": "70907f1a-15fd-4c48-b8fe-43c59f9a794a",
-          "size": {
-            "height": 104,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
             "x": 378.36163941535983,
             "y": 332.875
           },
@@ -56,19 +43,6 @@
           "nodeLineageTag": "0d3d831a-a19c-44e0-84c5-b4babe43e2e4",
           "size": {
             "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 379.36163941535983,
-            "y": 675.19999263243494
-          },
-          "nodeIndex": "Year",
-          "nodeLineageTag": "bd3f5918-c2fc-4178-9c06-e33ed4ea78ba",
-          "size": {
-            "height": 104,
             "width": 234
           },
           "zIndex": 0
@@ -88,7 +62,7 @@
         },
         {
           "location": {
-            "x": 399.33334350585938,
+            "x": 483.33334350585938,
             "y": 0
           },
           "nodeIndex": "SystemUser",

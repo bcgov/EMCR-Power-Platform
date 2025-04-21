@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "EEW - Polygons - Direct Query - UAT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7bb6a817-a8ca-4e87-9c2c-7050d0979456"
+  }
+}

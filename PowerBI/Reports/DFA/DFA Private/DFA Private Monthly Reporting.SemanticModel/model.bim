@@ -52272,6 +52272,15 @@
                   }
                 ]
               },
+              "dimcasedetail.appcategory": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "DimCaseDetail",
+                    "ConceptualProperty": "AppCategory"
+                  }
+                },
+                "State": "Generated"
+              },
               "monthly_report_measure": {
                 "Definition": {
                   "Binding": {
@@ -81720,7 +81729,7 @@
               "   DimCaseDetail[CaseStatus] = \"Appeal\", \"Closed Appealed\",if(",
               "   DimCaseDetail[EligibilityStatus] = \"Eligible\" && DimCaseDetail[CaseStatus] = \"Closed\", \"Closed Eligible\", IF(",
               "    DimCaseDetail[EligibilityStatus] in {\"Ineligible\",\"Withdrawn\"} && DimCaseDetail[CaseStatus] = \"Closed\", \"Ineligible\\Withdrawn\", IF(",
-              "        (DimCaseDetail[BPFStage] in {\"Checking Criteria\", \"Develop Files\"} || DimCaseDetail[EligibilityStatus] = \"Under Review\") && DimCaseDetail[CaseStatus] <> \"Closed\", \"Under Review\", if(",
+              "        (DimCaseDetail[BPFStage] in {\"Checking Criteria\", \"Develop Files\"} || (isblank(DimCaseDetail[BPFStage]) && DimCaseDetail[EligibilityStatus] = \"Under Review\")) && DimCaseDetail[CaseStatus] <> \"Closed\", \"Under Review\", if(",
               "            DimCaseDetail[BPFStage] = \"Assess Damage\" && DimCaseDetail[CaseStatus] <> \"Closed\", \"Assigned To Evaluator\", if(",
               "                DimCaseDetail[BPFStage] = \"Review Report\"&& DimCaseDetail[CaseStatus] <> \"Closed\", \"Payment Validations\", \"Unknown\"",
               "    ))))))"
@@ -89619,7 +89628,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           }
         ],
         "columns": [
@@ -92685,7 +92694,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Table"
+            "value": "Exception"
           }
         ],
         "columns": [
@@ -96473,6 +96482,16 @@
             "expression": "calculate(countrows('FactCase'))",
             "formatString": "0",
             "lineageTag": "7da8af26-763f-4f2e-b542-138e42f6ad52"
+          },
+          {
+            "name": "Colour",
+            "expression": "SWITCH(selectedvalue(DimCaseDetail[AppCategory]), \"Assigned to Evaluator\", \"#003366\", \"Closed Appealed\", \"#7F5D0A\", \"Closed Eligible\", \"#ADADAD\", \"Ineligible\\Withdrawn\", \"#355992\", \"Payment Validations\", \"#99ADC2\", \"Under Review\", \"#FDB913\", \"Unknown\", \"#E6E6E6\")",
+            "lineageTag": "e93ec28b-0dc6-4fd3-8573-f515e8e77b51"
+          },
+          {
+            "name": "L",
+            "expression": "unichar(11044)",
+            "lineageTag": "85a0e4bd-7999-4902-8063-52da0f0d6d66"
           }
         ],
         "partitions": [
