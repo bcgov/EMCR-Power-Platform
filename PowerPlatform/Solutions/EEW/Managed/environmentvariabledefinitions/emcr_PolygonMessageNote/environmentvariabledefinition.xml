@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="emcr_PolygonMessageNote">
+  <defaultvalue>Note: Earthquake information is subject to modification. Modifications will be issued through updated alerts.</defaultvalue>
+  <displayname default="Polygon Message Note">
+    <label description="Polygon Message Note" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.14</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

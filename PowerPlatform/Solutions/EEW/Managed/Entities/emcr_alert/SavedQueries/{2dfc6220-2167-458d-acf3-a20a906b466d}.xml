@@ -12,8 +12,8 @@
         <row name="result" id="emcr_alertid">
           <cell name="emcr_name" width="144" />
           <cell name="emcr_eventid" width="80" />
-          <cell name="emcr_version" width="64" />
-          <cell name="emcr_topic" width="100" />
+          <cell name="emcr_alertnumber" width="119" />
+          <cell name="emcr_formattedtopic" width="100" />
           <cell name="emcr_type" width="65" />
           <cell name="emcr_magnitude" width="89" />
           <cell name="emcr_latitude" width="77" />
@@ -42,10 +42,10 @@
           <attribute name="emcr_originaltimeunitsutc" />
           <attribute name="emcr_type" />
           <attribute name="emcr_likelihood" />
-          <attribute name="emcr_topic" />
           <attribute name="emcr_publicalert" />
           <attribute name="emcr_eventid" />
-          <attribute name="emcr_version" />
+          <attribute name="emcr_alertnumber" />
+          <attribute name="emcr_formattedtopic" />
         </entity>
       </fetch>
     </fetchxml>

@@ -1,0 +1,10 @@
+<environmentvariabledefinition schemaname="emcr_EEWPolygonTeamsChannel">
+  <displayname default="EEW Polygon Teams Channel">
+    <label description="EEW Polygon Teams Channel" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.20</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

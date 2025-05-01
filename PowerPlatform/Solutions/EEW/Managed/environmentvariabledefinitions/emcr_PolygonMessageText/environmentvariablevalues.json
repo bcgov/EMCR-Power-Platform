@@ -1,0 +1,8 @@
+{
+  "environmentvariablevalues": {
+    "environmentvariablevalue": {
+      "iscustomizable": "1",
+      "value": "This is an earthquake early warning alert as issued by Natural Resources Canada.  A map detailing polygons of ground motion values and earthquake intensity projections can be accessed here: "
+    }
+  }
+}

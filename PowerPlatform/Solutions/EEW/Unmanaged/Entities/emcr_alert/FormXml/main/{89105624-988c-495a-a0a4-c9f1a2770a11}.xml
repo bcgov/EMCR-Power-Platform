@@ -47,6 +47,19 @@
                         <control id="statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="true" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{e68e184d-dc6c-4ded-a11f-0d5afa60b19e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Alert Number" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_alertnumber" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_alertnumber" disabled="true" />
+                      </cell>
+                      <cell locklevel="0" id="{17707205-3b35-4702-b5e7-e564920e39d1}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="Metrics" id="1db66de1-293f-4cbf-a36d-13b0315ff612" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
@@ -264,9 +277,9 @@
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{9bf9f61e-bf2e-4465-ba94-6f09be587061}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{9bf9f61e-bf2e-4465-ba94-6f09be587061}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="Version" languagecode="1033" />
+                          <label description="Message Version" languagecode="1033" />
                         </labels>
                         <control id="emcr_version" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="emcr_version" disabled="true" />
                       </cell>
@@ -293,9 +306,17 @@
                   <rows>
                     <row />
                     <row>
-                      <cell id="{1dfb4826-a37f-4417-afc5-2441bedbe549}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{b505bec6-dae8-4122-bd6c-9e33890f6343}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Topic" languagecode="1033" />
+                        </labels>
+                        <control id="emcr_formattedtopic" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_formattedtopic" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1dfb4826-a37f-4417-afc5-2441bedbe549}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Topic Value" languagecode="1033" />
                         </labels>
                         <control id="emcr_topic" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="emcr_topic" disabled="true" />
                       </cell>

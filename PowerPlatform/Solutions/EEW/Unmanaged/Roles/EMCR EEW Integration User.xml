@@ -5,13 +5,10 @@
   <RolePrivileges>
     <RolePrivilege name="prvAppendemcr_alert" level="Global" />
     <RolePrivilege name="prvAppendemcr_eewfailurelog" level="Global" />
-    <RolePrivilege name="prvAppendemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvAppendToemcr_alert" level="Global" />
     <RolePrivilege name="prvAppendToemcr_eewfailurelog" level="Global" />
-    <RolePrivilege name="prvAppendToemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvCreateemcr_alert" level="Global" />
     <RolePrivilege name="prvCreateemcr_eewfailurelog" level="Global" />
-    <RolePrivilege name="prvCreateemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvCreateSharePointData" level="Global" />
     <RolePrivilege name="prvDeleteemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvReademcr_alert" level="Global" />
@@ -25,7 +22,6 @@
     <RolePrivilege name="prvReadSharePointDocument" level="Global" />
     <RolePrivilege name="prvWriteemcr_alert" level="Global" />
     <RolePrivilege name="prvWriteemcr_eewfailurelog" level="Global" />
-    <RolePrivilege name="prvWriteemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvWriteSharePointData" level="Global" />
   </RolePrivileges>
 </Role>

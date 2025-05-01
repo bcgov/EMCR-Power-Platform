@@ -25,7 +25,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_eewfailuretype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_eewfailuretype" disabled="false" />
+                        <control id="emcr_eewfailuretype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="emcr_eewfailuretype" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -33,7 +33,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="emcr_details" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_details" disabled="false" />
+                        <control id="emcr_details" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="emcr_details" disabled="true" />
                       </cell>
                     </row>
                     <row>

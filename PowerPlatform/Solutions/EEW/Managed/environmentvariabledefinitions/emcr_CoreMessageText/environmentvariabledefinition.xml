@@ -1,4 +1,5 @@
 <environmentvariabledefinition schemaname="emcr_CoreMessageText">
+  <defaultvalue>This is an earthquake early warning alert as issued by Natural Resources Canada.</defaultvalue>
   <displayname default="Core Message Text">
     <label description="Core Message Text" languagecode="1033" />
   </displayname>

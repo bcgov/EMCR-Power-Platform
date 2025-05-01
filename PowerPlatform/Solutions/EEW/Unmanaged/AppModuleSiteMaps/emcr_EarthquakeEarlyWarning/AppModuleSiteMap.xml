@@ -14,7 +14,6 @@
         <Titles>
           <Title LCID="1033" Title="Incoming Notifications" />
         </Titles>
-        <SubArea Id="NewSubArea_4b70da45" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="emcr_nrcanadanotification" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
         <SubArea Id="subarea_a396d233" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="emcr_alert" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
         <SubArea Id="subarea_1e5c5a45" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="emcr_polygon" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
         <SubArea Id="NewSubArea_8f231874" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="emcr_notificationhistory" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">

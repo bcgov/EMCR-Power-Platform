@@ -7,14 +7,12 @@
     <RolePrivilege name="prvAppendemcr_alert" level="Global" />
     <RolePrivilege name="prvAppendemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvAppendemcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvAppendemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvAppendemcr_Polygon" level="Global" />
     <RolePrivilege name="prvAppendNewProcess" level="Global" />
     <RolePrivilege name="prvAppendToAsyncOperation" level="Basic" />
     <RolePrivilege name="prvAppendToemcr_alert" level="Global" />
     <RolePrivilege name="prvAppendToemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvAppendToemcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvAppendToemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvAppendToemcr_Polygon" level="Global" />
     <RolePrivilege name="prvAppendToNewProcess" level="Global" />
     <RolePrivilege name="prvAppendToTranslationProcess" level="Global" />
@@ -29,9 +27,7 @@
     <RolePrivilege name="prvAssignWorkflow" level="Basic" />
     <RolePrivilege name="prvAssignWorkflowSession" level="Basic" />
     <RolePrivilege name="prvCreateemcr_alert" level="Global" />
-    <RolePrivilege name="prvCreateemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvCreateemcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvCreateemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvCreateemcr_Polygon" level="Global" />
     <RolePrivilege name="prvCreateNewProcess" level="Global" />
     <RolePrivilege name="prvCreateSharePointData" level="Global" />
@@ -43,7 +39,6 @@
     <RolePrivilege name="prvDeleteemcr_alert" level="Global" />
     <RolePrivilege name="prvDeleteemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvDeleteemcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvDeleteemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvDeleteemcr_Polygon" level="Global" />
     <RolePrivilege name="prvDeleteNewProcess" level="Global" />
     <RolePrivilege name="prvDeleteTranslationProcess" level="Global" />
@@ -63,7 +58,6 @@
     <RolePrivilege name="prvReademcr_alert" level="Global" />
     <RolePrivilege name="prvReademcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvReademcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvReademcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvReademcr_Polygon" level="Global" />
     <RolePrivilege name="prvReadEntity" level="Global" />
     <RolePrivilege name="prvReadEntityKey" level="Global" />
@@ -107,9 +101,7 @@
     <RolePrivilege name="prvWorkflowExecution" level="Global" />
     <RolePrivilege name="prvWriteAsyncOperation" level="Basic" />
     <RolePrivilege name="prvWriteemcr_alert" level="Global" />
-    <RolePrivilege name="prvWriteemcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvWriteemcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvWriteemcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvWriteemcr_Polygon" level="Global" />
     <RolePrivilege name="prvWriteNewProcess" level="Global" />
     <RolePrivilege name="prvWriteSharePointData" level="Global" />

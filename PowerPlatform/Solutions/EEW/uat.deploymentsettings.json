@@ -1,12 +1,112 @@
 {
   "EnvironmentVariables": [
     {
+      "SchemaName": "emcr_CoreMessageNote",
+      "Value": "",
+      "DefaultValue": "Note: Earthquake information is subject to modification. Modifications will be issued through updated alerts.",
+      "Name": {
+        "Default": "Core Message Note",
+        "ByLcid": {
+          "1033": "Core Message Note"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
       "SchemaName": "emcr_CoreMessageText",
       "Value": "",
+      "DefaultValue": "This is an earthquake early warning alert as issued by Natural Resources Canada.",
       "Name": {
         "Default": "Core Message Text",
         "ByLcid": {
           "1033": "Core Message Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWCoreTeamsChannel",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Core Teams Channel",
+        "ByLcid": {
+          "1033": "EEW Core Teams Channel"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWCoreTeamsSubject",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Core Teams Subject",
+        "ByLcid": {
+          "1033": "EEW Core Teams Subject"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWEmailFailureText",
+      "Value": "",
+      "DefaultValue": "Unable to send email notification",
+      "Name": {
+        "Default": "EEW Email Failure Text",
+        "ByLcid": {
+          "1033": "EEW Email Failure Text"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWFailureNotificationList",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Failure Notification List",
+        "ByLcid": {
+          "1033": "EEW Failure Notification List"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWPolygonTeamsChannel",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Polygon Teams Channel",
+        "ByLcid": {
+          "1033": "EEW Polygon Teams Channel"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWPolygonTeamsSubject",
+      "Value": "",
+      "Name": {
+        "Default": "EEW Polygon Teams Subject",
+        "ByLcid": {
+          "1033": "EEW Polygon Teams Subject"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
+      "SchemaName": "emcr_EEWTeamsFailureText",
+      "Value": "",
+      "DefaultValue": "Failed to send teams notification! ",
+      "Name": {
+        "Default": "EEW Teams Failure Text",
+        "ByLcid": {
+          "1033": "EEW Teams Failure Text"
         }
       },
       "TypeId": 100000000,
@@ -33,6 +133,7 @@
     {
       "SchemaName": "emcr_EmailSubjectLine",
       "Value": "",
+      "DefaultValue": "EARTHQUAKE EARLY WARNING ALERT - ",
       "Name": {
         "Default": "Core Email Subject Line",
         "ByLcid": {
@@ -57,7 +158,7 @@
     {
       "SchemaName": "emcr_PolygonEmailSubjectLine",
       "Value": "",
-      "DefaultValue": "DEV Polygon EEW Alert - not real",
+      "DefaultValue": "EARTHQUAKE EARLY WARNING ALERT MAP - ",
       "Name": {
         "Default": "Polygon Email Subject Line",
         "ByLcid": {
@@ -68,8 +169,22 @@
       "IsRequired": false
     },
     {
+      "SchemaName": "emcr_PolygonMessageNote",
+      "Value": "",
+      "DefaultValue": "Note: Earthquake information is subject to modification. Modifications will be issued through updated alerts.",
+      "Name": {
+        "Default": "Polygon Message Note",
+        "ByLcid": {
+          "1033": "Polygon Message Note"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
+    },
+    {
       "SchemaName": "emcr_PolygonMessageText",
       "Value": "",
+      "DefaultValue": "This is an earthquake early warning alert as issued by Natural Resources Canada.  A map detailing polygons of ground motion values and earthquake intensity projections can be accessed here: ",
       "Name": {
         "Default": "Polygon Message Text",
         "ByLcid": {
@@ -95,9 +210,9 @@
       "SchemaName": "emcr_PowerBIreportURL",
       "Value": "",
       "Name": {
-        "Default": "PowerBI report URL",
+        "Default": "EEW Alerts Map Report URL",
         "ByLcid": {
-          "1033": "PowerBI report URL"
+          "1033": "EEW Alerts Map Report URL"
         }
       },
       "TypeId": 100000000,
@@ -119,22 +234,22 @@
   "ConnectionReferences": [
     {
       "LogicalName": "emcr_EmcrAppsMSTeams",
-      "ConnectionId": "shared-teams-18bff75a-11bd-40fd-8aaf-0f7431847a5a",
+      "ConnectionId": "faebf06170344bbb95a8f5f19f4b4e85",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_teams"
     },
     {
       "LogicalName": "emcr_EmcrAppsOutlook",
-      "ConnectionId": "shared-office365-f47a3177-4308-44f2-82a2-8f28a2b3c830",
+      "ConnectionId": "b71b8c30573040019328a51e15d05d7a",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
       "LogicalName": "emcr_EmcrAppsPowerBI",
-      "ConnectionId": "6578c1eebb9449b58f61a2f3f5f22c3c",
+      "ConnectionId": "702f285ae9f54326bb5b15c19ca55429",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_powerbi"
     },
     {
       "LogicalName": "emcr_sharedcommondataserviceforapps_c9deb",
-      "ConnectionId": "shared-commondataser-6ef4b40e-65a6-41ad-948d-8ac663a9da56",
+      "ConnectionId": "12b2919c0c5a4dffa3aa857220e8ea9d",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     }
   ]
