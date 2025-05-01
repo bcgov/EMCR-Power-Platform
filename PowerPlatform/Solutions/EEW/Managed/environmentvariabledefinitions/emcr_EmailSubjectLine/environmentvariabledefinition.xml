@@ -1,4 +1,5 @@
 <environmentvariabledefinition schemaname="emcr_EmailSubjectLine">
+  <defaultvalue>EARTHQUAKE EARLY WARNING ALERT - </defaultvalue>
   <displayname default="Core Email Subject Line">
     <label description="Core Email Subject Line" languagecode="1033" />
   </displayname>

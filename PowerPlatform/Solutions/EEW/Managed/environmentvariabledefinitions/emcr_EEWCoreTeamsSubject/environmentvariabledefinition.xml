@@ -1,0 +1,10 @@
+<environmentvariabledefinition schemaname="emcr_EEWCoreTeamsSubject">
+  <displayname default="EEW Core Teams Subject">
+    <label description="EEW Core Teams Subject" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.20</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

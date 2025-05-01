@@ -41,7 +41,6 @@
     <RolePrivilege name="prvReademcr_alert" level="Global" />
     <RolePrivilege name="prvReademcr_eewfailurelog" level="Global" />
     <RolePrivilege name="prvReademcr_NotificationHistory" level="Global" />
-    <RolePrivilege name="prvReademcr_nrcanadanotification" level="Global" />
     <RolePrivilege name="prvReademcr_Polygon" level="Global" />
     <RolePrivilege name="prvReadEntity" level="Global" />
     <RolePrivilege name="prvReadEntityKey" level="Global" />
