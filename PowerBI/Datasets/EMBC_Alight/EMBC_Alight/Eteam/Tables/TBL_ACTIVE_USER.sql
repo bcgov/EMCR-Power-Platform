@@ -1,7 +1,0 @@
-﻿CREATE TABLE [Eteam].[TBL_ACTIVE_USER] (
-    [SESSION_ID]        NVARCHAR (200) NOT NULL,
-    [USER_ID]           NVARCHAR (100) NOT NULL,
-    [LOGIN_TIME]        DATETIME       NULL,
-    [LOGIN_UPDATE_TIME] DATETIME       NULL
-);
-

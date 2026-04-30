@@ -1,4 +1,0 @@
-﻿CREATE TABLE [Eteam].[JMS_TRANSACTIONS] (
-    [TXID] INT NOT NULL
-);
-

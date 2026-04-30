@@ -1,7 +1,0 @@
-﻿CREATE TABLE [Eteam].[TBL_RAPID_INFRA_EVAL_WEIGHT] (
-    [FIELD_NAME]                 NVARCHAR (300) NULL,
-    [FIELD_VALUE]                NVARCHAR (300) NULL,
-    [WEIGHT]                     NVARCHAR (300) NULL,
-    [RAPID_INFRA_EVAL_WEIGHT_PK] INT            IDENTITY (1, 1) NOT NULL
-);
-

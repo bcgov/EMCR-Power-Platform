@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [o2ss]
-    AUTHORIZATION [dbo];
-

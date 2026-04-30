@@ -1,1 +1,0 @@
-﻿CREATE VIEW [EMBCPROD].[template_features]AS SELECT template_features_id,feature,id FROM [Eteam_Ora].[template_features]  UNION ALL   SELECT template_features_id,feature,id FROM [Eteam].[template_features]

@@ -1,8 +1,0 @@
-﻿CREATE TABLE [Eteam].[TBL_EXT_INTERFACE_USER] (
-    [EXT_INTERFACE_USER_ID] NVARCHAR (100) NOT NULL,
-    [USERNAME]              NVARCHAR (300) NULL,
-    [PASSWORD]              NVARCHAR (18)  NULL,
-    [ETEAM_ID]              NVARCHAR (30)  NULL,
-    [CUSTOMER_ID]           NVARCHAR (18)  NULL
-);
-

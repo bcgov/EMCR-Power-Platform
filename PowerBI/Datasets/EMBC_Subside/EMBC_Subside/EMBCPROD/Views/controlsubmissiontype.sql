@@ -1,1 +1,0 @@
-﻿CREATE VIEW [EMBCPROD].[controlsubmissiontype]AS SELECT id,DTYPE,label,name,repeating,sensitive,controltypeid FROM [Eteam_Ora].[controlsubmissiontype]  UNION ALL   SELECT id,DTYPE,label,name,repeating,sensitive,controltypeid FROM [Eteam].[controlsubmissiontype]

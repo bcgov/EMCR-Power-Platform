@@ -1,3 +1,0 @@
-﻿CREATE LOGIN [IDIR\EMCR_AP_BusinessIntelligence_DB_R]
-    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
-

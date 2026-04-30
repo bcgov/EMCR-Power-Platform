@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [Eteam]
-    AUTHORIZATION [dbo];
-

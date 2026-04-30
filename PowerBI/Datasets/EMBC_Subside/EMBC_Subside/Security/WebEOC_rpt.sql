@@ -1,3 +1,0 @@
-﻿CREATE SCHEMA [WebEOC_rpt]
-    AUTHORIZATION [dbo];
-

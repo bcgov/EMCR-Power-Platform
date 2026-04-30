@@ -1,9 +1,0 @@
-﻿CREATE TABLE [Eteam].[TBL_REPORT_TYPE] (
-    [REPORT_TYPE_ID]     NVARCHAR (100) NOT NULL,
-    [NAME]               NVARCHAR (255) NOT NULL,
-    [CODE]               NVARCHAR (3)   NOT NULL,
-    [DESCRIPTION]        NVARCHAR (255) NULL,
-    [SYSTEM_TYPE]        NUMERIC (1)    NOT NULL,
-    [ALLOW_CUSTOM_FORMS] NUMERIC (1)    NULL
-);
-

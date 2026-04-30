@@ -1,1 +1,0 @@
-﻿CREATE VIEW [EMBCPROD].[formmetadatatype]AS SELECT id,DTYPE,deploystate,tenantid,ownerid,applicationid,deleted,name,updated,formtypeid FROM [Eteam_Ora].[formmetadatatype]  UNION ALL   SELECT id,DTYPE,deploystate,tenantid,ownerid,applicationid,deleted,name,updated,formtypeid FROM [Eteam].[formmetadatatype]

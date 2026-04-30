@@ -1,7 +1,0 @@
-2025-03-21 12:17:27 PM	This log contains information about the import schema operation into project 'EMBC_Alight' on computer 'BCSAG10-AGCTR3' by user 'TDOERK_A'.
-2025-03-21 12:17:27 PM	Import of database schema has started.
-2025-03-21 12:17:28 PM	An exception was generated.
-The reverse engineering operation cannot continue because you do not have View Definition permission on the 'EMBC' database.
-2025-03-21 12:17:28 PM	Finished importing database.
-2025-03-21 12:17:28 PM	A summary of the import was saved to the following location: N:\EMCR_VicHQ_DSB_Quartech\EMBC_NTT_Latest\EMBC_DB\EMBC_Alight\EMBC_Alight\Import Schema Logs\EMBC_Alight_20250321071727.log
-2025-03-21 12:17:28 PM	Click Finish to continue...

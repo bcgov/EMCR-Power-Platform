@@ -1,6 +1,0 @@
-﻿CREATE TABLE [Eteam].[TBL_ROLE] (
-    [ROLE_ID]     NVARCHAR (100) NOT NULL,
-    [ROLE_NAME]   NVARCHAR (300) NULL,
-    [DESCRIPTION] NTEXT          NULL
-);
-
